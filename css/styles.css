@@ -1,7 +1,50 @@
-h1 {
+h1, h2 {
     text-align: center;
 }
-h2 {
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 50%;
+}
+nav {
     text-align: center;
-    color: gray;
+    background-color: lightgray;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);   
+    font-family: 'Times New Roman', sans-serif;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+table {
+  width: 100%;                 /* que ocupe todo el ancho disponible */
+  border-collapse: collapse;   /* unifica los bordes */
+  margin: 1.5rem 0;            /* separación con el resto del contenido */
+  font-size: 0.95rem;          /* un pelín más pequeño que el texto normal */
+}
+
+th, td {
+    border: 1px solid blue;
+    width: 100px;
+    word-wrap: break-word;
+    margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #800020;   /* un vino/burdeos riojano */
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
