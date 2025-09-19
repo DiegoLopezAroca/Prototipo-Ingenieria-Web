@@ -1,50 +1,64 @@
-h1, h2 {
-    text-align: center;
-}
-.logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    width: 50%;
-}
-nav {
-    text-align: center;
-    background-color: lightgray;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);   
-    font-family: 'Times New Roman', sans-serif;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease;
-}
-table {
-  width: 100%;                 /* que ocupe todo el ancho disponible */
-  border-collapse: collapse;   /* unifica los bordes */
-  margin: 1.5rem 0;            /* separación con el resto del contenido */
-  font-size: 0.95rem;          /* un pelín más pequeño que el texto normal */
-}
+/* Layout básico */
+:root { --vino:#7a0020; --gris:#f2f2f4; --max:1100px; }
+html { scroll-behavior: smooth; }
+body { margin:0; font-family: system-ui, sans-serif; line-height:1.6; color:#222; }
+.wrap { max-width: var(--max); margin:0 auto; padding:0 1rem; }
 
-th, td {
-    border: 1px solid blue;
-    width: 100px;
-    word-wrap: break-word;
-    margin-top: 20px;
-}
+/* Cabecera */
+.site-header { background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:20; }
+.site-header .wrap { display:flex; align-items:center; justify-content:space-between; }
+.brand { display:flex; align-items:center; gap:.6rem; text-decoration:none; color:#111; font-weight:700; }
+.brand-logo { width:44px; height:44px; border-radius:50%; object-fit:cover; }
+.main-nav a { margin-left:1rem; text-decoration:none; color:#333; }
+.main-nav a:hover { text-decoration:underline; }
 
-th, td {
-  border: 1px solid black;
-  padding: 0.75rem 1rem;
-  text-align: left;
+/* Foto de fondo */
+.hero {
+  min-height: 70vh;
+  background: url("../img/foto_alaia.jpg") center/cover no-repeat, #333;
+  display:grid; place-items:center; text-align:center; color:#fff;
 }
+.hero-inner { background:rgba(0,0,0,.45); padding:2rem 1.5rem; border-radius:14px; }
+.logo-hero { width:92px; height:92px; border-radius:50%; margin-bottom:.75rem; object-fit:cover; }
+.hero h1 { margin:.25rem 0; letter-spacing:.06em; font-size: clamp(28px, 6vw, 56px); }
+.hero p { margin:0 0 1rem; opacity:.95; }
+.btn { display:inline-block; padding:.6rem 1rem; border:2px solid #fff; color:#fff; text-decoration:none; font-weight:700; letter-spacing:.08em; }
 
-th {
-  background-color: #800020;   /* un vino/burdeos riojano */
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
+/* Índice interno */
+.indice h2 { margin:0 0 .5rem; color:var(--vino); font-size:1.2rem; }
+.indice { margin: 2rem auto; padding: 1rem; background: #fafafa; border: 1px solid #e7e7e7; border-radius: .75rem; text-align: center; max-width: 800px; }
+.indice ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem 1.25rem; }
+.indice a { text-decoration:none; color:#333; }
+.indice a:hover { text-decoration:underline; color:var(--vino); }
+
+/* Secciones a dos columnas */
+.two-col { display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center; padding:3rem 0; }
+.two-col .col-img img { width:100%; height:auto; border-radius:12px; display:block; }
+.section-alt { background: var(--gris); margin:2rem 0; padding:3rem 1rem; border-radius:14px; }
+.section-photo { margin:2rem 0; }
+
+/* Galería */
+.gallery { padding:3rem 0; }
+.gallery h2 { margin-top:0;}
+.grid-gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-left: 2rem; margin-right: 2rem}
+.grid-gallery img { width:100%; height:100%; object-fit:cover; border-radius:12px; aspect-ratio: 4/3; }
+
+/* Aside como tarjeta */
+.aside-card { background:#fff; border:1px solid #e7e7e7; border-radius:12px; padding:1.25rem; margin:2rem 0 3rem; }
+.aside-card h3 { margin-top:0; color:var(--vino); }
+.aside-card ul { margin:.25rem 0 .5rem 1.1rem; }
+.aside-card li { margin:.4rem 0; }
+
+/* Footer */
+.site-footer { background:#111; color:#eee; text-align:center; padding:1rem; }
+.site-footer a { color:#fff; }
+
+/* Responsive */
+@media (max-width: 900px){ .two-col { grid-template-columns: 1fr; } .brand span { display:none; } }
+
+/* Tablas */
+h1, h2 { text-align: center;}
+.logo { display: block; margin-left: auto; margin-right: auto; margin-top: 40px; margin-bottom: 40px; width: 50%; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; border-spacing: 20px;}
+th, td { border: 1px solid black; padding: 0.75rem 1rem; text-align: left; width: 100px;}
+th { background-color: #800020; color: #fff; text-transform: uppercase; letter-spacing: 0.05em;}
