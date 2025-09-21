@@ -15,7 +15,7 @@ body { margin:0; font-family: system-ui, sans-serif; line-height:1.6; color:#222
 /* Foto de fondo */
 .hero {
   min-height: 70vh;
-  background: url("../img/foto_alaia.jpg") center/cover no-repeat, #333;
+  background: url("../img/nosotros/foto_alaia.jpg") center/cover no-repeat, #333;
   display:grid; place-items:center; text-align:center; color:#fff;
 }
 .hero-inner { background:rgba(0,0,0,.45); padding:2rem 1.5rem; border-radius:14px; }
