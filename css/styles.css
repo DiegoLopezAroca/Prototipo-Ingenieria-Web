@@ -14,7 +14,7 @@ body { margin:0; font-family: system-ui, sans-serif; line-height:1.6; color:#222
 
 /* Foto de fondo */
 .hero {
-  min-height: 70vh;
+  min-height: 60vh;
   background: url("../img/nosotros/foto_alaia.jpg") center/cover no-repeat, #333;
   display:grid; place-items:center; text-align:center; color:#fff;
 }
@@ -54,11 +54,24 @@ body { margin:0; font-family: system-ui, sans-serif; line-height:1.6; color:#222
 .site-footer a { color:#fff; }
 
 /* Responsive */
+/* esto es para adaptar el diseño a pantallas pequeñas*/
 @media (max-width: 900px){ .two-col { grid-template-columns: 1fr; } .brand span { display:none; } }
 
 /* Tablas */
 h1, h2 { text-align: center;}
 .logo { display: block; margin-left: auto; margin-right: auto; margin-top: 40px; margin-bottom: 40px; width: 50%; }
-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; border-spacing: 20px;}
-th, td { border: 1px solid black; padding: 0.75rem 1rem; text-align: left; width: 100px;}
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; border-spacing: 20px; margin: 1.5rem auto;}
+th, td { border: 1.5px solid black; padding: 0.75rem 1rem; text-align: left; width: 100px;}
 th { background-color: #800020; color: #fff; text-transform: uppercase; letter-spacing: 0.05em;}
+
+/* Imagenes animadas */
+.imagen_animada img {
+  transition: transform 0.3s ease; /* Esto es para que no sea muy brusca la animacion */
+}
+
+/* Animación que se ejecuta al pasar el cursor */
+.imagen_animada:hover img {
+  transform: scale(1.1); /* Escala la imagen un 10% */
+}
+
+/* Formularios */

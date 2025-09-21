@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" href="../img/iconos/dios.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peña El Revoque – Registro</title>
+    <meta name="description" content="Asociación cultural riojana" />
+  </head>
+  <body>
+
+    <!-- CABECERA (logo + nav) -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">
+          <img src="../img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo" />
+          <span>Peña El Revoque</span>
+        </a>
+        <nav class="main-nav" aria-label="Principal">
+          <a href="index.html">Inicio</a>
+          <a href="eventos.html">Eventos</a>
+          <a href="socios.html">Socios</a>
+          <a href="merchan.html">Merchandising</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="registro.html">Registro</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO con imagen de fondo -->
+    <section class="hero">
+      <div class="hero-inner">
+        <img src="../img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero" />
+        <h1>Peña El Revoque</h1>
+        <p>Fiesta, tradición y comunidad en Hervías</p>
+        <a class="btn" href="index.html">Ver índice</a>
+      </div>
+    </section>
+
+    <!-- CUERPO -->
+    <main class="wrap">
+        <section class="formulario">
+            <h2>Registro de socios</h2>
+            <form action="server.php" method="post">
+                <fieldset>
+                    <legend>Datos personales</legend>
+                    <label for="nombre">Nombre:</label>
+                    <p>
+                    <input type="text" id="nombre" name="nombre" required />
+                    </p>
+                    <label for="apellido">Apellido:</label>
+                    <p>
+                    <input type="text" id="apellido" name="apellido" required />
+                    </p>
+                    <label for="2do apellido">Segundo Apellido:</label>
+                    <p>
+                    <input type="text" id="2do apellido" name="2do apellido" />
+                    </p>
+                    <p>
+                    <label for="edad">Mayor de edad:</label>
+                    <input type="radio" id="mayor de edad" name="mayor de edad" value="si" required /> Sí
+                    <input type="radio" id="mayor de edad" name="mayor de edad" value="no" required /> No
+                    </p>
+                    <p>
+                    <label for="fecha nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fecha nacimiento" name="fecha nacimiento" required />
+                    </p>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend>Información de cuenta</legend>
+                    <label for="email">Email:</label>
+                    <p>
+                    <input type="email" id="email" name="email" required />
+                    </p>
+                    <p>
+                    <label for="password">Contraseña:</label>
+                    </p>
+                    <input type="password" id="password" name="password" required />
+                    <p>
+                    <label for="password-confirm">Confirmar Contraseña:</label>
+                    </p>
+                    <input type="password" id="password-confirm" name="password-confirm" required />
+                    <p>
+                    <label for="telefono">Teléfono:</label>
+                    </p>
+                    <input type="tel" id="telefono" name="telefono" required />
+                    <p>   
+                </fieldset>
+                <br>
+                <input type="submit" value="Registrarse" />
+            </form>
+        </section>
+    </main>
+
+      <!-- PIE -->
+    <footer class="site-footer">
+      <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+      <p>Síguenos en:
+        <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+        <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+      </p>
+    </footer>
+
+  </body>
+</html>
