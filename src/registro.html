@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="icon" href="../img/iconos/dios.png" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/iconos/dios.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Peña El Revoque – Registro</title>
-    <meta name="description" content="Asociación cultural riojana" />
+    <meta name="description" content="Asociación cultural riojana">
   </head>
   <body>
 
@@ -14,7 +14,7 @@
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="index.html">
-          <img src="../img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo" />
+          <img src="../img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo">
           <span>Peña El Revoque</span>
         </a>
         <nav class="main-nav" aria-label="Principal">
@@ -31,7 +31,7 @@
     <!-- HERO con imagen de fondo -->
     <section class="hero">
       <div class="hero-inner">
-        <img src="../img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero" />
+        <img src="../img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero">
         <h1>Peña El Revoque</h1>
         <p>Fiesta, tradición y comunidad en Hervías</p>
         <a class="btn" href="index.html">Ver índice</a>
@@ -47,24 +47,37 @@
                     <legend>Datos personales</legend>
                     <label for="nombre">Nombre:</label>
                     <p>
-                    <input type="text" id="nombre" name="nombre" required />
+                    <input type="text" id="nombre" name="nombre" required>
                     </p>
                     <label for="apellido">Apellido:</label>
                     <p>
-                    <input type="text" id="apellido" name="apellido" required />
+                    <input type="text" id="apellido" name="apellido" required>
                     </p>
-                    <label for="2do apellido">Segundo Apellido:</label>
+                    <label for="segundo-apellido">Segundo apellido</label>
                     <p>
-                    <input type="text" id="2do apellido" name="2do apellido" />
-                    </p>
-                    <p>
-                    <label for="edad">Mayor de edad:</label>
-                    <input type="radio" id="mayor de edad" name="mayor de edad" value="si" required /> Sí
-                    <input type="radio" id="mayor de edad" name="mayor de edad" value="no" required /> No
+                    <input type="text" id="segundo-apellido" name="segundo-apellido">
                     </p>
                     <p>
-                    <label for="fecha nacimiento">Fecha de nacimiento:</label>
-                    <input type="date" id="fecha nacimiento" name="fecha nacimiento" required />
+                    ¿Mayor de 13 años?
+                    
+                    <input type="radio" id="edad-si" name="edad" value="si" required>
+                    <label for="edad-si">Mayor</label>
+
+                    <input type="radio" id="edad-no" name="edad" value="no" required>
+                    <label for="edad-no">Menor</label>
+                    </p>
+                    <p>
+                    <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
+                    </p>
+                    <p>
+                    <label for="socio">Eres socio:</label>
+                    <select id="socio" name="socio" required>
+                          <option value="">-- Selecciona una opción --</option>
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                          <option value="quiero-serlo">Quiero serlo</option>
+                    </select>
                     </p>
                 </fieldset>
                 <br>
@@ -72,24 +85,23 @@
                     <legend>Información de cuenta</legend>
                     <label for="email">Email:</label>
                     <p>
-                    <input type="email" id="email" name="email" required />
+                    <input type="email" id="email" name="email" required>
                     </p>
                     <p>
                     <label for="password">Contraseña:</label>
                     </p>
-                    <input type="password" id="password" name="password" required />
+                    <input type="password" id="password" name="password" required>
                     <p>
                     <label for="password-confirm">Confirmar Contraseña:</label>
                     </p>
-                    <input type="password" id="password-confirm" name="password-confirm" required />
+                    <input type="password" id="password-confirm" name="password-confirm" required>
                     <p>
                     <label for="telefono">Teléfono:</label>
                     </p>
-                    <input type="tel" id="telefono" name="telefono" required />
-                    <p>   
+                    <input type="tel" id="telefono" name="telefono" required>
                 </fieldset>
                 <br>
-                <input type="submit" value="Registrarse" />
+                <input type="submit" value="Registrarse">
             </form>
         </section>
     </main>
