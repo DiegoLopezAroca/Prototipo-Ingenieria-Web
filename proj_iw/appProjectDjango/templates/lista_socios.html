@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña El Revoque – Socios</title>
+    <meta name="description" content="Lista de socios de la Peña El Revoque. Información sobre todos los miembros registrados de la peña.">
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header class="site-header">
+        <div class="wrap">
+            <a class="brand" href="{% url 'index' %}">
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
+                <span>Peña El Revoque</span>
+            </a>
+            <nav class="main-nav" aria-label="Principal">
+                <a href="{% url 'index' %}">Inicio</a>
+                <!--Falta añadir los demas apartados cuando esten-->
+                <a href="{% url 'socios' %}">Socios</a>
+                <a href="{% url 'registros' %}">Registro</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
+            <h1>Socios de la Peña El Revoque</h1>
+            <p>Todos los miembros registrados de nuestra peña</p>
+        </div>
+    </section>
+
+    <!-- CUERPO -->
+    <main class="wrap">
+        <p>Lista de socios registrados:</p>
+        <table id="socios">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Detalle</th>
+            </tr>
+            {% for socio in socios %}
+            <tr>
+                <td>{{ socio.id }}</td>
+                <td>{{ socio.nombre }}</td>
+                <td><a href="{% url 'detalle_socio' socio.id %}">Ver detalle</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+
+    <!-- PIE -->
+    <footer class="site-footer">
+        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+        <p>Síguenos en:
+            <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+        </p>
+    </footer>
+
+</body>
+</html>

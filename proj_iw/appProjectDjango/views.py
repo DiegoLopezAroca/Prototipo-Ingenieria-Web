@@ -1,3 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Socio, Eventos, Cuoutas, Merchandising
+from django.contrib.auth.decorators import user_passes_test
 
-# Create your views here.
+# Vista principal
+def index(request):
+    return render(request, 'index.html')
+
+# Vista de socios (lista)
+def socios(request):
+    lista_socios = Socio.objects.all()
+    contexto = {'socios': lista_socios}
+    return render(request, 'lista_socios.html', contexto)
+
+# Vista de detalle de socio
+@user_passes_test(lambda u: u.is_superuser)
+def detalle_socio(request, socio_id):
+    socio = get_object_or_404(Socio, id=socio_id)
+    contexto = {'socio': socio}
+    return render(request, 'detalle_socio.html', contexto)
+
+# Vista de registros
+def registros(request):
+    return render(request, 'registro.html')
