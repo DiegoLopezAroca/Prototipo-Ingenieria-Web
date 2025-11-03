@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña El Revoque – Cuotas</title>
+    <meta name="description" content="Listado de cuotas de los socios de la Peña El Revoque en Hervías.">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header class="site-header">
+        <div class="wrap">
+            <a class="brand" href="/appProjectDjango/">
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
+                <span>Peña El Revoque</span>
+            </a>
+            <nav class="main-nav" aria-label="Principal">
+                <a href="/appProjectDjango/">Inicio</a>
+                <a href="/appProjectDjango/eventos/">Eventos</a>
+                <a href="/appProjectDjango/socios/">Socios</a>
+                <a href="/appProjectDjango/merchandising/">Merchandising</a>
+                <a href="/appProjectDjango/cuotas/">Cuotas</a>
+                <a href="/appProjectDjango/registros/">Registro</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
+            <h1>Cuotas de la Peña</h1>
+            <p>Gestión y control de las cuotas de los socios</p>
+            <a class="btn" href="/appProjectDjango/">Ver índice</a>
+        </div>
+    </section>
+
+    <!-- CUERPO -->
+    <main class="wrap">
+        <nav id="indice" class="indice" aria-label="Índice de secciones">
+            <h2>Índice</h2>
+            <ul>
+                <li><a href="#cuotas">Listado de cuotas</a></li>
+            </ul>
+        </nav>
+
+        <p>A continuación se muestran todas las cuotas registradas de la Peña El Revoque.</p>
+
+        {% if cuotas %}
+        <table id="cuotas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Socio</th>
+                    <th>Cuota (€)</th>
+                    <th>Fecha de pago</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cuota in cuotas %}
+                <tr>
+                    <td>{{ cuota.id }}</td>
+                    <td>{{ cuota.socio.nombre }}</td>
+                    <td>{{ cuota.monto }}</td>
+                    <td>{{ cuota.fecha_pago }}</td>
+                    <td>{{ cuota.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No hay cuotas registradas actualmente.</p>
+        {% endif %}
+    </main>
+
+    <!-- PIE -->
+    <footer class="site-footer">
+        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+        <p>Síguenos en:
+            <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+        </p>
+    </footer>
+
+</body>
+</html>

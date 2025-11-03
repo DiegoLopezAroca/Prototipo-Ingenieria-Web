@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Socio, Eventos, Cuoutas, Merchandising
+from .models import Socio, Eventos, Cuotas, Merchandising
 from django.contrib.auth.decorators import user_passes_test
 
 # Vista principal
@@ -22,3 +22,7 @@ def detalle_socio(request, socio_id):
 # Vista de registros
 def registros(request):
     return render(request, 'registro.html')
+
+def cuotas(request):
+    cuotas = Cuotas.objects.all()
+    return render(request, 'cuotas.html', {'cuotas': cuotas})
