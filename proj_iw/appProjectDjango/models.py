@@ -18,7 +18,7 @@ class Eventos(models.Model):
     def __str__(self):
         return f"id={self.id}, nombre={self.nombre}, fecha={self.fecha}, lugar={self.lugar}, descripcion={self.descripcion}"
     
-class Cuoutas(models.Model):
+class Cuotas(models.Model):
     socio = models.ForeignKey(Socio, on_delete=models.CASCADE)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_pago = models.DateField()
