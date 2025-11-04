@@ -98,3 +98,16 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
 }
 .formulario button { display: inline-block; width: 100%; padding: .75rem; background: var(--vino); color: #fff; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
 .formulario input[type="submit"] { display: inline-block; width: 100%; padding: .75rem; background: var(--vino); color: #fff; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: 700; cursor: pointer;}
+
+
+
+
+/* ===== CONTENEDOR DE MERCHANDISING ===== */
+.merch-section {padding: 3rem 1rem 4rem 1rem; margin: 3rem auto 5rem auto; background: #fff; text-align: center;}
+.merch-section h2 { margin-top: 0; margin-bottom: 2rem; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--vino); text-align: center;}
+.merch-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; justify-items: center;}
+.merch-item {text-align: center; background: var(--gris); border-radius: 12px; padding: 1rem; width: 180px; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;}
+.merch-item:hover {transform: translateY(-5px); box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
+.merch-img {width: 160px; height: 130px; object-fit: contain; border-radius: 8px; background: #fff; margin-bottom: 0.5rem;}
+.merch-name {font-weight: 600; font-size: 0.9rem; color: #333; text-align: center; margin: 0;}
+.merch-item:hover .merch-name {color: var(--vino);}

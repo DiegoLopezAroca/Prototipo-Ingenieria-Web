@@ -26,3 +26,16 @@ def registros(request):
 def cuotas(request):
     cuotas = Cuotas.objects.all()
     return render(request, 'cuotas.html', {'cuotas': cuotas})
+
+# Vista de merchandising (lista)
+def merchandising(request):
+    merchandising = Merchandising.objects.all()
+    contexto = {'merchandisings': merchandising}
+    return render(request, 'merchandising.html', contexto)
+
+# Vista de detalle de merchandising
+@user_passes_test(lambda u: u.is_superuser)
+def detalle_producto(request, producto_id):
+    producto = get_object_or_404(Merchandising, id=producto_id)
+    contexto = {'producto': producto}
+    return render(request, 'lista_merchandising.html', contexto)

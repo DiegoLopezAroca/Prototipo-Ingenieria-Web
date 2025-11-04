@@ -11,6 +11,6 @@ urlpatterns = [
     #path('cuotas/<int:cuota_id>/', views.detalle_cuota, name='detalle_cuota'),
     path('socios/', views.socios, name='socios'),
     path('socios/<int:socio_id>/', views.detalle_socio, name='detalle_socio'),
-    #path('merchandising/', views.merchandising, name='merchandising'),
-    #path('merchandising/<int:producto_id>/', views.detalle_producto, name='detalle_producto')
+    path('merchandising/', views.merchandising, name='merchandising'),
+    path('merchandising/<int:producto_id>/', views.detalle_producto, name='detalle_producto')
 ]

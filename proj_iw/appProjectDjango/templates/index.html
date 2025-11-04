@@ -1,30 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta name="google-site-verification" content="pcennKmYmRSbg919FbeM2Q6txu2q52cdHGiYCOYFUb4" />
-    <link rel="stylesheet" href="../../../css/styles.css">
-    <link rel="icon" href="img/iconos/dios.png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Peña El Revoque – Inicio</title>
     <meta name="description" content="Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del Hervías Rock y de actividades llenas de música, amistad y tradición durante todo el año. ¡Vive el espíritu de El Revoque!">
   </head>
+
   <body>
 
     <!-- CABECERA -->
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="index.html">
-          <img src="img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo">
-          <span>Peña El Revoque</span>
+        <a class="brand" href="{% url 'index' %}">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
+            <span>Peña El Revoque</span>
         </a>
         <nav class="main-nav" aria-label="Principal">
-          <a href="index.html">Inicio</a>
-          <a href="eventos.html">Eventos</a>
-          <a href="socios.html">Socios</a>
-          <a href="merchan.html">Merchandising</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="registro.html">Registro</a>
+          <!--Falta añadir los demas apartados cuando esten-->
+          <a href="{% url 'index' %}">Inicio</a>
+          <a href="{% url 'socios' %}">Socios</a>
+          <a href="{% url 'merchandising' %}">Merchandising</a>
+          <a href="{% url 'registros' %}">Registro</a>
         </nav>
       </div>
     </header>
@@ -32,7 +33,7 @@
     <!-- HERO con imagen de fondo -->
     <section class="hero"> <!-- El hero se suele usar como sección principal o lo que ve primero el usuario-->
       <div class="hero-inner">
-        <img src="img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero">
+        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
         <h1>Peña El Revoque</h1>
         <p>Fiesta, tradición y comunidad en Hervías</p>
         <a class="btn" href="index.html">Ver índice</a>
@@ -78,7 +79,7 @@
             </p>
         </div>
         <div class="col-img">
-          <img src="img/nosotros/chupicuadri.png" alt="Fiesta de la Peña en la plaza">
+          <img src="{% static 'img/nosotros/chupicuadri.png' %}" alt="Fiesta de la Peña en la plaza">
         </div>
       </section>
 
@@ -104,7 +105,7 @@
           </p>
         </div>
         <div class="col-img">
-          <img src="img/iconos/dios.png" alt="Cartel solidario de la Peña">
+          <img src="{% static 'img/iconos/dios.png' %}  " alt="Cartel solidario de la Peña">
         </div>
       </section>
 
@@ -112,11 +113,11 @@
       <section id="galeria" class="gallery section-alt">
         <h2>Nuestras fiestas</h2>
         <div class="grid-gallery">
-          <a href="eventos.html#valvanera" class="imagen_animada"><img src="img/eventos/valvanera.jpg" alt="Valvanera"></a>
-          <a href="eventos.html#primavera" class="imagen_animada"><img src="img/eventos/primavera.png" alt="Fiestas de la primavera"></a>
-          <a href="eventos.html#laguna" class="imagen_animada"><img src="img/eventos/laguna.png" alt="Día de la laguna"></a>
-          <a href="eventos.html#fiestasrock" class="imagen_animada"><img src="img/eventos/hervias.jpg" alt="Fiestas de Hervías"></a>
-          <a href="eventos.html#barriocierzo" class="imagen_animada"><img src="img/eventos/barriocierzo.jpg" alt="Fiestas de Barrio Cierzo"></a>
+          <a href="eventos.html#valvanera" class="imagen_animada"><img src="{% static 'img/eventos/valvanera.jpg' %}" alt="Valvanera"></a>
+          <a href="eventos.html#primavera" class="imagen_animada"><img src="{% static 'img/eventos/primavera.png' %}" alt="Fiestas de la primavera"></a>
+          <a href="eventos.html#laguna" class="imagen_animada"><img src="{% static 'img/eventos/laguna.png' %}" alt="Día de la laguna"></a>
+          <a href="eventos.html#fiestasrock" class="imagen_animada"><img src="{% static 'img/eventos/hervias.jpg' %}" alt="Fiestas de Hervías"></a>
+          <a href="eventos.html#barriocierzo" class="imagen_animada"><img src="{% static 'img/eventos/barriocierzo.jpg' %}" alt="Fiestas de Barrio Cierzo"></a>
         </div>
       </section>
 
