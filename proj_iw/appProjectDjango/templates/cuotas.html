@@ -55,20 +55,18 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Socio</th>
-                    <th>Cuota (€)</th>
-                    <th>Fecha de pago</th>
-                    <th>Descripción</th>
+                    <th>Tipo de Socio</th>
+                    <th>Precio (€)</th>
+                    <th>Beneficios</th>
                 </tr>
             </thead>
             <tbody>
                 {% for cuota in cuotas %}
                 <tr>
                     <td>{{ cuota.id }}</td>
-                    <td>{{ cuota.socio.nombre }}</td>
-                    <td>{{ cuota.monto }}</td>
-                    <td>{{ cuota.fecha_pago }}</td>
-                    <td>{{ cuota.descripcion }}</td>
+                    <td>{{ cuota.tipo_socio }}</td>
+                    <td>{{ cuota.precio }}</td>
+                    <td>{{ cuota.beneficios }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
