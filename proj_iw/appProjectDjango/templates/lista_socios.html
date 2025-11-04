@@ -20,7 +20,6 @@
             </a>
             <nav class="main-nav" aria-label="Principal">
                 <a href="{% url 'index' %}">Inicio</a>
-                <!--Falta añadir los demas apartados cuando esten-->
                 <a href="{% url 'socios' %}">Socios</a>
                 <a href="{% url 'merchandising' %}">Merchandising</a>
                 <a href="{% url 'registros' %}">Registro</a>
@@ -43,14 +42,20 @@
         <table id="socios">
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
+                <th>Nombre completo</th>
+                <th>Tipo de socio</th>
                 <th>Detalle</th>
             </tr>
             {% for socio in socios %}
             <tr>
                 <td>{{ socio.id }}</td>
-                <td>{{ socio.nombre }}</td>
+                <td>{{ socio.nombre }} {{ socio.apellido }}</td>
+                <td>{{ socio.get_tipo_socio_display }}</td>
                 <td><a href="{% url 'detalle_socio' socio.id %}">Ver detalle</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay socios registrados.</td>
             </tr>
             {% endfor %}
         </table>
