@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Socio, Eventos, Cuotas, Merchandising
+from .models import Socio, Eventos, Cuotas, Merchandising, Pagos
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 
@@ -23,6 +23,12 @@ def detalle_socio(request, socio_id):
 def cuotas(request):
     cuotas = Cuotas.objects.all()
     return render(request, 'cuotas.html', {'cuotas': cuotas})
+
+# Solo permitir acceso a administradores
+@user_passes_test(lambda u: u.is_superuser)
+def pagos_view(request):
+    pagos = Pagos.objects.select_related('socio', 'cuota').all().order_by('-fecha_pago')
+    return render(request, 'pagos.html', {'pagos': pagos})
 
 # Vista de merchandising (lista)
 def merchandising(request):

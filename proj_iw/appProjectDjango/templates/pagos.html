@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Cuotas</title>
-    <meta name="description" content="Listado de cuotas de los socios de la Peña El Revoque en Hervías.">
+    <title>Peña El Revoque – Pagos</title>
+    <meta name="description" content="Listado de pagos realizados por los socios de la Peña El Revoque.">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
@@ -32,8 +32,8 @@
     <section class="hero">
         <div class="hero-inner">
             <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-            <h1>Cuotas de la Peña</h1>
-            <p>Gestión y control de las cuotas de los socios</p>
+            <h1>Pagos de Socios</h1>
+            <p>Historial de cuotas abonadas por los socios</p>
             <a class="btn" href="/appProjectDjango/">Ver índice</a>
         </div>
     </section>
@@ -43,35 +43,39 @@
         <nav id="indice" class="indice" aria-label="Índice de secciones">
             <h2>Índice</h2>
             <ul>
-                <li><a href="#cuotas">Listado de cuotas</a></li>
+                <li><a href="#pagos">Listado de pagos</a></li>
             </ul>
         </nav>
 
-        <p>A continuación se muestran todas las cuotas registradas de la Peña El Revoque.</p>
+        <p>A continuación se muestran los pagos registrados de la Peña El Revoque (solo visible para administradores).</p>
 
-        {% if cuotas %}
-        <table id="cuotas">
+        {% if pagos %}
+        <table id="pagos">
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Socio</th>
                     <th>Tipo de Socio</th>
-                    <th>Precio (€)</th>
-                    <th>Beneficios</th>
+                    <th>Cuota (€)</th>
+                    <th>Tipo de Cuota</th>
+                    <th>Fecha de Pago</th>
                 </tr>
             </thead>
             <tbody>
-                {% for cuota in cuotas %}
+                {% for pago in pagos %}
                 <tr>
-                    <td>{{ cuota.id }}</td>
-                    <td>{{ cuota.tipo_socio }}</td>
-                    <td>{{ cuota.precio }}</td>
-                    <td>{{ cuota.beneficios }}</td>
+                    <td>{{ pago.id }}</td>
+                    <td>{{ pago.socio.nombre }} {{ pago.socio.apellido }}</td>
+                    <td>{{ pago.socio.get_tipo_socio_display }}</td>
+                    <td>{{ pago.cuota.precio }}</td>
+                    <td>{{ pago.cuota.tipo_socio }}</td>
+                    <td>{{ pago.fecha_pago }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         {% else %}
-        <p>No hay cuotas registradas actualmente.</p>
+        <p>No hay pagos registrados actualmente.</p>
         {% endif %}
     </main>
 
