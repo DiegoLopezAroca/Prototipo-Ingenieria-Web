@@ -6,7 +6,7 @@
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalle Socio – {{ socio.nombre }}</title>
+    <title>Detalle Socio – {{ socio.nombre }} {{ socio.apellido }}</title>
 </head>
 <body>
 
@@ -19,7 +19,6 @@
             </a>
             <nav class="main-nav" aria-label="Principal">
                 <a href="{% url 'index' %}">Inicio</a>
-                <!--Falta añadir los demas apartados cuando esten-->
                 <a href="{% url 'socios' %}">Socios</a>
                 <a href="{% url 'merchandising' %}">Merchandising</a>
                 <a href="{% url 'registros' %}">Registro</a>
@@ -30,20 +29,24 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <h1>Detalle de {{ socio.nombre }}</h1>
+            <h1>Detalle del socio: {{ socio.nombre }} {{ socio.apellido }}</h1>
         </div>
     </section>
 
     <!-- CUERPO -->
     <main class="wrap">
-        <h2>Información del socio</h2>
+        <h2>Información personal</h2>
         <ul>
             <li><strong>ID:</strong> {{ socio.id }}</li>
-            <li><strong>Nombre:</strong> {{ socio.nombre }}</li>
-            <li><strong>Teléfono:</strong> {{ socio.telefono }}</li>
+            <li><strong>Nombre completo:</strong> {{ socio.nombre }} {{ socio.apellido }}{% if socio.segundo_apellido %} {{ socio.segundo_apellido }}{% endif %}</li>
+            <li><strong>Tipo de socio:</strong> {{ socio.get_tipo_socio_display }}</li>
+            <li><strong>¿Mayor de 13 años?:</strong> {% if socio.mayor13 %}Sí{% else %}No{% endif %}</li>
+            <li><strong>Fecha de nacimiento:</strong> {{ socio.fecha_nacimiento|date:"d/m/Y" }}</li>
             <li><strong>Email:</strong> {{ socio.email }}</li>
+            <li><strong>Teléfono:</strong> {{ socio.telefono }}</li>
         </ul>
-        <p><a href="{% url 'socios' %}">Volver a la lista de socios</a></p>
+
+        <p><a href="{% url 'socios' %}" class="btn">← Volver a la lista de socios</a></p>
     </main>
 
     <!-- PIE -->
