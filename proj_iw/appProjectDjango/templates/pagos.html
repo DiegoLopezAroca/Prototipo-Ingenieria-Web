@@ -34,19 +34,11 @@
             <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
             <h1>Pagos de Socios</h1>
             <p>Historial de cuotas abonadas por los socios</p>
-            <a class="btn" href="/appProjectDjango/">Ver índice</a>
         </div>
     </section>
 
     <!-- CUERPO -->
     <main class="wrap">
-        <nav id="indice" class="indice" aria-label="Índice de secciones">
-            <h2>Índice</h2>
-            <ul>
-                <li><a href="#pagos">Listado de pagos</a></li>
-            </ul>
-        </nav>
-
         <p>A continuación se muestran los pagos registrados de la Peña El Revoque (solo visible para administradores).</p>
 
         {% if pagos %}
