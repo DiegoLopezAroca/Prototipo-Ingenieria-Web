@@ -32,6 +32,7 @@ class Merchandising(models.Model):
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     descripcion = models.TextField()
     imagen = models.CharField(max_length=100, default='default.png')
+    imagen2 = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return f"id={self.id}, nombre={self.nombre}, precio={self.precio}, descripcion={self.descripcion}, imagen={self.imagen}"
+        return f"id={self.id}, nombre={self.nombre}, precio={self.precio}, descripcion={self.descripcion}, imagen={self.imagen},imagen2={self.imagen2}"

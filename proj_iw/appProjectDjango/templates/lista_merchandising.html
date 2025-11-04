@@ -6,7 +6,7 @@
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalle Merchandising – {{ merchandising.nombre }}</title>
+    <title>Detalle Merchandising – {{ producto.nombre }}</title>
 </head>
 <body>
 
@@ -19,7 +19,6 @@
             </a>
             <nav class="main-nav" aria-label="Principal">
                 <a href="{% url 'index' %}">Inicio</a>
-                <!--Falta añadir los demas apartados cuando esten-->
                 <a href="{% url 'socios' %}">Socios</a>
                 <a href="{% url 'merchandising' %}">Merchandising</a>
                 <a href="{% url 'registros' %}">Registro</a>
@@ -30,20 +29,40 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <h1>Detalle de {{ menchandising.nombre }}</h1>
+            <h1>Detalle de {{ producto.nombre }}</h1>
         </div>
     </section>
 
     <!-- CUERPO -->
     <main class="wrap">
-        <h2>Información del producto</h2>
-        <ul>
-            <li><strong>ID:</strong> {{ merchandising.id }}</li>
-            <li><strong>Nombre:</strong> {{ merchandising.nombre }}</li>
-            <li><strong>Descripcion:</strong> {{ merchandising.descripcion }}</li>
-            <li><strong>Precio:</strong> {{ merchandising.precio }}</li>
-        </ul>
-        <p><a href="{% url 'merchandising' %}">Volver a la lista de merchandising</a></p>
+        <section class="detalle-producto-section">
+
+            <!-- Contenedor principal: dos columnas -->
+            <div class="detalle-producto-grid">
+
+                <!-- Columna izquierda: imágenes lado a lado -->
+                <div class="producto-imagenes-col">
+                    <img src="{% static 'img/merchandising/' %}{{ producto.imagen }}" 
+                        alt="Imagen 1 de {{ producto.nombre }}" class="producto-foto">
+                    {% if producto.imagen2 %}
+                    <img src="{% static 'img/merchandising/' %}{{ producto.imagen2 }}" 
+                        alt="Imagen 2 de {{ producto.nombre }}" class="producto-foto">
+                    {% endif %}
+                </div>
+
+                <!-- Columna derecha: información -->
+                <div class="producto-info-col">
+                    <h2 class="producto-nombre">{{ producto.nombre }}</h2>
+                    <p class="producto-descripcion">{{ producto.descripcion }}</p>
+                    <div class="producto-precio">{{ producto.precio }} €</div>
+                </div>
+
+            </div>
+
+            <!-- Botón volver discreto, fuera del contenedor principal -->
+            <p class="volver-lista"><a href="{% url 'merchandising' %}">Volver a la lista de merchandising</a></p>
+
+        </section>
     </main>
 
     <!-- PIE -->
