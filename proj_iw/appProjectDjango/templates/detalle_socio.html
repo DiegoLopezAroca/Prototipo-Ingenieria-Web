@@ -37,20 +37,55 @@
     </section>
 
     <!-- CUERPO -->
-    <main class="wrap">
-        <h2>Información personal</h2>
-        <ul>
-            <li><strong>ID:</strong> {{ socio.id }}</li>
-            <li><strong>Nombre completo:</strong> {{ socio.nombre }} {{ socio.apellido }}{% if socio.segundo_apellido %} {{ socio.segundo_apellido }}{% endif %}</li>
-            <li><strong>Tipo de socio:</strong> {{ socio.get_tipo_socio_display }}</li>
-            <li><strong>¿Mayor de 13 años?:</strong> {% if socio.mayor13 %}Sí{% else %}No{% endif %}</li>
-            <li><strong>Fecha de nacimiento:</strong> {{ socio.fecha_nacimiento|date:"d/m/Y" }}</li>
-            <li><strong>Email:</strong> {{ socio.email }}</li>
-            <li><strong>Teléfono:</strong> {{ socio.telefono }}</li>
-        </ul>
+    <main class="detalle-socio wrap">
+        <div class="detalle-socio-grid">
+            <!-- Columna izquierda: Foto del socio -->
+            {% if socio.foto %}
+                <img src="{% static 'img/socios/' %}{{ socio.foto }}" alt="Foto de {{ socio.nombre }}" class="foto-socio">
+            {% else %}
+                <img src="{% static 'img/iconos/usuario.png' %}" alt="Foto por defecto" class="foto-socio">
+            {% endif %}
 
-        <p><a href="{% url 'socios' %}" class="btn">← Volver a la lista de socios</a></p>
+
+            <!-- Columna derecha: Información personal -->
+            <div class="detalle-info">
+                <h2>Información personal</h2>
+                <div class="info-card">
+                    <span class="info-label">ID</span>
+                    <span class="info-value">{{ socio.id }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Nombre completo</span>
+                    <span class="info-value">{{ socio.nombre }} {{ socio.apellido }}{% if socio.segundo_apellido %} {{ socio.segundo_apellido }}{% endif %}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Tipo de socio</span>
+                    <span class="info-value">{{ socio.get_tipo_socio_display }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Mayor de 13 años</span>
+                    <span class="info-value">{% if socio.mayor13 %}Sí{% else %}No{% endif %}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Fecha de nacimiento</span>
+                    <span class="info-value">{{ socio.fecha_nacimiento|date:"d/m/Y" }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">{{ socio.email }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Teléfono</span>
+                    <span class="info-value">{{ socio.telefono }}</span>
+                </div>
+
+                <div class="volver-lista">
+                    <a href="{% url 'socios' %}" class="btn">← Volver a la lista de socios</a>
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <!-- PIE -->
     <footer class="site-footer">

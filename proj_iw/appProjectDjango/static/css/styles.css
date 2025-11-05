@@ -131,3 +131,111 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     .producto-precio {align-self: center;}
     .producto-imagenes-col {justify-content: center;}
 }
+
+/* Contenedor detalle socio */
+.detalle-socio {
+    padding: 3rem 1rem;
+    max-width: var(--max);
+    margin: 3rem auto;
+}
+
+.detalle-socio-grid {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* contenedor de la foto */
+.detalle-foto {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* imagen del socio */
+.foto-socio {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* contenedor de la información */
+.detalle-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detalle-info h2 {
+    color: var(--vino);
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Tarjetas de información */
+.info-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+    background: #f9f9f9;
+    border-left: 4px solid var(--vino);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+.info-card:hover {
+    transform: translateX(4px);
+}
+.info-label {
+    font-weight: 600;
+    color: #555;
+}
+.info-value {
+    font-weight: 700;
+    color: #222;
+    text-align: right;
+}
+
+/* Botón de volver */
+.volver-lista {
+    margin-top: 2rem;
+}
+.volver-lista .btn {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    background: var(--vino);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+.volver-lista .btn:hover {
+    background: #5a0015;
+}
+
+/** responsive: en pantallas pequeñas se apilan */
+@media (max-width: 900px) {
+    .detalle-socio-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .detalle-foto {
+        margin-bottom: 1.5rem;
+    }
+
+    .foto-socio {
+        width: 180px;
+        height: 180px;
+    }
+}
