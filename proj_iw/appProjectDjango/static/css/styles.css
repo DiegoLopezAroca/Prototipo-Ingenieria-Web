@@ -132,7 +132,7 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     .producto-imagenes-col {justify-content: center;}
 }
 
-/* Contenedor detalle socio */
+/* ===== SECCIÓN DETALLE SOCIO ===== */
 .detalle-socio {
     padding: 3rem 1rem;
     max-width: var(--max);
@@ -143,7 +143,7 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     display: flex !important;
     flex-direction: row;
     justify-content: center;
-    align-items: center; /* Centra verticalmente */
+    align-items: center; /* centra verticalmente */
     gap: 3rem;
     margin-top: 2rem;
 }
@@ -179,7 +179,7 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     text-align: left;
 }
 
-/* Tarjetas de información */
+/* tarjetas de información */
 .info-card {
     display: flex;
     justify-content: space-between;
@@ -204,11 +204,15 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     text-align: right;
 }
 
-/* Botón de volver */
-.volver-lista {
-    margin-top: 2rem;
+/* ===== BOTONES ===== */
+.botones-socio {
+    display: flex;
+    justify-content: flex-start; /* los alinea al inicio */
+    gap: 1rem; /* espacio entre botones */
+    margin-top: 1.5rem;
 }
-.volver-lista .btn {
+
+.btn {
     display: inline-block;
     padding: 0.6rem 1rem;
     background: var(--vino);
@@ -218,11 +222,12 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     font-weight: 700;
     transition: background 0.2s ease;
 }
-.volver-lista .btn:hover {
+
+.btn:hover {
     background: #5a0015;
 }
 
-/** responsive: en pantallas pequeñas se apilan */
+/* responsive */
 @media (max-width: 900px) {
     .detalle-socio-grid {
         flex-direction: column;
@@ -237,5 +242,9 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
     .foto-socio {
         width: 180px;
         height: 180px;
+    }
+
+    .botones-socio {
+        justify-content: center;
     }
 }

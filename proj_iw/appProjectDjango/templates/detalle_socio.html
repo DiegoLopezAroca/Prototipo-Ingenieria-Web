@@ -39,17 +39,20 @@
     <!-- CUERPO -->
     <main class="detalle-socio wrap">
         <div class="detalle-socio-grid">
-            <!-- Columna izquierda: Foto del socio -->
-            {% if socio.foto %}
-                <img src="{% static 'img/socios/' %}{{ socio.foto }}" alt="Foto de {{ socio.nombre }}" class="foto-socio">
-            {% else %}
-                <img src="{% static 'img/iconos/usuario.png' %}" alt="Foto por defecto" class="foto-socio">
-            {% endif %}
 
+            <!-- Columna izquierda: Foto -->
+            <div class="detalle-foto">
+                {% if socio.foto %}
+                    <img src="{% static 'img/socios/' %}{{ socio.foto }}" alt="Foto de {{ socio.nombre }}" class="foto-socio">
+                {% else %}
+                    <img src="{% static 'img/iconos/usuario.png' %}" alt="Foto por defecto" class="foto-socio">
+                {% endif %}
+            </div>
 
-            <!-- Columna derecha: Información personal -->
+            <!-- Columna derecha: Información -->
             <div class="detalle-info">
                 <h2>Información personal</h2>
+
                 <div class="info-card">
                     <span class="info-label">ID</span>
                     <span class="info-value">{{ socio.id }}</span>
@@ -79,12 +82,17 @@
                     <span class="info-value">{{ socio.telefono }}</span>
                 </div>
 
-                <div class="volver-lista">
-                    <a href="{% url 'socios' %}" class="btn">← Volver a la lista de socios</a>
+                <!-- Botones alineados -->
+                <div class="botones-acciones">
+                    <a href="{% url 'socios' %}" class="btn">← Volver a la lista</a>
+                    <a href="{% url 'pagos' %}" class="btn">Ver pagos</a>
                 </div>
             </div>
+
         </div>
     </main>
+
+
 
 
     <!-- PIE -->
