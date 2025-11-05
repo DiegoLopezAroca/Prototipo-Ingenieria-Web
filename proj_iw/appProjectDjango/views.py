@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Socio, Eventos, Cuotas, Merchandising, Pagos
+from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import JsonResponse
+from django.utils import timezone
 
 
 # Vista principal
@@ -95,7 +96,7 @@ def registros(request):
     return render(request, 'registro.html')
 
 def contacto(request):
-    # --- AJAX GET: comprobar email ---
+    # --- AJAX GET: comprobar email (para activar el textarea y botón) ---
     if request.method == "GET" and "email" in request.GET:
         email = request.GET.get("email", "").strip()
         existe = Socio.objects.filter(email=email).exists()
@@ -103,8 +104,15 @@ def contacto(request):
 
     # --- POST: enviar mensaje ---
     if request.method == "POST":
-        email = request.POST.get("email")
-        mensaje = request.POST.get("mensaje")
+        email = request.POST.get("email", "").strip()
+        mensaje = request.POST.get("mensaje", "").strip()
+
+        # Validaciones básicas
+        if not email:
+            return render(request, "contacto.html", {"error": "Introduce un correo electrónico."})
+        if not mensaje:
+            return render(request, "contacto.html", {"error": "Escribe un mensaje antes de enviar."})
+
         socio = Socio.objects.filter(email=email).first()
 
         if not socio:
@@ -112,7 +120,14 @@ def contacto(request):
                 "error": "El email no está registrado. Por favor, regístrate antes de enviar un mensaje."
             })
 
-        # Aquí podrías guardar el mensaje o enviarlo por email
+        # Guardar el mensaje en la tabla Contacto
+        Contacto.objects.create(
+            socio=socio,
+            email=email,
+            mensaje=mensaje,
+            # fecha_envio se autogenera si en el modelo usas auto_now_add=True
+        )
+
         return render(request, "contacto.html", {
             "exito": "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!"
         })

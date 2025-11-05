@@ -56,3 +56,13 @@ class Merchandising(models.Model):
 
     def __str__(self):
         return f"id={self.id}, nombre={self.nombre}, precio={self.precio}, descripcion={self.descripcion}, imagen={self.imagen},imagen2={self.imagen2}"
+    
+class Contacto(models.Model):
+    socio = models.ForeignKey('Socio', on_delete=models.SET_NULL, null=True, blank=True)
+    email = models.EmailField()
+    mensaje = models.TextField()
+    fecha_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Mensaje de {self.email} - {self.fecha_envio.strftime('%Y-%m-%d %H:%M')}"
+
