@@ -13,5 +13,6 @@ urlpatterns = [
     path('socios/<int:socio_id>/', views.detalle_socio, name='detalle_socio'),
     path('merchandising/', views.merchandising, name='merchandising'),
     path('merchandising/<int:producto_id>/', views.detalle_producto, name='detalle_producto'),
-    path('contacto/', views.contacto, name='contacto')
+    path('contacto/', views.contacto, name='contacto'),
+    path('contacto/mensajes/', views.ver_mensajes, name="ver_mensajes")
 ]

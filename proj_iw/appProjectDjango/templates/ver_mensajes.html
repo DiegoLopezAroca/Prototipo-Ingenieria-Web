@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mensajes – Peña El Revoque</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{% url 'index' %}">
+      <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
+      <span>Peña El Revoque</span>
+    </a>
+    <nav class="main-nav">
+      <a href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'eventos' %}">Eventos</a>
+      <a href="{% url 'socios' %}">Socios</a>
+      <a href="{% url 'merchandising' %}">Merchandising</a>
+      <a href="{% url 'cuotas' %}">Cuotas</a>
+      <a href="{% url 'registros' %}">Registro</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Mensajes de contacto</h1>
+  </div>
+</section>
+
+<main class="wrap">
+  {% if mensajes %}
+  <table id="cuotas" style="width:100%;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Socio</th>
+        <th>Email</th>
+        <th>Mensaje</th>
+        <th>Fecha envío</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mensaje in mensajes %}
+      <tr>
+        <td>{{ mensaje.id }}</td>
+        <td>{{ mensaje.socio.nombre }} {{ mensaje.socio.apellido }}</td>
+        <td>{{ mensaje.email }}</td>
+        <td>{{ mensaje.mensaje }}</td>
+        <td>{{ mensaje.fecha_envio }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No hay mensajes registrados.</p>
+  {% endif %}
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+    <p>Síguenos en:
+        <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+        <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+    </p>
+    <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+</footer>
+
+</body>
+</html>

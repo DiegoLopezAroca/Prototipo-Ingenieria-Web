@@ -134,3 +134,9 @@ def contacto(request):
 
     # --- GET normal: mostrar formulario ---
     return render(request, "contacto.html")
+
+# Vista para listar los mensajes de contacto (solo admin)
+@user_passes_test(lambda u: u.is_superuser)
+def ver_mensajes(request):
+    mensajes = Contacto.objects.select_related('socio').all().order_by('-fecha_envio')
+    return render(request, "ver_mensajes.html", {"mensajes": mensajes})
