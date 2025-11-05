@@ -84,7 +84,10 @@
                 <!-- Botones alineados -->
                 <div class="botones-acciones">
                     <a href="{% url 'socios' %}" class="btn">← Volver a la lista</a>
-                    <a href="{% url 'pagos' %}" class="btn">Ver pagos</a>
+
+                    {% if user.is_superuser %}
+                        <a href="{% url 'pagos' %}" class="btn">Ver pagos</a>
+                    {% endif %}
                 </div>
             </div>
 
