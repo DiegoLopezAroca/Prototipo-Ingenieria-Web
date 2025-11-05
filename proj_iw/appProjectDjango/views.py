@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Socio, Eventos, Cuotas, Merchandising, Pagos
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
+from django.http import JsonResponse
+
 
 # Vista principal
 def index(request):
@@ -93,4 +95,27 @@ def registros(request):
     return render(request, 'registro.html')
 
 def contacto(request):
-    return render(request, 'contacto.html')
+    # --- AJAX GET: comprobar email ---
+    if request.method == "GET" and "email" in request.GET:
+        email = request.GET.get("email", "").strip()
+        existe = Socio.objects.filter(email=email).exists()
+        return JsonResponse({"existe": existe})
+
+    # --- POST: enviar mensaje ---
+    if request.method == "POST":
+        email = request.POST.get("email")
+        mensaje = request.POST.get("mensaje")
+        socio = Socio.objects.filter(email=email).first()
+
+        if not socio:
+            return render(request, "contacto.html", {
+                "error": "El email no está registrado. Por favor, regístrate antes de enviar un mensaje."
+            })
+
+        # Aquí podrías guardar el mensaje o enviarlo por email
+        return render(request, "contacto.html", {
+            "exito": "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!"
+        })
+
+    # --- GET normal: mostrar formulario ---
+    return render(request, "contacto.html")

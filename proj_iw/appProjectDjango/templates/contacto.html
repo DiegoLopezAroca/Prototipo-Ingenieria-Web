@@ -1,59 +1,106 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Contacto</title>
-    <meta name="description" content="Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del Hervías Rock y de actividades llenas de música, amistad y tradición durante todo el año. ¡Vive el espíritu de El Revoque!">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto – Peña El Revoque</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+</head>
+<body>
 
-    <!-- CABECERA (logo + nav) -->
-    <header class="site-header">
-      <div class="wrap">
-        <a class="brand" href="{% url 'index' %}">
-          <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-          <span>Peña El Revoque</span>
-        </a>
-        <nav class="main-nav" aria-label="Principal">
-          <a href="{% url 'index' %}">Inicio</a>
-          <a href="{% url 'eventos' %}">Eventos</a>
-          <a href="{% url 'socios' %}">Socios</a>
-          <a href="{% url 'merchandising' %}">Merchandising</a>
-          <a href="{% url 'cuotas' %}">Cuotas</a>
-          <a href="{% url 'registros' %}">Registro</a>
-          <a href="{% url 'contacto' %}">Contacto</a>
-        </nav>
-      </div>
-    </header>
+  <!-- CABECERA -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="{% url 'index' %}">
+        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
+        <span>Peña El Revoque</span>
+      </a>
+      <nav class="main-nav">
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'eventos' %}">Eventos</a>
+        <a href="{% url 'socios' %}">Socios</a>
+        <a href="{% url 'merchandising' %}">Merchandising</a>
+        <a href="{% url 'cuotas' %}">Cuotas</a>
+        <a href="{% url 'registros' %}">Registro</a>
+        <a href="{% url 'contacto' %}" class="activo">Contacto</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO con imagen de fondo -->
-    <section class="hero">
-      <div class="hero-inner">
-        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-        <h1>Peña El Revoque</h1>
-        <p>Fiesta, tradición y comunidad en Hervías</p>
-        <a class="btn" href="{% url 'index' %}">Ver índice</a>
-      </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Contacto</h1>
+    </div>
+  </section>
 
-    <!-- CUERPO -->
-    <main class="wrap">
-        <h2>Contacto</h2>
-        <p>Si deseas ponerte en contacto con nosotros, puedes enviarnos un mensaje a <a href="mailto:info@elrevoque.com">info@elrevoque.com</a>.</p>
-    </main>
+  <!-- FORMULARIO -->
+  <main class="wrap">
+    <div class="formulario">
+      <h2>Formulario de contacto</h2>
 
-      <!-- PIE -->
-    <footer class="site-footer">
-      <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-      <p>Síguenos en:
-        <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
-        <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
-      </p>
-    </footer>
+      {% if exito %}
+        <p class="mensaje-exito">{{ exito }}</p>
+      {% endif %}
+      {% if error %}
+        <p class="mensaje-error">{{ error }}</p>
+      {% endif %}
 
-  </body>
+      <form id="contactoForm" method="POST">
+        {% csrf_token %}
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        <p id="emailStatus" class="mensaje-validacion"></p>
+
+        <!-- Textarea sin título, ocupa toda la anchura -->
+        <textarea id="mensaje" name="mensaje" rows="8" placeholder="Escribe tu mensaje aquí..." required disabled style="width:100%; resize:vertical;"></textarea>
+
+        <button type="submit" class="btn" disabled>Enviar mensaje</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+    <p>
+      Síguenos en:
+      <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+    </p>
+  </footer>
+
+  <script>
+  document.getElementById("email").addEventListener("input", async function() {
+    const email = this.value.trim();
+    const mensaje = document.getElementById("mensaje");
+    const boton = document.querySelector("button[type='submit']");
+    const estado = document.getElementById("emailStatus");
+
+    if (!email) {
+      estado.textContent = "";
+      mensaje.disabled = true;
+      boton.disabled = true;
+      return;
+    }
+
+    const response = await fetch("{% url 'contacto' %}?email=" + encodeURIComponent(email));
+    const data = await response.json();
+
+    if (data.existe) {
+      estado.textContent = ""; // No mostrar nada si es válido
+      mensaje.disabled = false;
+      boton.disabled = false;
+    } else {
+      estado.textContent = "Regístrate antes de enviar un mensaje.";
+      estado.className = "mensaje-validacion error";
+      mensaje.disabled = true;
+      boton.disabled = true;
+    }
+  });
+  </script>
+
+</body>
 </html>
