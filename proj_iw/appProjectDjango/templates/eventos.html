@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -13,17 +14,18 @@
     <!-- CABECERA (logo + nav) -->
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="index.html">
-          <img src="img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo">
+        <a class="brand" href="{% url 'index' %}">
+          <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
           <span>Peña El Revoque</span>
         </a>
         <nav class="main-nav" aria-label="Principal">
-          <a href="index.html">Inicio</a>
-          <a href="eventos.html">Eventos</a>
-          <a href="socios.html">Socios</a>
+          <a href="{% url 'index' %}">Inicio</a>
+          <a href="{% url 'eventos' %}">Eventos</a>
+          <a href="{% url 'socios' %}">Socios</a>
           <a href="{% url 'merchandising' %}">Merchandising</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="registro.html">Registro</a>
+          <a href="{% url 'cuotas' %}">Cuotas</a>
+          <a href="{% url 'registros' %}">Registro</a>
+          <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
       </div>
     </header>
@@ -31,10 +33,10 @@
     <!-- Imagen de fondo con hero -->
     <section class="hero">
       <div class="hero-inner">
-        <img src="img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero">
-        <h1>Peña El Revoque</h1>
+        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
+        <h1>Eventos Hervías – Peña El Revoque</h1>
         <p>Fiesta, tradición y comunidad en La Rioja</p>
-        <a class="btn" href="index.html">Ver índice</a>
+        <a class="btn" href="#indice">Ver índice</a>
       </div>
     </section>
 
@@ -81,7 +83,7 @@
             </p>
         </div>
         <div class="col-img">
-          <img src="img/eventos/hervias.jpg" alt="Fiesta de Hervías">
+          <img src="{% static 'img/eventos/hervias.jpg' %}" alt="Fiesta de Hervías">
         </div>
       </section>
 
@@ -111,7 +113,7 @@
           </p>
         </div>
         <div class="col-img">
-          <img src="img/eventos/barriocierzo.jpg" alt="Cartel solidario de la Peña">
+          <img src="{% static 'img/eventos/barriocierzo.jpg' %}" alt="Cartel solidario de la Peña">
         </div>
       </section>
 
@@ -142,7 +144,7 @@
 
         <div class="col-img">
           <figure>
-            <img src="img/eventos/laguna.png" alt="Cartel de la Día de la Laguna 2025">
+            <img src="{% static 'img/eventos/laguna.png' %}" alt="Cartel de la Día de la Laguna 2025">
           </figure>
         </div>
       </section>
@@ -176,7 +178,7 @@
 
         <div class="col-img">
           <figure>
-            <img src="img/eventos/primavera.png" alt="Cartel de la Fiesta de la Primavera 2025">
+            <img src="{% static 'img/eventos/primavera.png' %}" alt="Cartel de la Fiesta de la Primavera 2025">
           </figure>
         </div>
       </section>
@@ -208,7 +210,7 @@
 
         <div class="col-img">
           <figure>
-            <img src="img/eventos/valvanera.jpg" alt="Cartel de la Romería a Valvanera 2025">
+            <img src="{% static 'img/eventos/valvanera.jpg' %}" alt="Cartel de la Romería a Valvanera 2025">
           </figure>
         </div>
       </section>

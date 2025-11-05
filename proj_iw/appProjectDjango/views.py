@@ -7,6 +7,12 @@ from django.contrib import messages
 def index(request):
     return render(request, 'index.html')
 
+# Vista de eventos (lista)
+def eventos(request):
+    lista_eventos = Eventos.objects.all()
+    contexto = {'eventos': lista_eventos}
+    return render(request, 'eventos.html', contexto)
+
 # Vista de socios (lista)
 def socios(request):
     lista_socios = Socio.objects.all()
@@ -85,3 +91,6 @@ def registros(request):
         return redirect('socios')
 
     return render(request, 'registro.html')
+
+def contacto(request):
+    return render(request, 'contacto.html')

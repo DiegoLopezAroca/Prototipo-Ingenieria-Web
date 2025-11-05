@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="img/iconos/dios.png">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Peña El Revoque – Contacto</title>
@@ -13,17 +14,18 @@
     <!-- CABECERA (logo + nav) -->
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="index.html">
-          <img src="img/iconos/peña.jpg" alt="Logo de la Peña El Revoque" class="brand-logo">
+        <a class="brand" href="{% url 'index' %}">
+          <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
           <span>Peña El Revoque</span>
         </a>
         <nav class="main-nav" aria-label="Principal">
-          <a href="index.html">Inicio</a>
-          <a href="eventos.html">Eventos</a>
-          <a href="socios.html">Socios</a>
+          <a href="{% url 'index' %}">Inicio</a>
+          <a href="{% url 'eventos' %}">Eventos</a>
+          <a href="{% url 'socios' %}">Socios</a>
           <a href="{% url 'merchandising' %}">Merchandising</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="registro.html">Registro</a>
+          <a href="{% url 'cuotas' %}">Cuotas</a>
+          <a href="{% url 'registros' %}">Registro</a>
+          <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
       </div>
     </header>
@@ -31,10 +33,10 @@
     <!-- HERO con imagen de fondo -->
     <section class="hero">
       <div class="hero-inner">
-        <img src="img/iconos/peña.jpg" alt="Escudo de la Peña" class="logo-hero">
+        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
         <h1>Peña El Revoque</h1>
         <p>Fiesta, tradición y comunidad en Hervías</p>
-        <a class="btn" href="index.html">Ver índice</a>
+        <a class="btn" href="{% url 'index' %}">Ver índice</a>
       </div>
     </section>
 
