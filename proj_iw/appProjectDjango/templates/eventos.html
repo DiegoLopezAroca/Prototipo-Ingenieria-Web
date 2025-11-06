@@ -56,163 +56,22 @@
         </nav>
 
       <!-- Fiestas Primavera -->
-      <section id="fiestasrock" class="two-col section-alt">
+       {% for evento in eventos %}
+      <section id="fiestashervias-{{ evento.nombre }}" class="two-col section-alt">
         <div class="col-text">
-          <h2>Hervías Rock XXXII Edición</h2>
+          <h2>{{ evento.nombre }}</h2>
             <p>
-              Desde hace 31 años tenemos el honor de poder organizar y celebrar este festival de rock. 
-              El más longevo junto al conocido festival Actual. Por nuestro escenario han pasado grupos como Mago de Oz, 
-              Muchachito Bombo Infierno, Marea, Platero y tú, Reincidentes, Piperrak…
-            </p>
-            <p>
-              Dando la oportunidad de dar a conocer talentos emergentes riojanos como (Oslo Ovnies, Trago Largo, Los Zigalas…) y de compartir escenario con grandes grupos.
-            </p>
-            <p>  
-              La organización y gestión del festival siempre es llevada a cabo por las cuadrillas del mismo pueblo sin ayudas externas. 
-              Dicha organización se traspasa de generación en generación y este año ha sido donde tanto la junta directiva como 
-              los nuevos integrantes han cambiado. Suponiendo así una nueva etapa de gente nueva con mucha motivación y ganas de 
-              hacer que tanto el pueblo como todo el mundo pueda disfrutar de este evento y Hervías.
+              {{ evento.descripcion|linebreaksbr }}
             </p>
             <p>
-              Todo empezó celebrándose en el pequeño local de la peña, hasta llegar al escenario del ayuntamiento y a partir del 
-              año pasado en una explanada con escenario.
-            </p>
-            <p>
-              Los asistentes vienen desde todas las partes de España, principalmente comunidades colindantes a las nuestras y localidades riojanas.
+              Fecha y lugar: En {{ evento.lugar }} el día {{ evento.fecha|date:"d/m/Y" }}.
             </p>
         </div>
         <div class="col-img">
-          <img src="{% static 'img/eventos/hervias.jpg' %}" alt="Fiesta de Hervías">
+          <img src="{% static 'img/eventos/' %}{{ evento.imagen }}" alt="Fiesta de Hervías">
         </div>
       </section>
-
-      <!-- Solidaridad -->
-      <section id="barriocierzo" class="two-col section-alt">
-        <div class="col-text">
-          <h2>Fiestas de Barrio Cierzo</h2>
-          <p>
-            Desde el año pasado, el Barrio Cierzo, el más antiguo de Hervías, ha iniciado la celebración de sus propias fiestas con 
-            el objetivo de dinamizar la vida del barrio, atraer a vecinos y visitantes, y fomentar la participación ciudadana. 
-            Estas fiestas surgen como una iniciativa comunitaria para luchar contra la despoblación y revitalizar el entorno a 
-            través de actividades culturales y de ocio.
-          </p>
-          <p>
-            El programa incluye diversas actividades pensadas para todas las edades, con especial énfasis en la juventud, para reforzar su vínculo con el pueblo y sus tradiciones. Entre ellas se encuentran:
-          </p>
-          <ul>
-            <li><b>Animación cultural:</b> Talleres y actividades intergeneracionales.</li>
-            <li><b>Arte urbano:</b> Realización de murales comunitarios.</li>
-            <li><b>Gastronomía:</b> Degustaciones populares con productos locales.</li>
-            <li><b>Concierto:</b> Actuación musical con grupos emergentes.</li>
-          </ul>
-          <p>
-            Este año, además, tenemos el orgullo de contar con <b>The Cierzers</b>, una banda de rock formada por vecinos del pueblo que, 
-            con gran pasión y entrega, tocarán en las fiestas sin pedir ninguna compensación económica. Su participación no solo aporta
-            música en vivo de calidad, sino que también refuerza el espíritu comunitario y la identidad del barrio.
-          </p>
-        </div>
-        <div class="col-img">
-          <img src="{% static 'img/eventos/barriocierzo.jpg' %}" alt="Cartel solidario de la Peña">
-        </div>
-      </section>
-
-      <section id="laguna" class="two-col section-alt">
-        <div class="col-text">
-          <h2>Día de la Laguna</h2>
-          <p>
-            El <strong>Día de la Laguna</strong> es una jornada de convivencia en plena naturaleza,
-            pensada para disfrutar del verano en familia y con cuadrillas. Reúne deporte, comida
-            popular y actividades para todas las edades, con un ambiente cercano y participativo.
-          </p>
-
-          <p><strong>Programa – 26 de julio de 2025</strong></p>
-          <ul>
-            <li><time datetime="2025-07-26T10:30">10:30 h</time> – Quedada en la plaza de la iglesia para ir a la laguna <em>en bici o andando</em>.</li>
-            <li><time datetime="2025-07-26T13:00">13:00 h</time> – Preparación de mesas y sillas en el frontón.</li>
-            <li><time datetime="2025-07-26T15:00">15:00 h</time> – <strong>Paella popular</strong> en el frontón.</li>
-            <li><time datetime="2025-07-26T19:30">19:30 h</time> – <strong>Degustación de vinos</strong> por los calaos del pueblo.</li>
-            <li><time datetime="2025-07-26T21:30">21:30 h</time> – <strong>Karaoke</strong> en Cálao Luis y Jesús.</li>
-            <li><time datetime="2025-07-27T00:00">00:00 h</time> – Fiesta en el local de la Peña.</li>
-          </ul>
-
-          <p>
-            Trae tu vaso, ganas de cantar y respeta el entorno de la laguna.
-            <em>Entre todas y todos hacemos posible esta fiesta.</em>
-          </p>
-        </div>
-
-        <div class="col-img">
-          <figure>
-            <img src="{% static 'img/eventos/laguna.png' %}" alt="Cartel de la Día de la Laguna 2025">
-          </figure>
-        </div>
-      </section>
-
-
-      <section id="primavera" class="two-col section-alt">
-        <div class="col-text">
-          <h2>Fiesta de la Primavera</h2>
-          <p>
-            Celebra con la <strong>Peña El Revoque</strong> la llegada de la primavera en Hervías:
-            actividades para todas las edades, música en directo, degustaciones y mucho ambiente.
-          </p>
-
-          <p><strong>Programa – 22 de marzo de 2025</strong></p>
-          <ul>
-            <li><time datetime="2025-03-22T10:00">10:00 h</time> Simulador de tiro a cargo de la Asociación de Cazadores <em>El Bardal</em> (sala común encima del casino).</li>
-            <li><time datetime="2025-03-22T13:30">13:30 h</time> Preparación de mesas para la comida.</li>
-            <li><time datetime="2025-03-22T14:30">14:30 h</time> Caparronada popular en la peña.</li>
-            <li><time datetime="2025-03-22T16:00">16:00 h</time> Bingo con premios.</li>
-            <li><time datetime="2025-03-22T17:30">17:30 h</time> Carpa de juegos de feria y juegos dirigidos. Sorteos en el frontón.</li>
-            <li><time datetime="2025-03-22T19:30">19:30 h</time> Degustación de cervezas en la peña.</li>
-            <li><time datetime="2025-03-22T20:00">20:00 h</time> Concierto de <strong>Los Zigalas</strong> en la peña.</li>
-            <li><time datetime="2025-03-23T00:00">00:00 h</time> Fiesta en la peña.</li>
-          </ul>
-
-          <p>
-            Si podeis traed cubiertos, vasos, platos propios y ganas de pasarlo bien.
-            <em>Entre todas y todos hacemos posible esta fiesta.</em>
-          </p>
-        </div>
-
-        <div class="col-img">
-          <figure>
-            <img src="{% static 'img/eventos/primavera.png' %}" alt="Cartel de la Fiesta de la Primavera 2025">
-          </figure>
-        </div>
-      </section>
-
-      <section id="valvanera" class="two-col section-alt">
-        <div class="col-text">
-          <h2>Romería a Valvanera</h2>
-          <p>
-            Acompaña a la <strong>Peña El Revoque</strong> en la tradicional romería al
-            Monasterio de Valvanera. Un día de camino, amistad y celebración
-            con paradas en Berceo y Tobía, y actos de bienvenida a la llegada.
-          </p>
-
-          <p><strong>Programa – 4 de octubre de 2025</strong></p>
-          <ul class="programa">
-            <li><time datetime="2025-10-04T07:00">7:00 h</time> Salida de romeros a Valvanera.</li>
-            <li><time datetime="2025-10-04T11:00">11:00 h</time> Almuerzo en Berceo.</li>
-            <li><time datetime="2025-10-04T13:30">13:30 h</time> Llegada y comida en Tobía.</li>
-            <li><time datetime="2025-10-04T15:15">15:15 h</time> Salida de Tobía.</li>
-            <li><time datetime="2025-10-04T17:00">17:00 h</time> Salida de autobús de Hervías.</li>
-            <li><time datetime="2025-10-04T19:00">19:00 h</time> Llegada a Valvanera.</li>
-            <li><time datetime="2025-10-04T19:30">19:30 h</time> Misa de recepción a los romeros.</li>
-            <li><time datetime="2025-10-04T20:15">20:15 h</time> Salida de autobús de regreso a Hervías.</li>
-          </ul>
-          <p>
-            Consulta precios y menús en nuestro instagram o facebook.
-          </p>
-        </div>
-
-        <div class="col-img">
-          <figure>
-            <img src="{% static 'img/eventos/valvanera.jpg' %}" alt="Cartel de la Romería a Valvanera 2025">
-          </figure>
-        </div>
-      </section>
+      {% endfor %}
     </main>
 
     <!-- PIE -->
