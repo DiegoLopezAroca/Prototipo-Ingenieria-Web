@@ -10,13 +10,13 @@ class Socio(models.Model):
     ]
 
     nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100, null=True, blank=True)
     segundo_apellido = models.CharField(max_length=100, blank=True, null=True)
     mayor13 = models.BooleanField(default=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     tipo_socio = models.CharField(max_length=20, choices=TIPO_SOCIO_CHOICES, default='nuevo')
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
+    password = models.CharField(max_length=128, null=True, blank=True)
     telefono = models.CharField(max_length=20)
 
     def __str__(self):
@@ -27,13 +27,14 @@ class Eventos(models.Model):
     fecha = models.DateField()
     descripcion = models.TextField()
     lugar = models.CharField(max_length=100)
+    imagen = models.CharField(max_length=100, default='default.png')
 
     def __str__(self):
-        return f"id={self.id}, nombre={self.nombre}, fecha={self.fecha}, lugar={self.lugar}, descripcion={self.descripcion}"
-    
+        return f"id={self.id}, nombre={self.nombre}, fecha={self.fecha}, lugar={self.lugar}, descripcion={self.descripcion}, imagen={self.imagen}"
+
 class Cuotas(models.Model):
-    tipo_socio = models.CharField(max_length=50)  # "Adulto", "Niño", "Socio nuevo"
-    precio = models.DecimalField(max_digits=6, decimal_places=2)
+    tipo_socio = models.CharField(max_length=50, null=True, blank=True)  # "Adulto", "Niño", "Socio nuevo"
+    precio = models.DecimalField(max_digits=6, decimal_places=2, default=50.00)
     beneficios = models.TextField()
 
     def __str__(self):
@@ -65,4 +66,3 @@ class Contacto(models.Model):
 
     def __str__(self):
         return f"Mensaje de {self.email} - {self.fecha_envio.strftime('%Y-%m-%d %H:%M')}"
-
