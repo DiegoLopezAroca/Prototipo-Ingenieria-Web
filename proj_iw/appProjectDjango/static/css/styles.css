@@ -76,7 +76,7 @@ th { background-color: #800020; color: #fff; text-transform: uppercase; letter-s
 
 /* Formularios */
 .formulario { max-width: 600px; margin: 2rem auto; padding: 1rem; background: #fafafa; border: 1px solid #e7e7e7; border-radius: .75rem; }
-.formulario h2 { text-align: center; color: var(--vino); }
+.formulario h2 { text-align: center; color: var(--vino);}
 .formulario label { display: inline-block; margin-bottom: .5rem; font-weight: 600; }
 .formulario input[type="radio"],
 .formulario input[type="checkbox"] {
@@ -124,6 +124,8 @@ section.two-col.section-alt .col-text p { text-align: justify; hyphens: auto; }
 .volver-lista { text-align: center; margin-top: 2rem;}
 .volver-lista a {text-decoration: none; color: #555; font-size: 0.95rem; transition: color 0.2s;}
 .volver-lista a:hover {color: var(--vino);}
+.detalle-producto-section .center-btn { text-align: center; margin-top: 2rem; }
+.detalle-producto-section .center-btn .btn { display: inline-block; }
 @media (max-width: 800px) {
     .detalle-producto-grid {flex-direction: column; align-items: center;}
     .producto-info-col {text-align: center; align-items: center;}
@@ -220,6 +222,10 @@ section.two-col.section-alt .col-text p { text-align: justify; hyphens: auto; }
     text-decoration: none;
     font-weight: 700;
     transition: background 0.2s ease;
+}
+
+.center-btn {
+    text-align: center;
 }
 
 .btn:hover {

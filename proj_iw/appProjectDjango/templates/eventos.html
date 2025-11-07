@@ -47,24 +47,31 @@
         <nav id="indice" class="indice" aria-label="Índice de secciones">
             <h2>Índice</h2>
             <ul>
-            <li><a href="#fiestasrock">Fiestas de Hervías</a></li>
-            <li><a href="#barriocierzo">Fiestas de Barrio Cierzo</a></li>
-            <li><a href="#laguna">Día de la laguna</a></li>
-            <li><a href="#primavera">Fiestas de la primavera</a></li>
-            <li><a href="#valvanera">Valvanera</a></li>
+            <li><a href="#fiestashervias-1">Fiestas de Hervías</a></li>
+            <li><a href="#fiestashervias-2">Fiestas de Barrio Cierzo</a></li>
+            <li><a href="#fiestashervias-3">Día de la Laguna</a></li>
+            <li><a href="#fiestashervias-4">Fiesta de la Primavera</a></li>
+            <li><a href="#fiestashervias-5">Romería a Valvanera</a></li>
             </ul>
         </nav>
 
       <!-- Fiestas Primavera -->
        {% for evento in eventos %}
-      <section id="fiestashervias-{{ evento.nombre }}" class="two-col section-alt">
+      <section id="fiestashervias-{{ evento.id }}" class="two-col section-alt">
         <div class="col-text">
           <h2>{{ evento.nombre }}</h2>
             <p>
               {{ evento.descripcion|linebreaksbr }}
             </p>
             <p>
-              Fecha y lugar: En {{ evento.lugar }} el día {{ evento.fecha|date:"d/m/Y" }}.
+              <b>Fecha y lugar:</b> En {{ evento.lugar }} el día {{ evento.fecha|date:"d/m/Y" }}.
+            </p>
+            <p class="center-btn">
+              <a href="{% url 'asistencia' evento.id %}" class="btn">Registra tu asistencia aquí</a>
+              <br><br>
+              {% if user.is_superuser %}
+                <a href="{% url 'lista_asistentes' evento.id %}" class="btn">Lista de personas que asistirán</a>
+              {% endif %}
             </p>
         </div>
         <div class="col-img">

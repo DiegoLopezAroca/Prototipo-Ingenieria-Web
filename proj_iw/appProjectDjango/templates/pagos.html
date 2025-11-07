@@ -43,33 +43,37 @@
         <p>A continuación se muestran los pagos registrados de la Peña El Revoque (solo visible para administradores).</p>
 
         {% if pagos %}
-        <table id="pagos">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Socio</th>
-                    <th>Tipo de Socio</th>
-                    <th>Cuota (€)</th>
-                    <th>Tipo de Cuota</th>
-                    <th>Fecha de Pago</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pago in pagos %}
-                <tr>
-                    <td>{{ pago.id }}</td>
-                    <td>{{ pago.socio.nombre }} {{ pago.socio.apellido }}</td>
-                    <td>{{ pago.socio.get_tipo_socio_display }}</td>
-                    <td>{{ pago.cuota.precio }}</td>
-                    <td>{{ pago.cuota.tipo_socio }}</td>
-                    <td>{{ pago.fecha_pago }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            <table id="pagos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Socio</th>
+                        <th>Tipo de Socio</th>
+                        <th>Cuota (€)</th>
+                        <th>Tipo de Cuota</th>
+                        <th>Fecha de Pago</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pago in pagos %}
+                    <tr>
+                        <td>{{ pago.id }}</td>
+                        <td>{{ pago.socio.nombre }} {{ pago.socio.apellido }}</td>
+                        <td>{{ pago.socio.get_tipo_socio_display }}</td>
+                        <td>{{ pago.cuota.precio }}</td>
+                        <td>{{ pago.cuota.tipo_socio }}</td>
+                        <td>{{ pago.fecha_pago }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% else %}
-        <p>No hay pagos registrados actualmente.</p>
+            <p>No hay pagos registrados actualmente.</p>
         {% endif %}
+
+        <p class="center-btn">
+            <a href="{% url 'detalle_socio' socio_id %}#detalle-info" class="btn">Volver atrás</a>
+        </p>
     </main>
 
     <!-- PIE -->

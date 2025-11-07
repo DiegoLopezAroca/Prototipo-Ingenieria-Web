@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistentes – {{ evento.nombre }}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{% url 'index' %}">
+      <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
+      <span>Peña El Revoque</span>
+    </a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'eventos' %}">Eventos</a>
+      <a href="{% url 'socios' %}">Socios</a>
+      <a href="{% url 'merchandising' %}">Merchandising</a>
+      <a href="{% url 'cuotas' %}">Cuotas</a>
+      <a href="{% url 'registros' %}">Registro</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Asistentes a {{ evento.nombre }}</h1>
+    <h2>{{ evento.lugar }} – {{ evento.fecha|date:"d/m/Y" }}</h2>
+  </div>
+</section>
+
+<main class="wrap">
+  {% if asistentes %}
+    <table id="asistentes">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in asistentes %}
+          <tr>
+            <td>{{ a.socio.nombre }}</td>
+            <td>{{ a.socio.apellido }} {{ a.socio.segundo_apellido }}</td>
+            <td>{{ a.fecha_registro|date:"d/m/Y H:i" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Aún no hay asistentes registrados.</p>
+  {% endif %}
+
+  <p><a href="{% url 'eventos' %}#fiestashervias-{{ evento.id }}" class="btn">Volver al menu de eventos</a></p>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

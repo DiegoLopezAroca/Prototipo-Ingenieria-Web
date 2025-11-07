@@ -22,6 +22,9 @@ class Socio(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido} ({self.tipo_socio})"
     
+    class Meta:
+        db_table = "Socios"
+    
 class Eventos(models.Model):
     nombre = models.CharField(max_length=50)
     fecha = models.DateField()
@@ -32,6 +35,9 @@ class Eventos(models.Model):
     def __str__(self):
         return f"id={self.id}, nombre={self.nombre}, fecha={self.fecha}, lugar={self.lugar}, descripcion={self.descripcion}, imagen={self.imagen}"
 
+    class Meta:
+        db_table = "Eventos"
+
 class Cuotas(models.Model):
     tipo_socio = models.CharField(max_length=50, null=True, blank=True)  # "Adulto", "Niño", "Socio nuevo"
     precio = models.DecimalField(max_digits=6, decimal_places=2, default=50.00)
@@ -39,6 +45,9 @@ class Cuotas(models.Model):
 
     def __str__(self):
         return f"{self.tipo_socio} - {self.precio}€"
+    
+    class Meta:
+        db_table = "Cuotas"
 
 class Pagos(models.Model):
     socio = models.ForeignKey(Socio, on_delete=models.CASCADE, related_name="pagos")
@@ -48,6 +57,9 @@ class Pagos(models.Model):
     def __str__(self):
         return f"Pago de {self.socio.nombre} - {self.cuota.tipo_socio} ({self.fecha_pago})"
     
+    class Meta:
+        db_table = "Pagos"
+
 class Merchandising(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
@@ -57,7 +69,11 @@ class Merchandising(models.Model):
 
     def __str__(self):
         return f"id={self.id}, nombre={self.nombre}, precio={self.precio}, descripcion={self.descripcion}, imagen={self.imagen},imagen2={self.imagen2}"
-    
+
+    class Meta:
+        db_table = "Merchandising"
+
+
 class Contacto(models.Model):
     socio = models.ForeignKey('Socio', on_delete=models.SET_NULL, null=True, blank=True)
     email = models.EmailField()
@@ -66,3 +82,18 @@ class Contacto(models.Model):
 
     def __str__(self):
         return f"Mensaje de {self.email} - {self.fecha_envio.strftime('%Y-%m-%d %H:%M')}"
+    
+    class Meta:
+        db_table = "Contactos"
+
+class AsistenciaEvento(models.Model):
+    socio = models.ForeignKey(Socio, on_delete=models.CASCADE, related_name="asistencias")
+    evento = models.ForeignKey(Eventos, on_delete=models.CASCADE, related_name="asistencias")
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Asistencia de {self.socio.nombre} al evento {self.evento.nombre}"
+    
+    class Meta:
+        unique_together = ("socio", "evento") # evitar duplicados
+        db_table = "AsistenciaEvento"

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto
+from appProjectDjango.models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto, AsistenciaEvento
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import JsonResponse
@@ -11,6 +11,7 @@ def index(request):
     return render(request, 'index.html')
 
 # Vista de eventos (lista)
+@user_passes_test(lambda u: u.is_superuser)
 def eventos(request):
     lista_eventos = Eventos.objects.all()
     contexto = {'eventos': lista_eventos}
@@ -21,6 +22,39 @@ def socios(request):
     lista_socios = Socio.objects.all()
     contexto = {'socios': lista_socios}
     return render(request, 'lista_socios.html', contexto)
+
+# Vista de asistencia a eventos
+@user_passes_test(lambda u: u.is_superuser)
+def asistencia(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip()
+        if not email:
+            messages.error(request, "Introduce tu email para apuntarte.")
+        else:
+            socio = Socio.objects.filter(email=email).first()
+            if not socio:
+                messages.error(request, "¡ATENCIÓN! Ese email no está registrado. Regístrate antes de apuntarte.")
+                return redirect("registros")  # o vuelve a la misma página si prefieres
+            # Evitar duplicados
+            ya_apuntado = AsistenciaEvento.objects.filter(evento=evento, socio=socio).exists()
+            if ya_apuntado:
+                messages.info(request, "¡ATENCIÓN! Ya estabas inscrito en este evento.")
+            else:
+                AsistenciaEvento.objects.create(evento=evento, socio=socio)
+                messages.success(request, "¡Apuntado correctamente!")
+        return redirect("asistencia", evento_id=evento.id)
+
+    asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio").order_by("-fecha_registro")
+    return render(request, "asistencia.html", {"evento": evento, "asistentes": asistentes})
+
+# Vista para listar los asistentes a un evento (solo admin)
+@user_passes_test(lambda u: u.is_superuser)
+def lista_asistentes(request, evento_id):
+    evento = get_object_or_404(Eventos, id=evento_id)
+    asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio").order_by("socio__nombre")
+    return render(request, "lista_asistentes.html", {"evento": evento, "asistentes": asistentes})
 
 # Vista de detalle de socio
 @user_passes_test(lambda u: u.is_superuser)
@@ -37,7 +71,8 @@ def cuotas(request):
 @user_passes_test(lambda u: u.is_superuser)
 def pagos_view(request):
     pagos = Pagos.objects.select_related('socio', 'cuota').all().order_by('-fecha_pago')
-    return render(request, 'pagos.html', {'pagos': pagos})
+    socio_id = request.GET.get('socio_id')
+    return render(request, 'pagos.html', {'pagos': pagos, 'socio_id': socio_id})
 
 # Vista de merchandising (lista)
 def merchandising(request):
