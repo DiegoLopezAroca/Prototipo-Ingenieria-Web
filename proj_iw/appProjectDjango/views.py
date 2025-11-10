@@ -11,7 +11,6 @@ def index(request):
     return render(request, 'index.html')
 
 # Vista de eventos (lista)
-@user_passes_test(lambda u: u.is_superuser)
 def eventos(request):
     lista_eventos = Eventos.objects.all()
     contexto = {'eventos': lista_eventos}
