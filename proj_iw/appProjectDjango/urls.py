@@ -1,18 +1,22 @@
 from django.urls import path
-from . import views
+from .views import (
+    IndexView, RegistroView, EventosListView, AsistenciaView, ListaAsistentesView,
+    CuotasListView, PagosView, SociosListView, SocioDetailView, MerchandisingListView,
+    ProductoDetailView, ContactoView, VerMensajesView
+)
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('registros/', views.registros, name='registros'),
-    path('eventos/', views.eventos, name='eventos'),
-    path('eventos/<int:evento_id>/asistencia/', views.asistencia, name='asistencia'),
-    path('eventos/<int:evento_id>/asistencia/lista/', views.lista_asistentes, name='lista_asistentes'),
-    path('cuotas/', views.cuotas, name='cuotas'),
-    path('pagos/', views.pagos_view, name='pagos'),
-    path('socios/', views.socios, name='socios'),
-    path('socios/<int:socio_id>/', views.detalle_socio, name='detalle_socio'),
-    path('merchandising/', views.merchandising, name='merchandising'),
-    path('merchandising/<int:producto_id>/', views.detalle_producto, name='detalle_producto'),
-    path('contacto/', views.contacto, name='contacto'),
-    path('contacto/mensajes/', views.ver_mensajes, name="ver_mensajes")
+    path('', IndexView.as_view(), name='index'),
+    path('registros/', RegistroView.as_view(), name='registros'),
+    path('eventos/', EventosListView.as_view(), name='eventos'),
+    path('eventos/<int:evento_id>/asistencia/', AsistenciaView.as_view(), name='asistencia'),
+    path('eventos/<int:evento_id>/asistencia/lista/', ListaAsistentesView.as_view(), name='lista_asistentes'),
+    path('cuotas/', CuotasListView.as_view(), name='cuotas'),
+    path('pagos/', PagosView.as_view(), name='pagos'),
+    path('socios/', SociosListView.as_view(), name='socios'),
+    path('socios/<int:socio_id>/', SocioDetailView.as_view(), name='detalle_socio'),
+    path('merchandising/', MerchandisingListView.as_view(), name='merchandising'),
+    path('merchandising/<int:producto_id>/', ProductoDetailView.as_view(), name='detalle_producto'),
+    path('contacto/', ContactoView.as_view(), name='contacto'),
+    path('contacto/mensajes/', VerMensajesView.as_view(), name='ver_mensajes'),
 ]

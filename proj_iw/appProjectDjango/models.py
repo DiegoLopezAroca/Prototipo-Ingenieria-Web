@@ -1,6 +1,6 @@
 from django.db import models
+from django import forms
 
-# Create your models here.
 # Create your models here.
 class Socio(models.Model):
     TIPO_SOCIO_CHOICES = [
@@ -97,3 +97,22 @@ class AsistenciaEvento(models.Model):
     class Meta:
         unique_together = ("socio", "evento") # evitar duplicados
         db_table = "AsistenciaEvento"
+
+class SocioForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    password_confirm = forms.CharField(widget=forms.PasswordInput, label="Confirmar contraseña")
+
+    class Meta:
+        model = Socio
+        fields = ['nombre', 'apellido', 'segundo_apellido', 'mayor13', 'fecha_nacimiento', 'tipo_socio', 'email', 'password', 'telefono']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('password') != cleaned_data.get('password_confirm'):
+            self.add_error('password_confirm', "Las contraseñas no coinciden")
+        return cleaned_data
+
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = Contacto
+        fields = ['email', 'mensaje']
