@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto, AsistenciaEvento, SocioForm
+from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto, AsistenciaEvento, SocioForm,  ContactoForm, AsistenciaEventoForm
 
 # -------------------------
 # VISTA PRINCIPAL
@@ -69,29 +69,19 @@ class RegistroView(CreateView):
 # -------------------------
 class ContactoView(View):
     def get(self, request):
-        email = request.GET.get("email", "").strip()
-        if email:
-            existe = Socio.objects.filter(email=email).exists()
-            return JsonResponse({"existe": existe})
-        return render(request, "contacto.html")
+        form = ContactoForm()
+        return render(request, "contacto.html", {"form": form})
 
     def post(self, request):
-        email = request.POST.get("email", "").strip()
-        mensaje = request.POST.get("mensaje", "").strip()
-
-        if not email:
-            return render(request, "contacto.html", {"error": "Introduce un correo electrónico."})
-        if not mensaje:
-            return render(request, "contacto.html", {"error": "Escribe un mensaje antes de enviar."})
-
-        socio = Socio.objects.filter(email=email).first()
-        if not socio:
-            return render(request, "contacto.html", {
-                "error": "El email no está registrado. Por favor, regístrate antes de enviar un mensaje."
-            })
-
-        Contacto.objects.create(socio=socio, email=email, mensaje=mensaje)
-        return render(request, "contacto.html", {"exito": "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!"})
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            contacto = form.save(commit=False)
+            socio = Socio.objects.filter(email=form.cleaned_data['email']).first()
+            contacto.socio = socio
+            contacto.save()
+            messages.success(request, "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!")
+            return redirect("contacto")
+        return render(request, "contacto.html", {"form": form})
 
 # -------------------------
 # ASISTENCIA A EVENTOS
@@ -99,26 +89,26 @@ class ContactoView(View):
 class AsistenciaView(View):
     def get(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
+        form = AsistenciaEventoForm()
         asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio").order_by("-fecha_registro")
-        return render(request, "asistencia.html", {"evento": evento, "asistentes": asistentes})
+        return render(request, "asistencia.html", {"evento": evento, "asistentes": asistentes, "form": form})
 
     def post(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
-        email = request.POST.get("email", "").strip()
-
-        if not email:
-            messages.error(request, "Introduce tu email para apuntarte.")
-        else:
-            socio = Socio.objects.filter(email=email).first()
-            if not socio:
-                messages.error(request, "¡ATENCIÓN! Ese email no está registrado. Regístrate antes de apuntarte.")
-                return redirect("registros")
-            if AsistenciaEvento.objects.filter(evento=evento, socio=socio).exists():
+        form = AsistenciaEventoForm(request.POST)
+        if form.is_valid():
+            asistencia = form.save(commit=False)
+            # aseguramos que el evento sea el correcto
+            asistencia.evento = evento
+            # evitamos duplicados
+            if AsistenciaEvento.objects.filter(evento=evento, socio=asistencia.socio).exists():
                 messages.info(request, "¡ATENCIÓN! Ya estabas inscrito en este evento.")
             else:
-                AsistenciaEvento.objects.create(evento=evento, socio=socio)
+                asistencia.save()
                 messages.success(request, "¡Apuntado correctamente!")
-        return redirect("asistencia", evento_id=evento.id)
+            return redirect("asistencia", evento_id=evento.id)
+        messages.error(request, "Por favor corrige los errores del formulario.")
+        return render(request, "asistencia.html", {"evento": evento, "form": form})
 
 # -------------------------
 # LISTA DE ASISTENTES (ADMIN)
