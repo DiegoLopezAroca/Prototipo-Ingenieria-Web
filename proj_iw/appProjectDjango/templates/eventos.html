@@ -1,4 +1,5 @@
 {% load static %}
+{% load permisos_extras %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -69,7 +70,7 @@
             <p class="center-btn">
               <a href="{% url 'asistencia' evento.id %}" class="btn">Registra tu asistencia aquí</a>
               <br><br>
-              {% if user.is_superuser %}
+              {% if user|es_moderador_o_gestor %}
                 <a href="{% url 'lista_asistentes' evento.id %}" class="btn">Lista de personas que asistirán</a>
               {% endif %}
             </p>

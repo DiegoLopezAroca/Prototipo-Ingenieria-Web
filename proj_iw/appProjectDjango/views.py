@@ -7,6 +7,14 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto, AsistenciaEvento, SocioForm,  ContactoForm, AsistenciaEventoForm
 
+def is_moderador_o_gestor(user):
+    return (
+        user.is_authenticated and 
+        (user.groups.filter(name="Moderador").exists() or 
+         user.groups.filter(name="Gestor").exists() or 
+         user.is_superuser)
+    )
+
 # -------------------------
 # VISTA PRINCIPAL
 # -------------------------
@@ -47,7 +55,7 @@ class SocioDetailView(UserPassesTestMixin, DetailView):
     context_object_name = 'socio'
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return is_moderador_o_gestor(self.request.user)
 
 class ProductoDetailView(DetailView):
     model = Merchandising
@@ -119,11 +127,13 @@ class ListaAsistentesView(UserPassesTestMixin, ListView):
     context_object_name = "asistentes"
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return is_moderador_o_gestor(self.request.user)
 
     def get_queryset(self):
         evento_id = self.kwargs['evento_id']
-        return AsistenciaEvento.objects.filter(evento_id=evento_id).select_related('socio').order_by('socio__nombre')
+        return AsistenciaEvento.objects.filter(
+            evento_id=evento_id
+        ).select_related('socio').order_by('socio__nombre')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -139,7 +149,7 @@ class PagosView(UserPassesTestMixin, ListView):
     context_object_name = 'pagos'
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return is_moderador_o_gestor(self.request.user)
 
     def get_queryset(self):
         return Pagos.objects.select_related('socio', 'cuota').all().order_by('-fecha_pago')
@@ -158,7 +168,7 @@ class VerMensajesView(UserPassesTestMixin, ListView):
     context_object_name = "mensajes"
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return is_moderador_o_gestor(self.request.user)
 
     def get_queryset(self):
         return Contacto.objects.select_related('socio').all().order_by('-fecha_envio')

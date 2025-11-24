@@ -1,4 +1,5 @@
 {% load static %}
+{% load permisos_extras %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -59,11 +60,12 @@
         <button type="submit" class="btn" disabled>Enviar mensaje</button>
       </form>
     </div>
-    {% if user.is_superuser %}
-      <p style="margin-top:1em;">
-        <a href="{% url 'ver_mensajes' %}" class="btn">Ver mensajes</a>
-      </p>
-    {% endif %}
+        <p style="margin-top:1em;">
+          {% if user|es_moderador_o_gestor %}
+            <a href="{% url 'ver_mensajes' %}" class="btn">Ver mensajes</a>
+          {% endif %}
+        </p>
+
   </main>
 
   <!-- PIE -->

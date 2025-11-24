@@ -16,44 +16,35 @@ admin.site.index_title = "Panel de administración de la Peña"
 # CONFIGURACIÓN DE ROLES PERSONALIZADOS
 # ---------------------------------------------------------
 
+# Crear roles y asignar permisos
 def crear_roles():
-    """Se ejecuta al cargar admin: crea los roles si no existen"""
+    # Moderador
+    moderador_group, created = Group.objects.get_or_create(name="Moderador")
+    modelos = [Socio, Pagos, Contacto, Eventos, AsistenciaEvento, Cuotas, Merchandising]
+    for modelo in modelos:
+        permisos = Permission.objects.filter(
+            content_type__app_label="appProjectDjango",  
+            content_type__model=modelo.__name__.lower()
+        )
+        for p in permisos:
+            if p.codename.startswith("view_"):
+                moderador_group.permissions.add(p)
 
-    # Moderador: Puede ver mensajes, pagos, socios, eventos (solo lectura)
-    if not Group.objects.filter(name="Moderador").exists():
-        moderador = Group.objects.create(name="Moderador")
-
-        modelos_lectura = [Socio, Pagos, Contacto, Eventos, AsistenciaEvento, Cuotas, Merchandising]
-
-        for modelo in modelos_lectura:
-            permisos = Permission.objects.filter(
-                content_type__app_label="appProjectDjango",  
-                content_type__model=modelo.__name__.lower()
-            )
-            for p in permisos:
-                if p.codename.startswith("view_"):  # solo lectura
-                    moderador.permissions.add(p)
-
-    # Gestor: puede añadir y editar, pero NO borrar
-    if not Group.objects.filter(name="Gestor").exists():
-        gestor = Group.objects.create(name="Gestor")
-
-        modelos = [Socio, Pagos, Contacto, Eventos, Cuotas, Merchandising, AsistenciaEvento]
-
-        for modelo in modelos:
-            permisos = Permission.objects.filter(
-                content_type__app_label="appProjectDjango", 
-                content_type__model=modelo.__name__.lower()
-            )
-            for p in permisos:
-                if p.codename.startswith(("view_", "add_", "change_")):
-                    gestor.permissions.add(p)
+    # Gestor
+    gestor_group, created = Group.objects.get_or_create(name="Gestor")
+    for modelo in modelos:
+        permisos = Permission.objects.filter(
+            content_type__app_label="appProjectDjango",  
+            content_type__model=modelo.__name__.lower()
+        )
+        for p in permisos:
+            if p.codename.startswith(("view_", "add_", "change_")):
+                gestor_group.permissions.add(p)
 
 try:
     crear_roles()
 except:
-    pass  # Evitar errores durante migraciones
-
+    pass
 
 # ---------------------------------------------------------
 # ADMIN PERSONALIZADO PARA CADA MODELO

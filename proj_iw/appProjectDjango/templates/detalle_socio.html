@@ -1,4 +1,5 @@
 {% load static %}
+{% load permisos_extras %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,7 +86,7 @@
                 <div class="botones-acciones">
                     <a href="{% url 'socios' %}" class="btn">← Volver a la lista</a>
 
-                    {% if user.is_superuser %}
+                    {% if user|es_moderador_o_gestor %}
                         <a href="{% url 'pagos' %}?socio_id={{ socio.id }}" class="btn">Ver pagos</a>
                     {% endif %}
                 </div>
@@ -93,9 +94,6 @@
 
         </div>
     </main>
-
-
-
 
     <!-- PIE -->
     <footer class="site-footer">
