@@ -3,3 +3,4 @@ Netlify-URI.txt
 *.pyc
 # ignorar python cache
 Prototipo-Ingenieria-Web/proj_iw/proj_iw/__pycache__/
+*.pyc

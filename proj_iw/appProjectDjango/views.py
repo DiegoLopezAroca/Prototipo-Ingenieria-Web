@@ -96,10 +96,7 @@ class ContactoView(View):
 # -------------------------
 # ASISTENCIA A EVENTOS
 # -------------------------
-class AsistenciaView(UserPassesTestMixin, View):
-    def test_func(self):
-        return self.request.user.is_superuser
-
+class AsistenciaView(View):
     def get(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
         asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio").order_by("-fecha_registro")
