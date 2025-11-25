@@ -89,6 +89,9 @@
                     {% if user|es_moderador_o_gestor %}
                         <a href="{% url 'pagos' %}?socio_id={{ socio.id }}" class="btn">Ver pagos</a>
                     {% endif %}
+                    {% if user|es_gestor %}
+                        <a href="{% url 'editar_socio' socio.id %}" class="btn btn-editar">Editar socio</a>
+                    {% endif %}
                 </div>
             </div>
 

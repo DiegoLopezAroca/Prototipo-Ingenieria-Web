@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Editar Socio</title>
+</head>
+<body>
+
+<h1>Editar socio: {{ socio.nombre }} {{ socio.apellido }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-editar">Guardar cambios</button>
+</form>
+
+<a href="{% url 'detalle_socio' socio.id %}" class="btn">Cancelar</a>
+
+</body>
+</html>

@@ -11,3 +11,12 @@ def es_moderador_o_gestor(user):
             user.groups.filter(name="Gestor").exists()
         )
     )
+
+@register.filter
+def es_gestor(user):
+    return (
+        user.is_authenticated and (
+            user.is_superuser or
+            user.groups.filter(name="Gestor").exists()
+        )
+    )

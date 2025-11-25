@@ -54,8 +54,8 @@
             <h2>{% trans "Apuntarme" %}</h2>
             <form method="post">
                 {% csrf_token %}
-                <label for="email">{% trans "Email con el que te registraste" %}</label>
-                <input type="email" id="email" name="email" required placeholder="{% trans "tu@email.com" %}">
+                <label for="{{ form.email.id_for_label }}">{% trans "Email con el que te registraste" %}</label>
+                {{ form.email }}
                 <button type="submit" class="btn">{% trans "Apuntarme al evento" %}</button>
             </form>
             <p style="margin-top:1rem;">

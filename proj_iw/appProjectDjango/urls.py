@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     IndexView, RegistroView, EventosListView, AsistenciaView, ListaAsistentesView,
     CuotasListView, PagosView, SociosListView, SocioDetailView, MerchandisingListView,
-    ProductoDetailView, ContactoView, VerMensajesView
+    ProductoDetailView, ContactoView, VerMensajesView, EditarSocioView, EditarAsistentesView,
+    EditarPagoView, EditarMensajeView
 )
 
 urlpatterns = [
@@ -19,4 +20,10 @@ urlpatterns = [
     path('merchandising/<int:producto_id>/', ProductoDetailView.as_view(), name='detalle_producto'),
     path('contacto/', ContactoView.as_view(), name='contacto'),
     path('contacto/mensajes/', VerMensajesView.as_view(), name='ver_mensajes'),
+    # EDICIÓN
+    path('socios/<int:socio_id>/editar/', EditarSocioView.as_view(), name='editar_socio'),
+    path('eventos/<int:evento_id>/editar-asistentes/', EditarAsistentesView.as_view(), name='editar_asistentes'),
+    path('pagos/<int:pago_id>/editar/', EditarPagoView.as_view(), name='editar_pago'),
+    path('contacto/<int:mensaje_id>/editar/', EditarMensajeView.as_view(), name='editar_mensaje'),
+
 ]

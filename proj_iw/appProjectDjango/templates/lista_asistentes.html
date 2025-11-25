@@ -1,4 +1,5 @@
 {% load static %}
+{% load permisos_extras %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -58,6 +59,11 @@
   {% endif %}
 
   <p><a href="{% url 'eventos' %}#fiestashervias-{{ evento.id }}" class="btn">Volver al menu de eventos</a></p>
+  {% if user|es_gestor %}
+      <p>
+          <a href="{% url 'editar_asistentes' evento.id %}" class="btn btn-editar">Editar asistentes</a>
+      </p>
+  {% endif %}
 </main>
 
 <footer class="site-footer">
