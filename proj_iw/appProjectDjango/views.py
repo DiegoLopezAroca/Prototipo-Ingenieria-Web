@@ -1,12 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib import messages
-from django.http import JsonResponse
 from django.urls import reverse_lazy
-from .models import Socio, Eventos, Cuotas, Merchandising, Pagos, Contacto, AsistenciaEvento, SocioForm,  ContactoForm, AsistenciaEventoForm
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
+from .models import (
+    Socio, Eventos, Cuotas, Merchandising, Pagos,
+    Contacto, AsistenciaEvento,
+    SocioForm, ContactoForm, AsistenciaEventoForm
+)
+
+# -------------------------
+# FUNCIONES DE CONTROL DE ACCESO
+# -------------------------
 def is_moderador_o_gestor(user):
     return (
         user.is_authenticated and 
@@ -23,17 +32,27 @@ class IndexView(View):
         return render(request, 'index.html')
 
 # -------------------------
-# LISTADOS
+# LISTADOS (con paginación y cache)
 # -------------------------
+@method_decorator(cache_page(60*10), name='dispatch')
 class EventosListView(ListView):
     model = Eventos
     template_name = 'eventos.html'
     context_object_name = 'eventos'
+    paginate_by = 20
 
-class SociosListView(ListView):
+class SociosListView(UserPassesTestMixin, ListView):
     model = Socio
     template_name = 'lista_socios.html'
     context_object_name = 'socios'
+    paginate_by = 20
+
+    def test_func(self):
+        return is_moderador_o_gestor(self.request.user)
+
+    def get_queryset(self):
+        # Prefetch relaciones para evitar N+1 queries
+        return Socio.objects.prefetch_related('pagos', 'asistencias').all()
 
 class CuotasListView(ListView):
     model = Cuotas
@@ -44,6 +63,7 @@ class MerchandisingListView(ListView):
     model = Merchandising
     template_name = 'merchandising.html'
     context_object_name = 'merchandisings'
+    paginate_by = 20
 
 # -------------------------
 # DETALLES
@@ -89,34 +109,38 @@ class ContactoView(View):
             contacto.save()
             messages.success(request, "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!")
             return redirect("contacto")
+        messages.error(request, "Por favor corrige los errores del formulario.")
         return render(request, "contacto.html", {"form": form})
 
 # -------------------------
 # ASISTENCIA A EVENTOS
 # -------------------------
-class AsistenciaView(View):
+class AsistenciaView(LoginRequiredMixin, View):
     def get(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
         form = AsistenciaEventoForm()
-        asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio").order_by("-fecha_registro")
-        return render(request, "asistencia.html", {"evento": evento, "asistentes": asistentes, "form": form})
+        asistentes = AsistenciaEvento.objects.filter(evento=evento)\
+            .select_related("socio").order_by("-fecha_registro")
+        return render(request, "asistencia.html", {
+            "evento": evento,
+            "asistentes": asistentes,
+            "form": form
+        })
 
     def post(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
         form = AsistenciaEventoForm(request.POST)
         if form.is_valid():
-            asistencia = form.save(commit=False)
-            # aseguramos que el evento sea el correcto
-            asistencia.evento = evento
-            # evitamos duplicados
-            if AsistenciaEvento.objects.filter(evento=evento, socio=asistencia.socio).exists():
-                messages.info(request, "¡ATENCIÓN! Ya estabas inscrito en este evento.")
+            socio = form.cleaned_data['socio']
+            if AsistenciaEvento.objects.filter(evento=evento, socio=socio).exists():
+                messages.info(request, "¡Ya estabas inscrito en este evento!")
             else:
-                asistencia.save()
+                AsistenciaEvento.objects.create(evento=evento, socio=socio)
                 messages.success(request, "¡Apuntado correctamente!")
             return redirect("asistencia", evento_id=evento.id)
         messages.error(request, "Por favor corrige los errores del formulario.")
         return render(request, "asistencia.html", {"evento": evento, "form": form})
+
 
 # -------------------------
 # LISTA DE ASISTENTES (ADMIN)
@@ -131,9 +155,8 @@ class ListaAsistentesView(UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         evento_id = self.kwargs['evento_id']
-        return AsistenciaEvento.objects.filter(
-            evento_id=evento_id
-        ).select_related('socio').order_by('socio__nombre')
+        return AsistenciaEvento.objects.filter(evento_id=evento_id)\
+            .select_related('socio').order_by('socio__nombre')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
