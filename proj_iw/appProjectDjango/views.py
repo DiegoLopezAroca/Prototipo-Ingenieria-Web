@@ -195,3 +195,96 @@ class VerMensajesView(UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         return Contacto.objects.select_related('socio').all().order_by('-fecha_envio')
+
+class EditarSocioView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request, socio_id):
+        socio = get_object_or_404(Socio, id=socio_id)
+        form = SocioForm(instance=socio)
+        return render(request, "editar_socio.html", {"form": form, "socio": socio})
+
+    def post(self, request, socio_id):
+        socio = get_object_or_404(Socio, id=socio_id)
+        form = SocioForm(request.POST, instance=socio)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Socio actualizado correctamente.")
+            return redirect("detalle_socio", socio_id=socio.id)
+        return render(request, "editar_socio.html", {"form": form, "socio": socio})
+
+class EditarAsistentesView(UserPassesTestMixin, View):
+    def test_func(self):
+        # Solo gestores pueden acceder
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request, evento_id):
+        evento = get_object_or_404(Eventos, id=evento_id)
+        asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio")
+        form = AsistenciaEventoForm()  # Form para agregar un nuevo asistente
+        return render(request, "editar_asistentes.html", {
+            "evento": evento,
+            "asistentes": asistentes,
+            "form": form
+        })
+
+    def post(self, request, evento_id):
+        """
+        Permite agregar un nuevo asistente al evento.
+        Para editar un asistente existente, se puede usar su ID en el form
+        """
+        evento = get_object_or_404(Eventos, id=evento_id)
+        form = AsistenciaEventoForm(request.POST)
+
+        if form.is_valid():
+            asistencia_nueva = form.save(commit=False)
+            asistencia_nueva.evento = evento
+            # Evitar duplicados
+            if not AsistenciaEvento.objects.filter(evento=evento, socio=asistencia_nueva.socio).exists():
+                asistencia_nueva.save()
+                messages.success(request, "Asistente añadido correctamente.")
+            else:
+                messages.info(request, "¡Este socio ya está inscrito en el evento!")
+            return redirect("editar_asistentes", evento_id=evento.id)
+
+        # Si hay errores en el form
+        asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio")
+        messages.error(request, "Corrige los errores del formulario.")
+        return render(request, "editar_asistentes.html", {
+            "evento": evento,
+            "asistentes": asistentes,
+            "form": form
+        })
+
+class EditarPagoView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request, pago_id):
+        pago = get_object_or_404(Pagos, id=pago_id)
+        return render(request, "editar_pago.html", {"pago": pago})
+
+    def post(self, request, pago_id):
+        pago = get_object_or_404(Pagos, id=pago_id)
+        pago.fecha_pago = request.POST.get("fecha_pago", pago.fecha_pago)
+        pago.save()
+        messages.success(request, "Pago actualizado correctamente.")
+        return redirect("pagos")
+
+
+class EditarMensajeView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request, mensaje_id):
+        mensaje = get_object_or_404(Contacto, id=mensaje_id)
+        return render(request, "editar_mensaje.html", {"mensaje": mensaje})
+
+    def post(self, request, mensaje_id):
+        mensaje = get_object_or_404(Contacto, id=mensaje_id)
+        mensaje.mensaje = request.POST.get("mensaje", mensaje.mensaje)
+        mensaje.email = request.POST.get("email", mensaje.email)
+        mensaje.save()
+        messages.success(request, "Mensaje actualizado correctamente.")
+        return redirect("ver_mensajes")
