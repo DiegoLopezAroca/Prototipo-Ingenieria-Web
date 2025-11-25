@@ -1,11 +1,13 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ LANGUAGE_CODE|default:'es' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Asistencia – {{ evento.nombre }}</title>
-    <meta name="description" content="Listado de asistencia de los socios de la Peña El Revoque en Hervías.">
+
+    <title>{% trans "Asistencia" %} – {{ evento.nombre }}</title>
+    <meta name="description" content="{% trans "Listado de asistencia de los socios de la Peña El Revoque en Hervías." %}">
+
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
@@ -15,16 +17,16 @@
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="{% url 'index' %}">
-                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-                <span>Peña El Revoque</span>
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+                <span>{% trans "Peña El Revoque" %}</span>
             </a>
-            <nav class="main-nav" aria-label="Principal">
-                <a href="{% url 'index' %}">Inicio</a>
-                <a href="{% url 'eventos' %}">Eventos</a>
-                <a href="{% url 'socios' %}">Socios</a>
-                <a href="{% url 'merchandising' %}">Merchandising</a>
-                <a href="{% url 'cuotas' %}">Cuotas</a>
-                <a href="{% url 'registros' %}">Registro</a>
+            <nav class="main-nav" aria-label="{% trans "Principal" %}">
+                <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+                <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+                <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+                <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+                <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+                <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
             </nav>
         </div>
     </header>
@@ -32,8 +34,8 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-            <h1>Asistencia a {{ evento.nombre }}</h1>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Escudo de la Peña" %}" class="logo-hero">
+            <h1>{% trans "Asistencia a" %} {{ evento.nombre }}</h1>
             <h2>{{ evento.lugar }} – {{ evento.fecha|date:"d/m/Y" }}</h2>
         </div>
     </section>
@@ -49,31 +51,35 @@
         {% endif %}
         
         <section class="formulario">
-            <h2>Apuntarme</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    <label for="email">Email con el que te registraste</label>
-                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
-                    <button type="submit" class="btn">Apuntarme al evento</button>
-                </form>
+            <h2>{% trans "Apuntarme" %}</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="email">{% trans "Email con el que te registraste" %}</label>
+                <input type="email" id="email" name="email" required placeholder="{% trans "tu@email.com" %}">
+                <button type="submit" class="btn">{% trans "Apuntarme al evento" %}</button>
+            </form>
             <p style="margin-top:1rem;">
                 {% if user.is_superuser %}
-                    <a href="{% url 'lista_asistentes' evento.id %}" class="btn">Ver lista de asistentes</a>
+                    <a href="{% url 'lista_asistentes' evento.id %}" class="btn">{% trans "Ver lista de asistentes" %}</a>
                 {% endif %}
             </p>
         </section>
 
-        <p><a href="{% url 'eventos' %}#fiestashervias-{{ evento.id }}" class="btn">Volver al menu de eventos</a></p>
+        <p>
+            <a href="{% url 'eventos' %}#fiestashervias-{{ evento.id }}" class="btn">
+                {% trans "Volver al menú de eventos" %}
+            </a>
+        </p>
     </main>
 
     <!-- PIE -->
     <footer class="site-footer">
-        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-        <p>Síguenos en:
+        <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+        <p>{% trans "Síguenos en:" %}
             <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
             <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
         </p>
-        <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+        <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
     </footer>
 
 </body>

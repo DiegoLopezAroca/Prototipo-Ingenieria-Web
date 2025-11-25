@@ -8,267 +8,240 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 12:40+0100\n"
+"POT-Creation-Date: 2025-11-25 13:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\appProjectDjango\templates\index.html:11
-msgid "Peña El Revoque – Inicio"
-msgstr "Peña El Revoque – Home"
+#: .\appProjectDjango\templates\asistencia.html:8
+msgid "Asistencia"
+msgstr "Attendance"
 
-#: .\appProjectDjango\templates\index.html:12
-msgid ""
-"Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del "
-"Hervías Rock y de actividades llenas de música, amistad y tradición durante "
-"todo el año. ¡Vive el espíritu de El Revoque!"
-msgstr ""
-"Peña El Revoque — festive and cultural group from Hervías, organizers of "
-"Hervías Rock and activities full of music, friendship, and tradition "
-"throughout the year. Experience the spirit of El Revoque!"
+#: .\appProjectDjango\templates\asistencia.html:9
+msgid "Listado de asistencia de los socios de la Peña El Revoque en Hervías."
+msgstr "Attendance list of members of Peña El Revoque in Hervías."
 
-#: .\appProjectDjango\templates\index.html:21
+#: .\appProjectDjango\templates\asistencia.html:20
+#: .\appProjectDjango\templates\index.html:22
 msgid "Logo de la Peña El Revoque"
 msgstr "Peña El Revoque Logo"
 
-#: .\appProjectDjango\templates\index.html:22
-#: .\appProjectDjango\templates\index.html:39
+#: .\appProjectDjango\templates\asistencia.html:21
+#: .\appProjectDjango\templates\contacto.html:19
+#: .\appProjectDjango\templates\index.html:23
+#: .\appProjectDjango\templates\index.html:40
 msgid "Peña El Revoque"
 msgstr "Peña El Revoque"
 
-#: .\appProjectDjango\templates\index.html:24
+#: .\appProjectDjango\templates\asistencia.html:23
+#: .\appProjectDjango\templates\contacto.html:21
+#: .\appProjectDjango\templates\index.html:25
 msgid "Principal"
 msgstr "Main"
 
-#: .\appProjectDjango\templates\index.html:25
+#: .\appProjectDjango\templates\asistencia.html:24
+#: .\appProjectDjango\templates\contacto.html:22
+#: .\appProjectDjango\templates\index.html:26
 msgid "Inicio"
 msgstr "Home"
 
-#: .\appProjectDjango\templates\index.html:26
+#: .\appProjectDjango\templates\asistencia.html:25
+#: .\appProjectDjango\templates\contacto.html:23
+#: .\appProjectDjango\templates\index.html:27
 msgid "Eventos"
 msgstr "Events"
 
-#: .\appProjectDjango\templates\index.html:27
+#: .\appProjectDjango\templates\asistencia.html:26
+#: .\appProjectDjango\templates\contacto.html:24
+#: .\appProjectDjango\templates\index.html:28
 msgid "Socios"
 msgstr "Members"
 
-#: .\appProjectDjango\templates\index.html:28
+#: .\appProjectDjango\templates\asistencia.html:27
+#: .\appProjectDjango\templates\contacto.html:25
+#: .\appProjectDjango\templates\index.html:29
 msgid "Merchandising"
 msgstr "Merchandise"
 
-#: .\appProjectDjango\templates\index.html:29
+#: .\appProjectDjango\templates\asistencia.html:28
+#: .\appProjectDjango\templates\contacto.html:26
+#: .\appProjectDjango\templates\index.html:30
 msgid "Cuotas"
 msgstr "Fees"
 
-#: .\appProjectDjango\templates\index.html:30
+#: .\appProjectDjango\templates\asistencia.html:29
+#: .\appProjectDjango\templates\contacto.html:27
+#: .\appProjectDjango\templates\index.html:31
 msgid "Registro"
 msgstr "Register"
 
-#: .\appProjectDjango\templates\index.html:38
+#: .\appProjectDjango\templates\asistencia.html:37
+#: .\appProjectDjango\templates\index.html:39
 msgid "Escudo de la Peña"
 msgstr "Peña Emblem"
 
-#: .\appProjectDjango\templates\index.html:40
-msgid "Fiesta, tradición y comunidad en Hervías"
-msgstr "Festival, Tradition, and Community in Hervías"
+#: .\appProjectDjango\templates\asistencia.html:38
+msgid "Asistencia a"
+msgstr "Attendance to"
+
+#: .\appProjectDjango\templates\asistencia.html:54
+msgid "Apuntarme"
+msgstr "Sign me up"
+
+#: .\appProjectDjango\templates\asistencia.html:57
+msgid "Email con el que te registraste"
+msgstr "Email you registered with"
+
+#: .\appProjectDjango\templates\asistencia.html:58
+#: .\appProjectDjango\templates\contacto.html:54
+msgid "tu@email.com"
+msgstr "your@email.com"
+
+#: .\appProjectDjango\templates\asistencia.html:59
+msgid "Apuntarme al evento"
+msgstr "Sign up for the event"
+
+#: .\appProjectDjango\templates\asistencia.html:63
+msgid "Ver lista de asistentes"
+msgstr "View attendee list"
+
+#: .\appProjectDjango\templates\asistencia.html:70
+msgid "Volver al menú de eventos"
+msgstr "Back to events menu"
+
+#: .\appProjectDjango\templates\asistencia.html:77
+#: .\appProjectDjango\templates\contacto.html:73
+#: .\appProjectDjango\templates\index.html:129
+msgid "Peña El Revoque. Todos los derechos reservados."
+msgstr "Peña El Revoque. All rights reserved."
+
+#: .\appProjectDjango\templates\asistencia.html:78
+#: .\appProjectDjango\templates\contacto.html:75
+#: .\appProjectDjango\templates\index.html:130
+msgid "Síguenos en:"
+msgstr "Follow us on:"
+
+#: .\appProjectDjango\templates\asistencia.html:82
+#: .\appProjectDjango\templates\index.html:134
+msgid "Contacta con nosotros aquí"
+msgstr "Contact us here"
+
+#: .\appProjectDjango\templates\contacto.html:8
+msgid "Contacto – Peña El Revoque"
+msgstr "Contact – Peña El Revoque"
+
+#: .\appProjectDjango\templates\contacto.html:18
+msgid "Logo"
+msgstr "Logo"
+
+#: .\appProjectDjango\templates\contacto.html:35
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\appProjectDjango\templates\contacto.html:42
+msgid "Formulario de contacto"
+msgstr "Contact form"
+
+#: .\appProjectDjango\templates\contacto.html:53
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: .\appProjectDjango\templates\contacto.html:57
+msgid "Escribe tu mensaje aquí..."
+msgstr "Write your message here..."
+
+#: .\appProjectDjango\templates\contacto.html:59
+msgid "Enviar mensaje"
+msgstr "Send message"
+
+#: .\appProjectDjango\templates\contacto.html:65
+msgid "Ver mensajes"
+msgstr "View messages"
+
+#: .\appProjectDjango\templates\contacto.html:103
+msgid "Regístrate antes de enviar un mensaje."
+msgstr "Register before sending a message."
+
+#: .\appProjectDjango\templates\index.html:12
+msgid "Peña El Revoque – Inicio"
+msgstr "Peña El Revoque – Home"
 
 #: .\appProjectDjango\templates\index.html:41
-msgid "Ver índice"
-msgstr "See Index"
+msgid "Fiesta, tradición y comunidad en Hervías"
+msgstr "Festivity, tradition and community in Hervías"
 
-#: .\appProjectDjango\templates\index.html:49
-msgid "Índice de secciones"
-msgstr "Section Index"
+#: .\appProjectDjango\templates\index.html:42
+msgid "Ver índice"
+msgstr "View index"
 
 #: .\appProjectDjango\templates\index.html:50
+msgid "Índice de secciones"
+msgstr "Section index"
+
+#: .\appProjectDjango\templates\index.html:51
 msgid "Índice"
 msgstr "Index"
 
-#: .\appProjectDjango\templates\index.html:52
-#: .\appProjectDjango\templates\index.html:62
-msgid "¿Quiénes somos?"
-msgstr "Who We Are"
-
-#: .\appProjectDjango\templates\index.html:53
-msgid "Compromiso solidario"
-msgstr "Solidarity Commitment"
-
-#: .\appProjectDjango\templates\index.html:54
+#: .\appProjectDjango\templates\index.html:55
 msgid "Galería"
 msgstr "Gallery"
 
-#: .\appProjectDjango\templates\index.html:55
-#: .\appProjectDjango\templates\index.html:103
-msgid "Próximos eventos"
-msgstr "Upcoming Events"
-
-#: .\appProjectDjango\templates\index.html:63
-msgid ""
-"La <strong>Peña El Revoque</strong> es una asociación cultural riojana sin "
-"ánimo de lucro, llevada por un grupo de jóvenes del pueblo con ganas de "
-"mantener vivas nuestras tradiciones. Desde sus inicios, la responsabilidad "
-"de La Peña se ha ido transmitiendo de generación en generación de jóvenes "
-"gorretas, garantizando así que cada año sigamos organizando fiestas, "
-"actividades y eventos que llenan de música, gastronomía y alegría las calles "
-"de nuestro pueblo. Nuestro lema, <strong>“Tira como puedas”</strong>, nos "
-"acompaña en todo lo que hacemos, recordándonos que con esfuerzo, ilusión y "
-"compañerismo siempre se puede salir adelante."
-msgstr ""
-"<strong>Peña El Revoque</strong> is a non-profit cultural association from La "
-"Rioja, run by a group of young villagers eager to keep our traditions alive. "
-"Since its founding, the responsibility of the Peña has been passed from "
-"generation to generation of young members, ensuring that every year we "
-"continue organizing festivals, activities, and events that fill our town's "
-"streets with music, gastronomy, and joy. Our motto, <strong>“Do your best”</strong>, "
-"guides everything we do, reminding us that with effort, enthusiasm, and "
-"teamwork, anything is possible."
-
-#: .\appProjectDjango\templates\index.html:65
-msgid ""
-"Además de animar las celebraciones populares, contamos con un grupo de "
-"socios que colaboran de manera activa en la organización y en la "
-"financiación mediante una cuota anual. También disponemos de"
-msgstr ""
-"In addition to enlivening popular celebrations, we have a group of members "
-"who actively participate in organizing and funding through an annual fee. We also have"
-
-#: .\appProjectDjango\templates\index.html:66
-msgid "merchandising"
-msgstr "merchandise"
-
-#: .\appProjectDjango\templates\index.html:67
-msgid ""
-"propio para que cualquiera pueda llevar con orgullo los colores y el "
-"espíritu de la Peña."
-msgstr ""
-"of our own so that anyone can proudly carry the colors and spirit of the Peña."
-
-#: .\appProjectDjango\templates\index.html:69
-msgid ""
-"Nuestro objetivo es claro: hacer comunidad, reforzar los lazos de amistad y "
-"compartir el amor por la cultura riojana a través de la fiesta."
-msgstr ""
-"Our goal is clear: build community, strengthen bonds of friendship, and share "
-"love for La Rioja's culture through celebration."
-
-#: .\appProjectDjango\templates\index.html:72
+#: .\appProjectDjango\templates\index.html:73
 msgid "Fiesta de la Peña en la plaza"
-msgstr "Peña Festival in the Plaza"
+msgstr "Peña Festival in the square"
 
-#: .\appProjectDjango\templates\index.html:79
-msgid "Nuestro compromiso solidario"
-msgstr "Our Solidarity Commitment"
-
-#: .\appProjectDjango\templates\index.html:80
-msgid ""
-"En la <strong>Peña El Revoque</strong> creemos que la fiesta y la cultura "
-"también deben ir acompañadas de <em>solidaridad y compromiso social</em>. "
-"Por ello, cada año tratamos de aportar nuestro granito de arena apoyando a "
-"causas que lo necesitan."
-msgstr ""
-"At <strong>Peña El Revoque</strong>, we believe that celebration and culture should "
-"also be accompanied by <em>solidarity and social commitment</em>. "
-"That is why every year we contribute our bit by supporting causes that need it."
-
-#: .\appProjectDjango\templates\index.html:81
-#, python-format
-msgid ""
-"Este año hemos querido dar un paso más: el <strong>0,7%% de los beneficios "
-"obtenidos en nuestras fiestas</strong> se ha destinado a apoyar a la "
-"población de <strong>Palestina</strong>, como muestra de nuestra voluntad de "
-"contribuir, aunque sea modestamente, a mejorar la vida de quienes atraviesan "
-"situaciones difíciles."
-msgstr ""
-"This year we wanted to go a step further: <strong>0.7%% of the profits from our "
-"festivities</strong> has been allocated to support the people of <strong>Palestine</strong>, "
-"as a demonstration of our desire to contribute, even modestly, to improving "
-"the lives of those facing difficult situations."
-
-#: .\appProjectDjango\templates\index.html:82
-msgid ""
-"Con este gesto, reafirmamos nuestra convicción de que la alegría de la Peña "
-"se multiplica cuando se comparte, y que cada celebración también puede ser "
-"una oportunidad para ayudar a quienes más lo necesitan."
-msgstr ""
-"With this gesture, we reaffirm our belief that the Peña's joy multiplies when shared, "
-"and that every celebration can also be an opportunity to help those who need it most."
-
-#: .\appProjectDjango\templates\index.html:85
+#: .\appProjectDjango\templates\index.html:86
 msgid "Cartel solidario de la Peña"
-msgstr "Peña Solidarity Poster"
+msgstr "Peña solidarity poster"
 
-#: .\appProjectDjango\templates\index.html:91
+#: .\appProjectDjango\templates\index.html:92
 msgid "Nuestras fiestas"
-msgstr "Our Festivals"
+msgstr "Our festivals"
 
-#: .\appProjectDjango\templates\index.html:93
+#: .\appProjectDjango\templates\index.html:94
 msgid "Fiestas de Hervías"
 msgstr "Hervías Festivals"
 
-#: .\appProjectDjango\templates\index.html:94
+#: .\appProjectDjango\templates\index.html:95
 msgid "Fiestas de Barrio Cierzo"
 msgstr "Cierzo Neighborhood Festivals"
 
-#: .\appProjectDjango\templates\index.html:95
+#: .\appProjectDjango\templates\index.html:96
 msgid "Día de la laguna"
 msgstr "Lagoon Day"
 
-#: .\appProjectDjango\templates\index.html:96
+#: .\appProjectDjango\templates\index.html:97
 msgid "Fiestas de la primavera"
 msgstr "Spring Festivals"
 
-#: .\appProjectDjango\templates\index.html:97
+#: .\appProjectDjango\templates\index.html:98
 msgid "Valvanera"
 msgstr "Valvanera"
 
-#: .\appProjectDjango\templates\index.html:106
+#: .\appProjectDjango\templates\index.html:103
+msgid "Próximos eventos"
+msgstr "Upcoming events"
+
+#: .\appProjectDjango\templates\index.html:107
 msgid "Romería Valvanera – 4 octubre"
 msgstr "Valvanera Pilgrimage – October 4"
 
-#: .\appProjectDjango\templates\index.html:108
-msgid "Salida desde Hervías a las 7:00"
-msgstr "Departure from Hervías at 7:00"
-
-#: .\appProjectDjango\templates\index.html:109
-msgid "Misa en el monasterio a las 19:30"
-msgstr "Mass at the Monastery at 19:30"
-
-#: .\appProjectDjango\templates\index.html:110
-msgid "Cena popular en la Peña"
-msgstr "Community Dinner at the Peña"
-
-#: .\appProjectDjango\templates\index.html:114
-msgid "Fiesta de la primavera – 11 abril"
-msgstr "Spring Festival – April 11"
-
-#: .\appProjectDjango\templates\index.html:116
-msgid "Comida campestre en el parque"
-msgstr "Picnic in the Park"
-
 #: .\appProjectDjango\templates\index.html:117
-msgid "Juegos y actividades para todas las edades"
-msgstr "Games and Activities for All Ages"
+msgid "Comida campestre en el parque"
+msgstr "Picnic in the park"
 
 #: .\appProjectDjango\templates\index.html:118
+msgid "Juegos y actividades para todas las edades"
+msgstr "Games and activities for all ages"
+
+#: .\appProjectDjango\templates\index.html:119
 msgid "Concierto al aire libre con grupos locales"
-msgstr "Outdoor Concert with Local Bands"
-
-#: .\appProjectDjango\templates\index.html:128
-msgid "Peña El Revoque. Todos los derechos reservados."
-msgstr "Peña El Revoque. All Rights Reserved."
-
-#: .\appProjectDjango\templates\index.html:129
-msgid "Síguenos en:"
-msgstr "Follow Us on:"
-
-#: .\appProjectDjango\templates\index.html:133
-msgid "Contacta con nosotros aquí"
-msgstr "Contact Us Here"
+msgstr "Outdoor concert with local bands"
 
 #: .\proj_iw\settings.py:73
 msgid "Español"
