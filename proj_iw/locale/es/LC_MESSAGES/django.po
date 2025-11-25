@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 13:19+0100\n"
+"POT-Creation-Date: 2025-11-25 13:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,12 +28,14 @@ msgid "Listado de asistencia de los socios de la Peña El Revoque en Hervías."
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:20
+#: .\appProjectDjango\templates\cuotas.html:18
 #: .\appProjectDjango\templates\index.html:22
 msgid "Logo de la Peña El Revoque"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:21
 #: .\appProjectDjango\templates\contacto.html:19
+#: .\appProjectDjango\templates\cuotas.html:19
 #: .\appProjectDjango\templates\index.html:23
 #: .\appProjectDjango\templates\index.html:40
 msgid "Peña El Revoque"
@@ -41,47 +43,55 @@ msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:23
 #: .\appProjectDjango\templates\contacto.html:21
+#: .\appProjectDjango\templates\cuotas.html:21
 #: .\appProjectDjango\templates\index.html:25
 msgid "Principal"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:24
 #: .\appProjectDjango\templates\contacto.html:22
+#: .\appProjectDjango\templates\cuotas.html:22
 #: .\appProjectDjango\templates\index.html:26
 msgid "Inicio"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:25
 #: .\appProjectDjango\templates\contacto.html:23
+#: .\appProjectDjango\templates\cuotas.html:23
 #: .\appProjectDjango\templates\index.html:27
 msgid "Eventos"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:26
 #: .\appProjectDjango\templates\contacto.html:24
+#: .\appProjectDjango\templates\cuotas.html:24
 #: .\appProjectDjango\templates\index.html:28
 msgid "Socios"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:27
 #: .\appProjectDjango\templates\contacto.html:25
+#: .\appProjectDjango\templates\cuotas.html:25
 #: .\appProjectDjango\templates\index.html:29
 msgid "Merchandising"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:28
 #: .\appProjectDjango\templates\contacto.html:26
+#: .\appProjectDjango\templates\cuotas.html:26
 #: .\appProjectDjango\templates\index.html:30
 msgid "Cuotas"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:29
 #: .\appProjectDjango\templates\contacto.html:27
+#: .\appProjectDjango\templates\cuotas.html:27
 #: .\appProjectDjango\templates\index.html:31
 msgid "Registro"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:37
+#: .\appProjectDjango\templates\cuotas.html:35
 #: .\appProjectDjango\templates\index.html:39
 msgid "Escudo de la Peña"
 msgstr ""
@@ -98,11 +108,6 @@ msgstr ""
 msgid "Email con el que te registraste"
 msgstr ""
 
-#: .\appProjectDjango\templates\asistencia.html:58
-#: .\appProjectDjango\templates\contacto.html:54
-msgid "tu@email.com"
-msgstr ""
-
 #: .\appProjectDjango\templates\asistencia.html:59
 msgid "Apuntarme al evento"
 msgstr ""
@@ -117,17 +122,20 @@ msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:77
 #: .\appProjectDjango\templates\contacto.html:73
+#: .\appProjectDjango\templates\cuotas.html:73
 #: .\appProjectDjango\templates\index.html:129
 msgid "Peña El Revoque. Todos los derechos reservados."
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:78
 #: .\appProjectDjango\templates\contacto.html:75
+#: .\appProjectDjango\templates\cuotas.html:74
 #: .\appProjectDjango\templates\index.html:130
 msgid "Síguenos en:"
 msgstr ""
 
 #: .\appProjectDjango\templates\asistencia.html:82
+#: .\appProjectDjango\templates\cuotas.html:78
 #: .\appProjectDjango\templates\index.html:134
 msgid "Contacta con nosotros aquí"
 msgstr ""
@@ -152,6 +160,10 @@ msgstr ""
 msgid "Correo electrónico"
 msgstr ""
 
+#: .\appProjectDjango\templates\contacto.html:54
+msgid "tu@email.com"
+msgstr ""
+
 #: .\appProjectDjango\templates\contacto.html:57
 msgid "Escribe tu mensaje aquí..."
 msgstr ""
@@ -166,6 +178,48 @@ msgstr ""
 
 #: .\appProjectDjango\templates\contacto.html:103
 msgid "Regístrate antes de enviar un mensaje."
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:7
+msgid "Peña El Revoque – Cuotas"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:8
+msgid "Listado de cuotas de los socios de la Peña El Revoque en Hervías."
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:36
+msgid "Cuotas de la Peña"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:37
+msgid "Tipos de cuotas de las que disponemos"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:43
+msgid ""
+"A continuación se muestran todas las cuotas disponibles de la Peña El "
+"Revoque."
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:49
+msgid "ID"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:50
+msgid "Tipo de Socio"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:51
+msgid "Precio (€)"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:52
+msgid "Beneficios"
+msgstr ""
+
+#: .\appProjectDjango\templates\cuotas.html:67
+msgid "No hay cuotas registradas actualmente."
 msgstr ""
 
 #: .\appProjectDjango\templates\index.html:12

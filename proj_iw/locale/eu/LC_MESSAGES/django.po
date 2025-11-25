@@ -3,28 +3,369 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 12:35+0100\n"
+"POT-Creation-Date: 2025-11-25 13:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\appProjectDjango\templates\asistencia.html:8
+msgid "Asistencia"
+msgstr "Parte-hartzea"
+
+#: .\appProjectDjango\templates\asistencia.html:9
+msgid "Listado de asistencia de los socios de la Peña El Revoque en Hervías."
+msgstr "Peña El Revoque-ko kideen parte-hartze zerrenda Hervíasen."
+
+#: .\appProjectDjango\templates\asistencia.html:20
+#: .\appProjectDjango\templates\cuotas.html:18
+#: .\appProjectDjango\templates\index.html:22
+msgid "Logo de la Peña El Revoque"
+msgstr "Peña El Revoque Logo"
+
+#: .\appProjectDjango\templates\asistencia.html:21
+#: .\appProjectDjango\templates\contacto.html:19
+#: .\appProjectDjango\templates\cuotas.html:19
+#: .\appProjectDjango\templates\index.html:23
+#: .\appProjectDjango\templates\index.html:40
+msgid "Peña El Revoque"
+msgstr "Peña El Revoque"
+
+#: .\appProjectDjango\templates\asistencia.html:23
+#: .\appProjectDjango\templates\contacto.html:21
+#: .\appProjectDjango\templates\cuotas.html:21
+#: .\appProjectDjango\templates\index.html:25
+msgid "Principal"
+msgstr "Nagusia"
+
+#: .\appProjectDjango\templates\asistencia.html:24
+#: .\appProjectDjango\templates\contacto.html:22
+#: .\appProjectDjango\templates\cuotas.html:22
+#: .\appProjectDjango\templates\index.html:26
+msgid "Inicio"
+msgstr "Hasiera"
+
+#: .\appProjectDjango\templates\asistencia.html:25
+#: .\appProjectDjango\templates\contacto.html:23
+#: .\appProjectDjango\templates\cuotas.html:23
+#: .\appProjectDjango\templates\index.html:27
+msgid "Eventos"
+msgstr "Ekitaldiak"
+
+#: .\appProjectDjango\templates\asistencia.html:26
+#: .\appProjectDjango\templates\contacto.html:24
+#: .\appProjectDjango\templates\cuotas.html:24
+#: .\appProjectDjango\templates\index.html:28
+msgid "Socios"
+msgstr "Kideak"
+
+#: .\appProjectDjango\templates\asistencia.html:27
+#: .\appProjectDjango\templates\contacto.html:25
+#: .\appProjectDjango\templates\cuotas.html:25
+#: .\appProjectDjango\templates\index.html:29
+msgid "Merchandising"
+msgstr "Produktuen salmenta"
+
+#: .\appProjectDjango\templates\asistencia.html:28
+#: .\appProjectDjango\templates\contacto.html:26
+#: .\appProjectDjango\templates\cuotas.html:26
+#: .\appProjectDjango\templates\index.html:30
+msgid "Cuotas"
+msgstr "Kuotak"
+
+#: .\appProjectDjango\templates\asistencia.html:29
+#: .\appProjectDjango\templates\contacto.html:27
+#: .\appProjectDjango\templates\cuotas.html:27
+#: .\appProjectDjango\templates\index.html:31
+msgid "Registro"
+msgstr "Erregistroa"
+
+#: .\appProjectDjango\templates\asistencia.html:37
+#: .\appProjectDjango\templates\cuotas.html:35
+#: .\appProjectDjango\templates\index.html:39
+msgid "Escudo de la Peña"
+msgstr "Peña-ren armarria"
+
+#: .\appProjectDjango\templates\asistencia.html:38
+msgid "Asistencia a"
+msgstr "Parte-hartzea"
+
+#: .\appProjectDjango\templates\asistencia.html:54
+msgid "Apuntarme"
+msgstr "Izena eman"
+
+#: .\appProjectDjango\templates\asistencia.html:57
+msgid "Email con el que te registraste"
+msgstr "Erregistratu zinen emaila"
+
+#: .\appProjectDjango\templates\asistencia.html:59
+msgid "Apuntarme al evento"
+msgstr "Ekitaldian izena eman"
+
+#: .\appProjectDjango\templates\asistencia.html:63
+msgid "Ver lista de asistentes"
+msgstr "Parte-hartzaileen zerrenda ikusi"
+
+#: .\appProjectDjango\templates\asistencia.html:70
+msgid "Volver al menú de eventos"
+msgstr "Ekitaldi-menuara itzuli"
+
+#: .\appProjectDjango\templates\asistencia.html:77
+#: .\appProjectDjango\templates\contacto.html:73
+#: .\appProjectDjango\templates\cuotas.html:73
+#: .\appProjectDjango\templates\index.html:129
+msgid "Peña El Revoque. Todos los derechos reservados."
+msgstr "Peña El Revoque. Eskubide guztiak erreserbatuta."
+
+#: .\appProjectDjango\templates\asistencia.html:78
+#: .\appProjectDjango\templates\contacto.html:75
+#: .\appProjectDjango\templates\cuotas.html:74
+#: .\appProjectDjango\templates\index.html:130
+msgid "Síguenos en:"
+msgstr "Jarraitu gaitzazu hemen:"
+
+#: .\appProjectDjango\templates\asistencia.html:82
+#: .\appProjectDjango\templates\cuotas.html:78
+#: .\appProjectDjango\templates\index.html:134
+msgid "Contacta con nosotros aquí"
+msgstr "Jarri gurekin harremanetan hemen"
+
+#: .\appProjectDjango\templates\contacto.html:8
+msgid "Contacto – Peña El Revoque"
+msgstr "Kontaktua – Peña El Revoque"
+
+#: .\appProjectDjango\templates\contacto.html:18
+msgid "Logo"
+msgstr "Logoa"
+
+#: .\appProjectDjango\templates\contacto.html:35
+msgid "Contacto"
+msgstr "Kontaktua"
+
+#: .\appProjectDjango\templates\contacto.html:42
+msgid "Formulario de contacto"
+msgstr "Kontakturako inprimakia"
+
+#: .\appProjectDjango\templates\contacto.html:53
+msgid "Correo electrónico"
+msgstr "Posta elektronikoa"
+
+#: .\appProjectDjango\templates\contacto.html:54
+msgid "tu@email.com"
+msgstr "zure@email.com"
+
+#: .\appProjectDjango\templates\contacto.html:57
+msgid "Escribe tu mensaje aquí..."
+msgstr "Idatzi zure mezua hemen..."
+
+#: .\appProjectDjango\templates\contacto.html:59
+msgid "Enviar mensaje"
+msgstr "Mezua bidali"
+
+#: .\appProjectDjango\templates\contacto.html:65
+msgid "Ver mensajes"
+msgstr "Mezuak ikusi"
+
+#: .\appProjectDjango\templates\contacto.html:103
+msgid "Regístrate antes de enviar un mensaje."
+msgstr "Mezua bidali aurretik erregistratu."
+
+#: .\appProjectDjango\templates\cuotas.html:7
+msgid "Peña El Revoque – Cuotas"
+msgstr "Peña El Revoque – Kuotak"
+
+#: .\appProjectDjango\templates\cuotas.html:8
+msgid "Listado de cuotas de los socios de la Peña El Revoque en Hervías."
+msgstr "Peña El Revoque-ko kideen kuoten zerrenda Hervíasen."
+
+#: .\appProjectDjango\templates\cuotas.html:36
+msgid "Cuotas de la Peña"
+msgstr "Peña-ren kuotak"
+
+#: .\appProjectDjango\templates\cuotas.html:37
+msgid "Tipos de cuotas de las que disponemos"
+msgstr "Eskura dauden kuota motak"
+
+#: .\appProjectDjango\templates\cuotas.html:43
+msgid "A continuación se muestran todas las cuotas disponibles de la Peña El Revoque."
+msgstr "Hurrengo zerrendan Peña El Revoque-ko eskura dauden kuotak erakusten dira."
+
+#: .\appProjectDjango\templates\cuotas.html:49
+msgid "ID"
+msgstr "ID"
+
+#: .\appProjectDjango\templates\cuotas.html:50
+msgid "Tipo de Socio"
+msgstr "Kide mota"
+
+#: .\appProjectDjango\templates\cuotas.html:51
+msgid "Precio (€)"
+msgstr "Prezioa (€)"
+
+#: .\appProjectDjango\templates\cuotas.html:52
+msgid "Beneficios"
+msgstr "Onurak"
+
+#: .\appProjectDjango\templates\cuotas.html:67
+msgid "No hay cuotas registradas actualmente."
+msgstr "Ezin daude kuotarik erregistratuta une honetan."
+
+#: .\appProjectDjango\templates\index.html:12
+msgid "Peña El Revoque – Inicio"
+msgstr "Peña El Revoque – Hasiera"
+
+#: .\appProjectDjango\templates\index.html:13
+msgid "Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del Hervías Rock..."
+msgstr "Peña El Revoque — Hervíasko talde festibo eta kulturala, Hervías Rock eta urte osoan zehar musikaz, adiskidetasunez eta tradizioz beteriko ekintzen antolatzaileak. Bizitu El Revoque-ren espiritua!"
+
+#: .\appProjectDjango\templates\index.html:41
+msgid "Fiesta, tradición y comunidad en Hervías"
+msgstr "Jaia, tradizioa eta komunitatea Hervíasen"
+
+#: .\appProjectDjango\templates\index.html:42
+msgid "Ver índice"
+msgstr "Indizea ikusi"
+
+#: .\appProjectDjango\templates\index.html:50
+msgid "Índice de secciones"
+msgstr "Atal-indizea"
+
+#: .\appProjectDjango\templates\index.html:51
+msgid "Índice"
+msgstr "Indizea"
+
+#: .\appProjectDjango\templates\index.html:53
+msgid "¿Quiénes somos?"
+msgstr "Nor gara gu?"
+
+#: .\appProjectDjango\templates\index.html:54
+msgid "Compromiso solidario"
+msgstr "Konpromiso solidarioa"
+
+#: .\appProjectDjango\templates\index.html:55
+msgid "Galería"
+msgstr "Galeria"
+
+#: .\appProjectDjango\templates\index.html:56
+msgid "Próximos eventos"
+msgstr "Hurrengo ekitaldiak"
+
+#: .\appProjectDjango\templates\index.html:64
+msgid "La Peña El Revoque es una asociación cultural riojana sin ánimo de lucro..."
+msgstr "Peña El Revoque <strong>Rioja-ko elkarte kultural bat</strong> da, irabazi asmorik gabe, herriko gazte talde batek bultzatzen duena tradizioak bizirik mantentzeko..."
+
+#: .\appProjectDjango\templates\index.html:66
+msgid "Además de animar las celebraciones populares..."
+msgstr "Jai herrikoien giroaz gain, kideen talde bat dugu, antolaketan eta finantzazioan laguntzen duena urteroko kuotaren bidez. Halaber, produktuen salmenta ere badugu..."
+
+#: .\appProjectDjango\templates\index.html:67
+msgid "merchandising"
+msgstr "produktuen salmenta"
+
+#: .\appProjectDjango\templates\index.html:68
+msgid "propio para que cualquiera pueda llevar con orgullo los colores y el espíritu de la Peña."
+msgstr "gure propioa, edonork harrotasunez Peña-ren koloreak eta espiritua eramateko."
+
+#: .\appProjectDjango\templates\index.html:70
+msgid "Nuestro objetivo es claro..."
+msgstr "Helburua argia da: komunitatea sortzea, adiskidetasun loturak indartzea eta La Rioja-ko kulturaren maitasuna jai bidez partekatzea."
+
+#: .\appProjectDjango\templates\index.html:73
+msgid "Fiesta de la Peña en la plaza"
+msgstr "Peña-jaia plazan"
+
+#: .\appProjectDjango\templates\index.html:80
+msgid "Nuestro compromiso solidario"
+msgstr "Gure konpromiso solidarioa"
+
+#: .\appProjectDjango\templates\index.html:81
+msgid "En la Peña El Revoque creemos que la fiesta y la cultura también deben ir acompañadas de solidaridad y compromiso social..."
+msgstr "Peña El Revoque-n uste dugu jaia eta kultura <em>solidaritate eta gizarte konpromisoarekin</em> batera joan behar direla..."
+
+#: .\appProjectDjango\templates\index.html:82
+msgid "Este año hemos querido dar un paso más..."
+msgstr "Urte honetan pauso bat gehiago eman dugu: <strong>gure jaietako irabazien %0,7</strong> Palestina-ko biztanleriari laguntzeko bideratu da..."
+
+#: .\appProjectDjango\templates\index.html:83
+msgid "Con este gesto, reafirmamos nuestra convicción..."
+msgstr "Keinu honekin berretsi dugu Peña-ren poza partekatzean handitzen dela, eta jai bakoitza aukera izan daitekeela behar dutenak laguntzeko."
+
+#: .\appProjectDjango\templates\index.html:86
+msgid "Cartel solidario de la Peña"
+msgstr "Peña-ren kartel solidarioa"
+
+#: .\appProjectDjango\templates\index.html:92
+msgid "Nuestras fiestas"
+msgstr "Gure jaiak"
+
+#: .\appProjectDjango\templates\index.html:94
+msgid "Fiestas de Hervías"
+msgstr "Hervías jaiak"
+
+#: .\appProjectDjango\templates\index.html:95
+msgid "Fiestas de Barrio Cierzo"
+msgstr "Cierzo auzoko jaiak"
+
+#: .\appProjectDjango\templates\index.html:96
+msgid "Día de la laguna"
+msgstr "Ibaia Eguna"
+
+#: .\appProjectDjango\templates\index.html:97
+msgid "Fiestas de la primavera"
+msgstr "Udaberriko Jaiak"
+
+#: .\appProjectDjango\templates\index.html:98
+msgid "Valvanera"
+msgstr "Valvanera"
+
+#: .\appProjectDjango\templates\index.html:107
+msgid "Romería Valvanera – 4 octubre"
+msgstr "Valvanera Erromesaldia – Urriak 4"
+
+#: .\appProjectDjango\templates\index.html:109
+msgid "Salida desde Hervías a las 7:00"
+msgstr "Hervíastik irteera 7:00etan"
+
+#: .\appProjectDjango\templates\index.html:110
+msgid "Misa en el monasterio a las 19:30"
+msgstr "Meza monasterioan 19:30etan"
+
+#: .\appProjectDjango\templates\index.html:111
+msgid "Cena popular en la Peña"
+msgstr "El Revoque-ko herri bazkaria"
+
+#: .\appProjectDjango\templates\index.html:115
+msgid "Fiesta de la primavera – 11 abril"
+msgstr "Udaberriko Jaia – Apirilak 11"
+
+#: .\appProjectDjango\templates\index.html:117
+msgid "Comida campestre en el parque"
+msgstr "Piknik-a parkean"
+
+#: .\appProjectDjango\templates\index.html:118
+msgid "Juegos y actividades para todas las edades"
+msgstr "Jokoak eta ekintzak adin guztientzat"
+
+#: .\appProjectDjango\templates\index.html:119
+msgid "Concierto al aire libre con grupos locales"
+msgstr "Kanpoko kontzertua tokiko taldeekin"
+
 #: .\proj_iw\settings.py:73
 msgid "Español"
-msgstr ""
+msgstr "Gaztelania"
 
 #: .\proj_iw\settings.py:74
 msgid "English"
-msgstr ""
+msgstr "Ingelesa"
 
 #: .\proj_iw\settings.py:75
 msgid "Euskera"
-msgstr ""
+msgstr "Euskara"

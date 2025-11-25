@@ -1,11 +1,11 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Cuotas</title>
-    <meta name="description" content="Listado de cuotas de los socios de la Peña El Revoque en Hervías.">
+    <title>{% trans "Peña El Revoque – Cuotas" %}</title>
+    <meta name="description" content="{% trans "Listado de cuotas de los socios de la Peña El Revoque en Hervías." %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
@@ -15,16 +15,16 @@
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="{% url 'index' %}">
-                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-                <span>Peña El Revoque</span>
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+                <span>{% trans "Peña El Revoque" %}</span>
             </a>
-            <nav class="main-nav" aria-label="Principal">
-                <a href="{% url 'index' %}">Inicio</a>
-                <a href="{% url 'eventos' %}">Eventos</a>
-                <a href="{% url 'socios' %}">Socios</a>
-                <a href="{% url 'merchandising' %}">Merchandising</a>
-                <a href="{% url 'cuotas' %}">Cuotas</a>
-                <a href="{% url 'registros' %}">Registro</a>
+            <nav class="main-nav" aria-label="{% trans "Principal" %}">
+                <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+                <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+                <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+                <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+                <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+                <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
             </nav>
         </div>
     </header>
@@ -32,24 +32,24 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-            <h1>Cuotas de la Peña</h1>
-            <p>Tipos de cuotas de las que disponemos</p>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Escudo de la Peña" %}" class="logo-hero">
+            <h1>{% trans "Cuotas de la Peña" %}</h1>
+            <p>{% trans "Tipos de cuotas de las que disponemos" %}</p>
         </div>
     </section>
 
     <!-- CUERPO -->
     <main class="wrap">
-        <p>A continuación se muestran todas las cuotas disponibles de la Peña El Revoque.</p>
+        <p>{% trans "A continuación se muestran todas las cuotas disponibles de la Peña El Revoque." %}</p>
 
         {% if cuotas %}
         <table id="cuotas">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Tipo de Socio</th>
-                    <th>Precio (€)</th>
-                    <th>Beneficios</th>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Tipo de Socio" %}</th>
+                    <th>{% trans "Precio (€)" %}</th>
+                    <th>{% trans "Beneficios" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,18 +64,18 @@
             </tbody>
         </table>
         {% else %}
-        <p>No hay cuotas registradas actualmente.</p>
+        <p>{% trans "No hay cuotas registradas actualmente." %}</p>
         {% endif %}
     </main>
 
     <!-- PIE -->
     <footer class="site-footer">
-        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-        <p>Síguenos en:
+        <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+        <p>{% trans "Síguenos en:" %}
             <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
             <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
         </p>
-        <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+        <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
     </footer>
 
 </body>
