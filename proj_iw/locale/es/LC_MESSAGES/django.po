@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 12:35+0100\n"
+"POT-Creation-Date: 2025-11-25 12:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,234 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
+#: .\appProjectDjango\templates\index.html:11
+msgid "Peña El Revoque – Inicio"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:12
+msgid ""
+"Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del "
+"Hervías Rock y de actividades llenas de música, amistad y tradición durante "
+"todo el año. ¡Vive el espíritu de El Revoque!"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:21
+msgid "Logo de la Peña El Revoque"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:22
+#: .\appProjectDjango\templates\index.html:39
+msgid "Peña El Revoque"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:24
+msgid "Principal"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:25
+msgid "Inicio"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:26
+msgid "Eventos"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:27
+msgid "Socios"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:28
+msgid "Merchandising"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:29
+msgid "Cuotas"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:30
+msgid "Registro"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:38
+msgid "Escudo de la Peña"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:40
+msgid "Fiesta, tradición y comunidad en Hervías"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:41
+msgid "Ver índice"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:49
+msgid "Índice de secciones"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:50
+msgid "Índice"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:52
+#: .\appProjectDjango\templates\index.html:62
+msgid "¿Quiénes somos?"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:53
+msgid "Compromiso solidario"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:54
+msgid "Galería"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:55
+#: .\appProjectDjango\templates\index.html:103
+msgid "Próximos eventos"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:63
+msgid ""
+"La <strong>Peña El Revoque</strong> es una asociación cultural riojana sin "
+"ánimo de lucro, llevada por un grupo de jóvenes del pueblo con ganas de "
+"mantener vivas nuestras tradiciones. Desde sus inicios, la responsabilidad "
+"de La Peña se ha ido transmitiendo de generación en generación de jóvenes "
+"gorretas, garantizando así que cada año sigamos organizando fiestas, "
+"actividades y eventos que llenan de música, gastronomía y alegría las calles "
+"de nuestro pueblo. Nuestro lema, <strong>“Tira como puedas”</strong>, nos "
+"acompaña en todo lo que hacemos, recordándonos que con esfuerzo, ilusión y "
+"compañerismo siempre se puede salir adelante."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:65
+msgid ""
+"Además de animar las celebraciones populares, contamos con un grupo de "
+"socios que colaboran de manera activa en la organización y en la "
+"financiación mediante una cuota anual. También disponemos de"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:66
+msgid "merchandising"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:67
+msgid ""
+"propio para que cualquiera pueda llevar con orgullo los colores y el "
+"espíritu de la Peña."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:69
+msgid ""
+"Nuestro objetivo es claro: hacer comunidad, reforzar los lazos de amistad y "
+"compartir el amor por la cultura riojana a través de la fiesta."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:72
+msgid "Fiesta de la Peña en la plaza"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:79
+msgid "Nuestro compromiso solidario"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:80
+msgid ""
+"En la <strong>Peña El Revoque</strong> creemos que la fiesta y la cultura "
+"también deben ir acompañadas de <em>solidaridad y compromiso social</em>. "
+"Por ello, cada año tratamos de aportar nuestro granito de arena apoyando a "
+"causas que lo necesitan."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:81
+#, python-format
+msgid ""
+"Este año hemos querido dar un paso más: el <strong>0,7%% de los beneficios "
+"obtenidos en nuestras fiestas</strong> se ha destinado a apoyar a la "
+"población de <strong>Palestina</strong>, como muestra de nuestra voluntad de "
+"contribuir, aunque sea modestamente, a mejorar la vida de quienes atraviesan "
+"situaciones difíciles."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:82
+msgid ""
+"Con este gesto, reafirmamos nuestra convicción de que la alegría de la Peña "
+"se multiplica cuando se comparte, y que cada celebración también puede ser "
+"una oportunidad para ayudar a quienes más lo necesitan."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:85
+msgid "Cartel solidario de la Peña"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:91
+msgid "Nuestras fiestas"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:93
+msgid "Fiestas de Hervías"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:94
+msgid "Fiestas de Barrio Cierzo"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:95
+msgid "Día de la laguna"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:96
+msgid "Fiestas de la primavera"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:97
+msgid "Valvanera"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:106
+msgid "Romería Valvanera – 4 octubre"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:108
+msgid "Salida desde Hervías a las 7:00"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:109
+msgid "Misa en el monasterio a las 19:30"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:110
+msgid "Cena popular en la Peña"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:114
+msgid "Fiesta de la primavera – 11 abril"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:116
+msgid "Comida campestre en el parque"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:117
+msgid "Juegos y actividades para todas las edades"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:118
+msgid "Concierto al aire libre con grupos locales"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:128
+msgid "Peña El Revoque. Todos los derechos reservados."
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:129
+msgid "Síguenos en:"
+msgstr ""
+
+#: .\appProjectDjango\templates\index.html:133
+msgid "Contacta con nosotros aquí"
+msgstr ""
+
 #: .\proj_iw\settings.py:73
 msgid "Español"
 msgstr ""
