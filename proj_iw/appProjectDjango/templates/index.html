@@ -1,6 +1,7 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
   <head>
     <!-- verificacion para Google site -->
     <meta name="google-site-verification" content="pcennKmYmRSbg919FbeM2Q6txu2q52cdHGiYCOYFUb4" />
@@ -8,8 +9,8 @@
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Inicio</title>
-    <meta name="description" content="Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del Hervías Rock y de actividades llenas de música, amistad y tradición durante todo el año. ¡Vive el espíritu de El Revoque!">
+    <title>{% trans "Peña El Revoque – Inicio" %}</title>
+    <meta name="description" content="{% trans "Peña El Revoque — grupo festivo y cultural de Hervías, organizadores del Hervías Rock y de actividades llenas de música, amistad y tradición durante todo el año. ¡Vive el espíritu de El Revoque!" %}">
   </head>
 
   <body>
@@ -18,28 +19,27 @@
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="{% url 'index' %}">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-            <span>Peña El Revoque</span>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+            <span>{% trans "Peña El Revoque" %}</span>
         </a>
-        <nav class="main-nav" aria-label="Principal">
-          <!--Falta añadir los demas apartados cuando esten-->
-          <a href="{% url 'index' %}">Inicio</a>
-          <a href="{% url 'eventos' %}">Eventos</a>
-          <a href="{% url 'socios' %}">Socios</a>
-          <a href="{% url 'merchandising' %}">Merchandising</a>
-          <a href="{% url 'cuotas' %}">Cuotas</a>
-          <a href="{% url 'registros' %}">Registro</a>
+        <nav class="main-nav" aria-label="{% trans "Principal" %}">
+          <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+          <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+          <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+          <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+          <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+          <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
         </nav>
       </div>
     </header>
 
     <!-- HERO con imagen de fondo -->
-    <section class="hero"> <!-- El hero se suele usar como sección principal o lo que ve primero el usuario-->
+    <section class="hero">
       <div class="hero-inner">
-        <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-        <h1>Peña El Revoque</h1>
-        <p>Fiesta, tradición y comunidad en Hervías</p>
-        <a class="btn" href="#indice">Ver índice</a>
+        <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Escudo de la Peña" %}" class="logo-hero">
+        <h1>{% trans "Peña El Revoque" %}</h1>
+        <p>{% trans "Fiesta, tradición y comunidad en Hervías" %}</p>
+        <a class="btn" href="#indice">{% trans "Ver índice" %}</a>
       </div>
     </section>
 
@@ -47,115 +47,91 @@
     <main class="wrap">
 
       <!-- Índice interno navegable -->
-      <nav id="indice" class="indice" aria-label="Índice de secciones">
-        <h2>Índice</h2>
+      <nav id="indice" class="indice" aria-label="{% trans "Índice de secciones" %}">
+        <h2>{% trans "Índice" %}</h2>
         <ul>
-          <li><a href="#quienes">¿Quiénes somos?</a></li>
-          <li><a href="#solidaridad">Compromiso solidario</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#proximos">Próximos eventos</a></li>
+          <li><a href="#quienes">{% trans "¿Quiénes somos?" %}</a></li>
+          <li><a href="#solidaridad">{% trans "Compromiso solidario" %}</a></li>
+          <li><a href="#galeria">{% trans "Galería" %}</a></li>
+          <li><a href="#proximos">{% trans "Próximos eventos" %}</a></li>
         </ul>
       </nav>
 
       <!-- Quienes somos ? -->
       <section id="quienes" class="two-col section-alt">
         <div class="col-text">
-          <h2>¿Quiénes somos?</h2>
-            <p>
-              La <strong>Peña El Revoque</strong> es una asociación cultural riojana sin ánimo de lucro,
-              llevada por un grupo de jóvenes del pueblo con ganas de mantener vivas nuestras tradiciones.
-              Desde sus inicios, la responsabilidad de La Peña se ha ido transmitiendo de generación en
-              generación de jóvenes gorretas, garantizando así que cada año sigamos organizando fiestas,
-              actividades y eventos que llenan de música, gastronomía y alegría las calles de nuestro pueblo.
-              Nuestro lema, <strong>“Tira como puedas”</strong>, nos acompaña en todo lo que hacemos, recordándonos
-              que con esfuerzo, ilusión y compañerismo siempre se puede salir adelante.
-            </p>
-            <p>
-              Además de animar las celebraciones populares, contamos con un grupo de socios que
-              colaboran de manera activa en la organización y en la financiación mediante una
-              cuota anual. También disponemos de <a href="{% url 'merchandising' %}"><em>merchandising</em></a> propio para que cualquiera
-              pueda llevar con orgullo los colores y el espíritu de la Peña.
-            </p>
-            <p>
-              Nuestro objetivo es claro: <strong>hacer comunidad</strong>, reforzar los lazos de
-              amistad y compartir el amor por la cultura riojana a través de la fiesta.
-            </p>
+          <h2>{% trans "¿Quiénes somos?" %}</h2>
+          <p>{% blocktrans %}La <strong>Peña El Revoque</strong> es una asociación cultural riojana sin ánimo de lucro, llevada por un grupo de jóvenes del pueblo con ganas de mantener vivas nuestras tradiciones. Desde sus inicios, la responsabilidad de La Peña se ha ido transmitiendo de generación en generación de jóvenes gorretas, garantizando así que cada año sigamos organizando fiestas, actividades y eventos que llenan de música, gastronomía y alegría las calles de nuestro pueblo. Nuestro lema, <strong>“Tira como puedas”</strong>, nos acompaña en todo lo que hacemos, recordándonos que con esfuerzo, ilusión y compañerismo siempre se puede salir adelante.{% endblocktrans %}</p>
+          <p>
+            {% trans "Además de animar las celebraciones populares, contamos con un grupo de socios que colaboran de manera activa en la organización y en la financiación mediante una cuota anual. También disponemos de" %}
+            <a href="{% url 'merchandising' %}"><em>{% trans "merchandising" %}</em></a>
+            {% trans "propio para que cualquiera pueda llevar con orgullo los colores y el espíritu de la Peña." %}
+          </p>
+          <p>{% trans "Nuestro objetivo es claro: hacer comunidad, reforzar los lazos de amistad y compartir el amor por la cultura riojana a través de la fiesta." %}</p>
         </div>
         <div class="col-img">
-          <img src="{% static 'img/nosotros/chupicuadri.png' %}" alt="Fiesta de la Peña en la plaza">
+          <img src="{% static 'img/nosotros/chupicuadri.png' %}" alt="{% trans "Fiesta de la Peña en la plaza" %}">
         </div>
       </section>
 
       <!-- Solidaridad -->
       <section id="solidaridad" class="two-col section-photo">
         <div class="col-text">
-          <h2>Nuestro compromiso solidario</h2>
-          <p>
-            En la <strong>Peña El Revoque</strong> creemos que la fiesta y la cultura también deben
-            ir acompañadas de <em>solidaridad y compromiso social</em>. Por ello, cada año tratamos de
-            aportar nuestro granito de arena apoyando a causas que lo necesitan.
-          </p>
-          <p>
-            Este año hemos querido dar un paso más: el <strong>0,7% de los beneficios obtenidos en
-            nuestras fiestas</strong> se ha destinado a apoyar a la población de <strong>Palestina</strong>,
-            como muestra de nuestra voluntad de contribuir, aunque sea modestamente, a mejorar
-            la vida de quienes atraviesan situaciones difíciles.
-          </p>
-          <p>
-            Con este gesto, reafirmamos nuestra convicción de que <strong>la alegría de la Peña se multiplica
-            cuando se comparte</strong>, y que cada celebración también puede ser una oportunidad
-            para ayudar a quienes más lo necesitan.
-          </p>
+          <h2>{% trans "Nuestro compromiso solidario" %}</h2>
+          <p>{% blocktrans %}En la <strong>Peña El Revoque</strong> creemos que la fiesta y la cultura también deben ir acompañadas de <em>solidaridad y compromiso social</em>. Por ello, cada año tratamos de aportar nuestro granito de arena apoyando a causas que lo necesitan.{% endblocktrans %}</p>
+          <p>{% blocktrans %}Este año hemos querido dar un paso más: el <strong>0,7% de los beneficios obtenidos en nuestras fiestas</strong> se ha destinado a apoyar a la población de <strong>Palestina</strong>, como muestra de nuestra voluntad de contribuir, aunque sea modestamente, a mejorar la vida de quienes atraviesan situaciones difíciles.{% endblocktrans %}</p>
+          <p>{% trans "Con este gesto, reafirmamos nuestra convicción de que la alegría de la Peña se multiplica cuando se comparte, y que cada celebración también puede ser una oportunidad para ayudar a quienes más lo necesitan." %}</p>
         </div>
         <div class="col-img">
-          <img src="{% static 'img/iconos/dios.png' %}  " alt="Cartel solidario de la Peña">
+          <img src="{% static 'img/iconos/dios.png' %}" alt="{% trans "Cartel solidario de la Peña" %}">
         </div>
       </section>
 
       <!-- Galería -->
       <section id="galeria" class="gallery section-alt">
-        <h2>Nuestras fiestas</h2>
+        <h2>{% trans "Nuestras fiestas" %}</h2>
         <div class="grid-gallery">
-          <a href="{% url 'eventos' %}#fiestashervias-1" class="imagen_animada"><img src="{% static 'img/eventos/hervias.jpg' %}" alt="Fiestas de Hervías"></a>
-          <a href="{% url 'eventos' %}#fiestashervias-2" class="imagen_animada"><img src="{% static 'img/eventos/barriocierzo.jpg' %}" alt="Fiestas de Barrio Cierzo"></a>
-          <a href="{% url 'eventos' %}#fiestashervias-3" class="imagen_animada"><img src="{% static 'img/eventos/laguna.png' %}" alt="Día de la laguna"></a>
-          <a href="{% url 'eventos' %}#fiestashervias-4" class="imagen_animada"><img src="{% static 'img/eventos/primavera.png' %}" alt="Fiestas de la primavera"></a>
-          <a href="{% url 'eventos' %}#fiestashervias-5" class="imagen_animada"><img src="{% static 'img/eventos/valvanera.jpg' %}" alt="Valvanera"></a>
+          <a href="{% url 'eventos' %}#fiestashervias-1" class="imagen_animada"><img src="{% static 'img/eventos/hervias.jpg' %}" alt="{% trans "Fiestas de Hervías" %}"></a>
+          <a href="{% url 'eventos' %}#fiestashervias-2" class="imagen_animada"><img src="{% static 'img/eventos/barriocierzo.jpg' %}" alt="{% trans "Fiestas de Barrio Cierzo" %}"></a>
+          <a href="{% url 'eventos' %}#fiestashervias-3" class="imagen_animada"><img src="{% static 'img/eventos/laguna.png' %}" alt="{% trans "Día de la laguna" %}"></a>
+          <a href="{% url 'eventos' %}#fiestashervias-4" class="imagen_animada"><img src="{% static 'img/eventos/primavera.png' %}" alt="{% trans "Fiestas de la primavera" %}"></a>
+          <a href="{% url 'eventos' %}#fiestashervias-5" class="imagen_animada"><img src="{% static 'img/eventos/valvanera.jpg' %}" alt="{% trans "Valvanera" %}"></a>
         </div>
       </section>
 
       <!-- Próximos eventos -->
       <aside id="proximos" class="aside-card">
-        <h3>Próximos eventos</h3>
+        <h3>{% trans "Próximos eventos" %}</h3>
         <ul>
           <li>
-            Romería Valvanera – 4 octubre
+            {% trans "Romería Valvanera – 4 octubre" %}
             <ul>
-              <li>Salida desde Hervías a las 7:00</li>
-              <li>Misa en el monasterio a las 19:30</li>
-              <li>Cena popular en la Peña</li>
+              <li>{% trans "Salida desde Hervías a las 7:00" %}</li>
+              <li>{% trans "Misa en el monasterio a las 19:30" %}</li>
+              <li>{% trans "Cena popular en la Peña" %}</li>
             </ul>
           </li>
           <li>
-            Fiesta de la primavera – 11 abril
+            {% trans "Fiesta de la primavera – 11 abril" %}
             <ul>
-              <li>Comida campestre en el parque</li>
-              <li>Juegos y actividades para todas las edades</li>
-              <li>Concierto al aire libre con grupos locales</li>
+              <li>{% trans "Comida campestre en el parque" %}</li>
+              <li>{% trans "Juegos y actividades para todas las edades" %}</li>
+              <li>{% trans "Concierto al aire libre con grupos locales" %}</li>
             </ul>
           </li>
         </ul>
       </aside>
+
     </main>
 
     <!-- PIE -->
     <footer class="site-footer">
-      <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-      <p>Síguenos en:
+      <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+      <p>{% trans "Síguenos en:" %}
         <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
         <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
       </p>
-      <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+      <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
     </footer>
 
   </body>
