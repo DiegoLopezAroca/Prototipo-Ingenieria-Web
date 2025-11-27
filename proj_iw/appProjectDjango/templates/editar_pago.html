@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña El Revoque – Editar Pago</title>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="{% url 'index' %}">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
+            <span>Peña El Revoque</span>
+        </a>
+        <nav class="main-nav">
+            <a href="{% url 'index' %}">Inicio</a>
+            <a href="{% url 'eventos' %}">Eventos</a>
+            <a href="{% url 'socios' %}">Socios</a>
+            <a href="{% url 'merchandising' %}">Merchandising</a>
+            <a href="{% url 'cuotas' %}">Cuotas</a>
+            <a href="{% url 'pagos' %}">Pagos</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="formulario">
+        <h2>Editar pago de: {{ pago.socio.nombre }} {{ pago.socio.apellido }}</h2>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Detalles del pago</legend>
+
+            <p>
+                <label for="cuota">Cuota:</label><br>
+                <input type="text" id="cuota" value="{{ pago.cuota.tipo_socio }} - {{ pago.cuota.precio }}€" disabled>
+            </p>
+
+            <p>
+                <label for="fecha_pago">Fecha de pago:</label><br>
+                <input type="date" id="fecha_pago" name="fecha_pago" value="{{ pago.fecha_pago|date:'Y-m-d' }}" required>
+            </p>
+        </fieldset>
+
+        <br>
+        <button type="submit" class="btn btn-editar">Guardar cambios</button>
+        <a href="{% url 'pagos' %}?socio_id={{ pago.socio.id }}" class="btn">Cancelar</a>
+    </form>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+    <p>Síguenos en:
+        <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
+        <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
+    </p>
+    <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+</footer>
+
+</body>
+</html>

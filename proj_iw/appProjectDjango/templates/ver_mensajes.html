@@ -44,9 +44,6 @@
         <th>Email</th>
         <th>Mensaje</th>
         <th>Fecha envío</th>
-        {% if user|es_gestor %}
-          <th>Acciones</th>
-        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -57,11 +54,6 @@
         <td>{{ mensaje.email }}</td>
         <td>{{ mensaje.mensaje }}</td>
         <td>{{ mensaje.fecha_envio }}</td>
-        {% if user|es_gestor %}
-        <td>
-            <a href="{% url 'editar_mensaje' mensaje.id %}" class="btn btn-editar">Editar</a>
-        </td>
-        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
