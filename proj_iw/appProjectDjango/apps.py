@@ -6,4 +6,4 @@ class AppprojectdjangoConfig(AppConfig):
     name = 'appProjectDjango'
     
     def ready(self):
-            import appProjectDjango.signals  # importa los signals
+        import appProjectDjango.signals  # importa los signals
