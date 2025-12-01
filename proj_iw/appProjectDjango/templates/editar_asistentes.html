@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña El Revoque – Editar Asistentes</title>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="{% url 'index' %}">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
+            <span>Peña El Revoque</span>
+        </a>
+        <nav class="main-nav">
+            <a href="{% url 'index' %}">Inicio</a>
+            <a href="{% url 'eventos' %}">Eventos</a>
+            <a href="{% url 'socios' %}">Socios</a>
+            <a href="{% url 'merchandising' %}">Merchandising</a>
+            <a href="{% url 'cuotas' %}">Cuotas</a>
+            <a href="{% url 'registros' %}">Registro</a>
+            <a href="{% url 'pagos' %}">Pagos</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="formulario">
+        <h2>Agregar Asistente al Evento: {{ evento.nombre }}</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Agregar asistencia</legend>
+            <p>
+                <label for="email">Email del socio:</label><br>
+                {{ form.email }}
+            </p>
+        </fieldset>
+
+        <br>
+        <input type="submit" value="Agregar Asistente" class="btn">
+        <a href="{% url 'lista_asistentes' evento.id %}" class="btn btn-cancelar">Volver atrás</a>
+    </form>
+
+    <h2>Lista de asistentes</h2>
+    <table class="tabla-asistentes">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha registro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistencia in asistentes %}
+            <tr>
+                <td>{{ asistencia.socio.nombre }} {{ asistencia.socio.apellido }}</td>
+                <td>{{ asistencia.socio.email }}</td>
+                <td>{{ asistencia.fecha_registro }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No hay asistentes registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

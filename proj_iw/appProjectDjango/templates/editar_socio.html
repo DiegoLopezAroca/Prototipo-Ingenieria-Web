@@ -1,25 +1,136 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>{% trans "Editar Socio" %}</title>
+    <title>{% blocktrans with nombre=socio.nombre apellido=socio.apellido %}Editar socio: {{ nombre }} {{ apellido }}{% endblocktrans %} – Peña El Revoque</title>
 </head>
 <body>
 
-<h1>
-    {% blocktrans with nombre=socio.nombre apellido=socio.apellido %}
-        Editar socio: {{ nombre }} {{ apellido }}
-    {% endblocktrans %}
-</h1>
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="{% url 'index' %}">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+            <span>{% trans "Peña El Revoque" %}</span>
+        </a>
+        <nav class="main-nav" aria-label="{% trans "Principal" %}">
+            <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+            <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+            <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+            <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+            <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+        </nav>
+        <div class="language-switcher">
+                <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+                <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+                <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+                </form>
+      </div>
+    </div>
+</header>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-editar">{% trans "Guardar cambios" %}</button>
-</form>
+<main class="wrap">
+    <section class="formulario">
+        <h2>
+            {% blocktrans with nombre=socio.nombre apellido=socio.apellido %}
+                Editar socio: {{ nombre }} {{ apellido }}
+            {% endblocktrans %}
+        </h2>
 
-<a href="{% url 'detalle_socio' socio.id %}" class="btn">{% trans "Cancelar" %}</a>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>{% trans "Datos personales" %}</legend>
+                <p>
+                    <label for="nombre">{% trans "Nombre" %}:</label><br>
+                    <input type="text" id="nombre" name="nombre" value="{{ socio.nombre }}" required>
+                </p>
+                <p>
+                    <label for="apellido">{% trans "Apellido" %}:</label><br>
+                    <input type="text" id="apellido" name="apellido" value="{{ socio.apellido }}">
+                </p>
+                <p>
+                    <label for="segundo_apellido">{% trans "Segundo apellido" %}:</label><br>
+                    <input type="text" id="segundo_apellido" name="segundo_apellido" value="{{ socio.segundo_apellido }}">
+                </p>
+                <p>
+                    {% trans "¿Mayor de 13 años?" %}<br>
+                    <label>
+                        <input type="radio" name="mayor13" value="True" {% if socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(true)">
+                        {% trans "Sí" %}
+                    </label>
+                    <label>
+                        <input type="radio" name="mayor13" value="False" {% if not socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(false)">
+                        {% trans "No" %}
+                    </label>
+                </p>
+                <p>
+                    <label for="fecha_nacimiento">{% trans "Fecha de nacimiento" %}:</label><br>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ socio.fecha_nacimiento|date:'Y-m-d' }}">
+                </p>
+                <p id="tipo-socio-container" {% if socio.mayor13 %}style="display:block"{% else %}style="display:none"{% endif %}>
+                    <label for="tipo_socio">{% trans "Tipo de socio" %}:</label><br>
+                    <select id="tipo_socio" name="tipo_socio">
+                        <option value="nuevo" {% if socio.tipo_socio == 'nuevo' %}selected{% endif %}>{% trans "Nuevo" %}</option>
+                        <option value="socio" {% if socio.tipo_socio == 'socio' %}selected{% endif %}>{% trans "Socio" %}</option>
+                        <option value="menor" {% if socio.tipo_socio == 'menor' %}selected{% endif %}>{% trans "Menor" %}</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>{% trans "Información de cuenta" %}</legend>
+                <p>
+                    <label for="email">{% trans "Email" %}:</label><br>
+                    <input type="email" id="email" name="email" value="{{ socio.email }}" required>
+                </p>
+                <p>
+                    <label for="password">{% trans "Contraseña" %}:</label><br>
+                    <input type="password" id="password" name="password"><br>
+                    <small>{% trans "*Dejar vacío si no quieres cambiarla" %}</small>
+                </p>
+                <p>
+                    <label for="password_confirm">{% trans "Confirmar contraseña" %}:</label><br>
+                    <input type="password" id="password_confirm" name="password_confirm">
+                </p>
+                <p>
+                    <label for="telefono">{% trans "Teléfono" %}:</label><br>
+                    <input type="tel" id="telefono" name="telefono" value="{{ socio.telefono }}" required>
+                </p>
+            </fieldset>
+
+            <br>
+            <button type="submit" class="btn">{% trans "Guardar cambios" %}</button>
+            <a href="{% url 'detalle_socio' socio.id %}" class="btn btn-cancelar">{% trans "Cancelar" %}</a>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+</footer>
+
+<script>
+function mostrarTipoSocio(esMayor) {
+    const contenedor = document.getElementById('tipo-socio-container');
+    contenedor.style.display = esMayor ? 'block' : 'none';
+}
+</script>
 
 </body>
 </html>
