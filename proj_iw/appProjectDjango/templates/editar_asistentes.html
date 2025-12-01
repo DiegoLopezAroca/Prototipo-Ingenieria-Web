@@ -13,17 +13,16 @@
 <header class="site-header">
     <div class="wrap">
         <a class="brand" href="{% url 'index' %}">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
-            <span>Peña El Revoque</span>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+            <span>{% trans "Peña El Revoque" %}</span>
         </a>
-        <nav class="main-nav">
-            <a href="{% url 'index' %}">Inicio</a>
-            <a href="{% url 'eventos' %}">Eventos</a>
-            <a href="{% url 'socios' %}">Socios</a>
-            <a href="{% url 'merchandising' %}">Merchandising</a>
-            <a href="{% url 'cuotas' %}">Cuotas</a>
-            <a href="{% url 'registros' %}">Registro</a>
-            <a href="{% url 'pagos' %}">Pagos</a>
+        <nav class="main-nav" aria-label="{% trans "Principal" %}">
+            <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+            <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+            <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+            <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+            <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+            <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
         </nav>
         <div class="language-switcher">
                 <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
