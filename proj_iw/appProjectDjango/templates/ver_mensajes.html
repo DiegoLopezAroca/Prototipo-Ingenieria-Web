@@ -1,11 +1,11 @@
-{% load static %}
-{% load permisos_extras %}
+{% load static i18n permisos_extras %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mensajes – Peña El Revoque</title>
+  <title>{% trans "Mensajes – Peña El Revoque" %}</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
@@ -14,23 +14,32 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="{% url 'index' %}">
-      <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
-      <span>Peña El Revoque</span>
+      <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans 'Logo' %}" class="brand-logo">
+      <span>{% trans "Peña El Revoque" %}</span>
     </a>
     <nav class="main-nav">
-      <a href="{% url 'index' %}">Inicio</a>
-      <a href="{% url 'eventos' %}">Eventos</a>
-      <a href="{% url 'socios' %}">Socios</a>
-      <a href="{% url 'merchandising' %}">Merchandising</a>
-      <a href="{% url 'cuotas' %}">Cuotas</a>
-      <a href="{% url 'registros' %}">Registro</a>
+      <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+      <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+      <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+      <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+      <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+      <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
     </nav>
+    <div class="language-switcher">
+      <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+        <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+        <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+      </form>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
-    <h1>Mensajes de contacto</h1>
+    <h1>{% trans "Mensajes de contacto" %}</h1>
   </div>
 </section>
 
@@ -39,11 +48,14 @@
   <table id="cuotas" style="width:100%;">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Socio</th>
-        <th>Email</th>
-        <th>Mensaje</th>
-        <th>Fecha envío</th>
+        <th>{% trans "ID" %}</th>
+        <th>{% trans "Socio" %}</th>
+        <th>{% trans "Email" %}</th>
+        <th>{% trans "Mensaje" %}</th>
+        <th>{% trans "Fecha envío" %}</th>
+        {% if user|es_gestor %}
+          <th>{% trans "Acciones" %}</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -59,7 +71,7 @@
     </tbody>
   </table>
   {% else %}
-    <p>No hay mensajes registrados.</p>
+    <p>{% trans "No hay mensajes registrados." %}</p>
   {% endif %}
   <p class="center-btn">
     <a href="{% url 'contacto' %}" class="btn">Volver atrás</a>
@@ -67,12 +79,12 @@
 </main>
 
 <footer class="site-footer">
-    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-    <p>Síguenos en:
+    <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+    <p>{% trans "Síguenos en:" %}
         <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
         <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
     </p>
-    <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+    <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
 </footer>
 
 </body>

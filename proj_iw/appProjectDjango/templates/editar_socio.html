@@ -1,34 +1,48 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Editar Socio</title>
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% blocktrans with nombre=socio.nombre apellido=socio.apellido %}Editar socio: {{ nombre }} {{ apellido }}{% endblocktrans %} – Peña El Revoque</title>
 </head>
 <body>
 
 <header class="site-header">
     <div class="wrap">
         <a class="brand" href="{% url 'index' %}">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo" class="brand-logo">
-            <span>Peña El Revoque</span>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+            <span>{% trans "Peña El Revoque" %}</span>
         </a>
-        <nav class="main-nav">
-            <a href="{% url 'index' %}">Inicio</a>
-            <a href="{% url 'eventos' %}">Eventos</a>
-            <a href="{% url 'socios' %}">Socios</a>
-            <a href="{% url 'merchandising' %}">Merchandising</a>
-            <a href="{% url 'cuotas' %}">Cuotas</a>
+        <nav class="main-nav" aria-label="{% trans "Principal" %}">
+            <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+            <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+            <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+            <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+            <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
         </nav>
+        <div class="language-switcher">
+                <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+                <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+                <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+                </form>
+      </div>
     </div>
 </header>
 
 <main class="wrap">
     <section class="formulario">
-        <h2>Editar socio: {{ socio.nombre }} {{ socio.apellido }}</h2>
+        <h2>
+            {% blocktrans with nombre=socio.nombre apellido=socio.apellido %}
+                Editar socio: {{ nombre }} {{ apellido }}
+            {% endblocktrans %}
+        </h2>
 
         {% if messages %}
         <ul class="messages">
@@ -41,75 +55,81 @@
         <form method="post">
             {% csrf_token %}
             <fieldset>
-                <legend>Datos personales</legend>
+                <legend>{% trans "Datos personales" %}</legend>
                 <p>
-                    <label for="nombre">Nombre:</label><br>
+                    <label for="nombre">{% trans "Nombre" %}:</label><br>
                     <input type="text" id="nombre" name="nombre" value="{{ socio.nombre }}" required>
                 </p>
                 <p>
-                    <label for="apellido">Apellido:</label><br>
+                    <label for="apellido">{% trans "Apellido" %}:</label><br>
                     <input type="text" id="apellido" name="apellido" value="{{ socio.apellido }}">
                 </p>
                 <p>
-                    <label for="segundo_apellido">Segundo apellido:</label><br>
+                    <label for="segundo_apellido">{% trans "Segundo apellido" %}:</label><br>
                     <input type="text" id="segundo_apellido" name="segundo_apellido" value="{{ socio.segundo_apellido }}">
                 </p>
                 <p>
-                    ¿Mayor de 13 años?<br>
-                    <label><input type="radio" name="mayor13" value="True" {% if socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(true)"> Sí</label>
-                    <label><input type="radio" name="mayor13" value="False" {% if not socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(false)"> No</label>
+                    {% trans "¿Mayor de 13 años?" %}<br>
+                    <label>
+                        <input type="radio" name="mayor13" value="True" {% if socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(true)">
+                        {% trans "Sí" %}
+                    </label>
+                    <label>
+                        <input type="radio" name="mayor13" value="False" {% if not socio.mayor13 %}checked{% endif %} onclick="mostrarTipoSocio(false)">
+                        {% trans "No" %}
+                    </label>
                 </p>
                 <p>
-                    <label for="fecha_nacimiento">Fecha de nacimiento:</label><br>
+                    <label for="fecha_nacimiento">{% trans "Fecha de nacimiento" %}:</label><br>
                     <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ socio.fecha_nacimiento|date:'Y-m-d' }}">
                 </p>
                 <p id="tipo-socio-container" {% if socio.mayor13 %}style="display:block"{% else %}style="display:none"{% endif %}>
-                    <label for="tipo_socio">Tipo de socio:</label><br>
+                    <label for="tipo_socio">{% trans "Tipo de socio" %}:</label><br>
                     <select id="tipo_socio" name="tipo_socio">
-                        <option value="nuevo" {% if socio.tipo_socio == 'nuevo' %}selected{% endif %}>Nuevo</option>
-                        <option value="socio" {% if socio.tipo_socio == 'socio' %}selected{% endif %}>Socio</option>
-                        <option value="menor" {% if socio.tipo_socio == 'menor' %}selected{% endif %}>Menor</option>
+                        <option value="nuevo" {% if socio.tipo_socio == 'nuevo' %}selected{% endif %}>{% trans "Nuevo" %}</option>
+                        <option value="socio" {% if socio.tipo_socio == 'socio' %}selected{% endif %}>{% trans "Socio" %}</option>
+                        <option value="menor" {% if socio.tipo_socio == 'menor' %}selected{% endif %}>{% trans "Menor" %}</option>
                     </select>
                 </p>
             </fieldset>
 
             <fieldset>
-                <legend>Información de cuenta</legend>
+                <legend>{% trans "Información de cuenta" %}</legend>
                 <p>
-                    <label for="email">Email:</label><br>
+                    <label for="email">{% trans "Email" %}:</label><br>
                     <input type="email" id="email" name="email" value="{{ socio.email }}" required>
                 </p>
                 <p>
-                    <label for="password">Contraseña:</label><br>
+                    <label for="password">{% trans "Contraseña" %}:</label><br>
                     <input type="password" id="password" name="password"><br>
-                    <small>*Dejar vacío si no quieres cambiarla</small>
+                    <small>{% trans "*Dejar vacío si no quieres cambiarla" %}</small>
                 </p>
                 <p>
-                    <label for="password_confirm">Confirmar contraseña:</label><br>
+                    <label for="password_confirm">{% trans "Confirmar contraseña" %}:</label><br>
                     <input type="password" id="password_confirm" name="password_confirm">
                 </p>
                 <p>
-                    <label for="telefono">Teléfono:</label><br>
+                    <label for="telefono">{% trans "Teléfono" %}:</label><br>
                     <input type="tel" id="telefono" name="telefono" value="{{ socio.telefono }}" required>
                 </p>
             </fieldset>
 
             <br>
-            <input type="submit" value="Guardar cambios" class="btn">
-            <a href="{% url 'detalle_socio' socio.id %}" class="btn btn-cancelar">Cancelar</a>
+            <button type="submit" class="btn">{% trans "Guardar cambios" %}</button>
+            <a href="{% url 'detalle_socio' socio.id %}" class="btn btn-cancelar">{% trans "Cancelar" %}</a>
         </form>
     </section>
 </main>
 
 <footer class="site-footer">
-    <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
+    <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
 </footer>
 
 <script>
-    function mostrarTipoSocio(esMayor) {
-        const contenedor = document.getElementById('tipo-socio-container');
-        contenedor.style.display = esMayor ? 'block' : 'none';
-    }
+function mostrarTipoSocio(esMayor) {
+    const contenedor = document.getElementById('tipo-socio-container');
+    contenedor.style.display = esMayor ? 'block' : 'none';
+}
 </script>
 
 </body>

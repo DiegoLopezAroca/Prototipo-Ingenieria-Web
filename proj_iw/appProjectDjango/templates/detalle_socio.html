@@ -1,38 +1,55 @@
 {% load static %}
 {% load permisos_extras %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalle Socio – {{ socio.nombre }} {{ socio.apellido }}</title>
+    <title>{% blocktrans %}Detalle Socio – {{ socio.nombre }} {{ socio.apellido }}{% endblocktrans %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
+
 <body>
 
     <!-- CABECERA -->
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="{% url 'index' %}">
-                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-                <span>Peña El Revoque</span>
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans 'Logo de la Peña El Revoque' %}" class="brand-logo">
+                <span>{% trans "Peña El Revoque" %}</span>
             </a>
-            <nav class="main-nav" aria-label="Principal">
-                <a href="{% url 'index' %}">Inicio</a>
-                <a href="{% url 'eventos' %}">Eventos</a>
-                <a href="{% url 'socios' %}">Socios</a>
-                <a href="{% url 'merchandising' %}">Merchandising</a>
-                <a href="{% url 'cuotas' %}">Cuotas</a>
-                <a href="{% url 'registros' %}">Registro</a>
+
+            <nav class="main-nav" aria-label="{% trans 'Principal' %}">
+                <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+                <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+                <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+                <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+                <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+                <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
             </nav>
+            <div class="language-switcher">
+            <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+                <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+                <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+            </form>
+            </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <h1>Detalle del socio: {{ socio.nombre }} {{ socio.apellido }}</h1>
+            <h1>
+                {% blocktrans %}
+                    Detalle del socio: {{ socio.nombre }} {{ socio.apellido }}
+                {% endblocktrans %}
+            </h1>
         </div>
     </section>
 
@@ -40,72 +57,97 @@
     <main class="detalle-socio wrap">
         <div class="detalle-socio-grid">
 
-            <!-- Columna izquierda: Foto -->
+            <!-- Foto -->
             <div class="detalle-foto">
                 {% if socio.foto %}
-                    <img src="{% static 'img/socios/' %}{{ socio.foto }}" alt="Foto de {{ socio.nombre }}" class="foto-socio">
+                    <img src="{% static 'img/socios/' %}{{ socio.foto }}"
+                         alt="{% blocktrans %}Foto de {{ socio.nombre }}{% endblocktrans %}"
+                         class="foto-socio">
                 {% else %}
-                    <img src="{% static 'img/iconos/usuario.png' %}" alt="Foto por defecto" class="foto-socio">
+                    <img src="{% static 'img/iconos/usuario.png' %}"
+                         alt="{% trans 'Foto por defecto' %}"
+                         class="foto-socio">
                 {% endif %}
             </div>
 
-            <!-- Columna derecha: Información -->
+            <!-- Información -->
             <div class="detalle-info" id="detalle-info">
-                <h2>Información personal</h2>
+                <h2>{% trans "Información personal" %}</h2>
 
                 <div class="info-card">
-                    <span class="info-label">ID</span>
+                    <span class="info-label">{% trans "ID" %}</span>
                     <span class="info-value">{{ socio.id }}</span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Nombre completo</span>
-                    <span class="info-value">{{ socio.nombre }} {{ socio.apellido }}{% if socio.segundo_apellido %} {{ socio.segundo_apellido }}{% endif %}</span>
+                    <span class="info-label">{% trans "Nombre completo" %}</span>
+                    <span class="info-value">
+                        {{ socio.nombre }} {{ socio.apellido }}{% if socio.segundo_apellido %} {{ socio.segundo_apellido }}{% endif %}
+                    </span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Tipo de socio</span>
+                    <span class="info-label">{% trans "Tipo de socio" %}</span>
                     <span class="info-value">{{ socio.get_tipo_socio_display }}</span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Mayor de 13 años</span>
-                    <span class="info-value">{% if socio.mayor13 %}Sí{% else %}No{% endif %}</span>
+                    <span class="info-label">{% trans "Mayor de 13 años" %}</span>
+                    <span class="info-value">
+                        {% if socio.mayor13 %}
+                            {% trans "Sí" %}
+                        {% else %}
+                            {% trans "No" %}
+                        {% endif %}
+                    </span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Fecha de nacimiento</span>
+                    <span class="info-label">{% trans "Fecha de nacimiento" %}</span>
                     <span class="info-value">{{ socio.fecha_nacimiento|date:"d/m/Y" }}</span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Email</span>
+                    <span class="info-label">{% trans "Email" %}</span>
                     <span class="info-value">{{ socio.email }}</span>
                 </div>
+
                 <div class="info-card">
-                    <span class="info-label">Teléfono</span>
+                    <span class="info-label">{% trans "Teléfono" %}</span>
                     <span class="info-value">{{ socio.telefono }}</span>
                 </div>
 
-                <!-- Botones alineados -->
+                <!-- Botones -->
                 <div class="botones-acciones">
-                    <a href="{% url 'socios' %}" class="btn">← Volver a la lista</a>
+                    <a href="{% url 'socios' %}" class="btn">← {% trans "Volver a la lista" %}</a>
 
                     {% if user|es_moderador_o_gestor %}
-                        <a href="{% url 'pagos' %}?socio_id={{ socio.id }}" class="btn">Ver pagos</a>
+                        <a href="{% url 'pagos' %}?socio_id={{ socio.id }}" class="btn">
+                            {% trans "Ver pagos" %}
+                        </a>
                     {% endif %}
+
                     {% if user|es_gestor %}
-                        <a href="{% url 'editar_socio' socio.id %}" class="btn btn-editar">Editar socio</a>
+                        <a href="{% url 'editar_socio' socio.id %}" class="btn btn-editar">
+                            {% trans "Editar socio" %}
+                        </a>
                     {% endif %}
                 </div>
             </div>
-
         </div>
     </main>
 
     <!-- PIE -->
     <footer class="site-footer">
-        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-        <p>Síguenos en:
+        <p>&copy; 2025 Peña El Revoque. {% trans "Todos los derechos reservados." %}</p>
+
+        <p>
+            {% trans "Síguenos en:" %}
             <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
             <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
         </p>
-        <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+
+        <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
     </footer>
 
 </body>

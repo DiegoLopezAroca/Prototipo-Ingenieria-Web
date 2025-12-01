@@ -13,40 +13,6 @@ admin.site.site_title = "Panel de gestión"
 admin.site.index_title = "Panel de administración de la Peña"
 
 # ---------------------------------------------------------
-# CONFIGURACIÓN DE ROLES PERSONALIZADOS
-# ---------------------------------------------------------
-
-# Crear roles y asignar permisos
-def crear_roles():
-    # Moderador
-    moderador_group, created = Group.objects.get_or_create(name="Moderador")
-    modelos = [Socio, Pagos, Contacto, Eventos, AsistenciaEvento, Cuotas, Merchandising]
-    for modelo in modelos:
-        permisos = Permission.objects.filter(
-            content_type__app_label="appProjectDjango",  
-            content_type__model=modelo.__name__.lower()
-        )
-        for p in permisos:
-            if p.codename.startswith("view_"):
-                moderador_group.permissions.add(p)
-
-    # Gestor
-    gestor_group, created = Group.objects.get_or_create(name="Gestor")
-    for modelo in modelos:
-        permisos = Permission.objects.filter(
-            content_type__app_label="appProjectDjango",  
-            content_type__model=modelo.__name__.lower()
-        )
-        for p in permisos:
-            if p.codename.startswith(("view_", "add_", "change_")):
-                gestor_group.permissions.add(p)
-
-try:
-    crear_roles()
-except:
-    pass
-
-# ---------------------------------------------------------
 # ADMIN PERSONALIZADO PARA CADA MODELO
 # ---------------------------------------------------------
 
