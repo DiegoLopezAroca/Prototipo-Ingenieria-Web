@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
 
+# Ruta para cambiar idioma (necesaria para {% url 'set_language' %})
 urlpatterns = [
-    # Ruta para cambiar idioma (necesaria para {% url 'set_language' %})
-    path('i18n/', include('django.conf.urls.i18n')),
+    path('i18n/setlang/', set_language, name='set_language'),
 ]
 
 # URLs traducibles

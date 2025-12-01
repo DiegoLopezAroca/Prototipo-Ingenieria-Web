@@ -1,21 +1,25 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Editar Socio</title>
+    <title>{% trans "Editar Socio" %}</title>
 </head>
 <body>
 
-<h1>Editar socio: {{ socio.nombre }} {{ socio.apellido }}</h1>
+<h1>
+    {% blocktrans with nombre=socio.nombre apellido=socio.apellido %}
+        Editar socio: {{ nombre }} {{ apellido }}
+    {% endblocktrans %}
+</h1>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-editar">Guardar cambios</button>
+    <button type="submit" class="btn btn-editar">{% trans "Guardar cambios" %}</button>
 </form>
 
-<a href="{% url 'detalle_socio' socio.id %}" class="btn">Cancelar</a>
+<a href="{% url 'detalle_socio' socio.id %}" class="btn">{% trans "Cancelar" %}</a>
 
 </body>
 </html>

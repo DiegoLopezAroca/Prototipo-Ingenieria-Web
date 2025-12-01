@@ -1,12 +1,13 @@
-{% load static %}
+{% load static i18n %}
 {% load permisos_extras %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peña El Revoque – Pagos</title>
-    <meta name="description" content="Listado de pagos realizados por los socios de la Peña El Revoque.">
+    <title>{% trans "Peña El Revoque – Pagos" %}</title>
+    <meta name="description" content="{% trans "Listado de pagos realizados por los socios de la Peña El Revoque." %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
 </head>
@@ -16,45 +17,54 @@
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="{% url 'index' %}">
-                <img src="{% static 'img/iconos/peña.jpg' %}" alt="Logo de la Peña El Revoque" class="brand-logo">
-                <span>Peña El Revoque</span>
+                <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans 'Logo de la Peña El Revoque' %}" class="brand-logo">
+                <span>{% trans "Peña El Revoque" %}</span>
             </a>
-            <nav class="main-nav" aria-label="Principal">
-                <a href="{% url 'index' %}">Inicio</a>
-                <a href="{% url 'eventos' %}">Eventos</a>
-                <a href="{% url 'socios' %}">Socios</a>
-                <a href="{% url 'merchandising' %}">Merchandising</a>
-                <a href="{% url 'cuotas' %}">Cuotas</a>
-                <a href="{% url 'registros' %}">Registro</a>
+            <nav class="main-nav" aria-label="{% trans 'Principal' %}">
+                <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+                <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+                <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+                <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+                <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+                <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
             </nav>
+            <div class="language-switcher">
+            <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+                <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+                <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+            </form>
+            </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <img src="{% static 'img/iconos/peña.jpg' %}" alt="Escudo de la Peña" class="logo-hero">
-            <h1>Pagos de Socios</h1>
-            <p>Historial de cuotas abonadas por los socios</p>
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans 'Escudo de la Peña' %}" class="logo-hero">
+            <h1>{% trans "Pagos de Socios" %}</h1>
+            <p>{% trans "Historial de cuotas abonadas por los socios" %}</p>
         </div>
     </section>
 
     <!-- CUERPO -->
     <main class="wrap">
-        <p>A continuación se muestran los pagos registrados de la Peña El Revoque (solo visible para administradores).</p>
+        <p>{% trans "A continuación se muestran los pagos registrados de la Peña El Revoque (solo visible para administradores)." %}</p>
 
         {% if pagos %}
             <table id="pagos">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Socio</th>
-                        <th>Tipo de Socio</th>
-                        <th>Cuota (€)</th>
-                        <th>Tipo de Cuota</th>
-                        <th>Fecha de Pago</th>
+                        <th>{% trans "ID" %}</th>
+                        <th>{% trans "Socio" %}</th>
+                        <th>{% trans "Tipo de Socio" %}</th>
+                        <th>{% trans "Cuota (€)" %}</th>
+                        <th>{% trans "Tipo de Cuota" %}</th>
+                        <th>{% trans "Fecha de Pago" %}</th>
                         {% if user|es_gestor %}
-                        <th>Acciones</th>
+                        <th>{% trans "Acciones" %}</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -69,7 +79,7 @@
                         <td>{{ pago.fecha_pago }}</td>
                         {% if user|es_gestor %}
                         <td>
-                            <a href="{% url 'editar_pago' pago.id %}" class="btn btn-editar">Editar</a>
+                            <a href="{% url 'editar_pago' pago.id %}" class="btn btn-editar">{% trans "Editar" %}</a>
                         </td>
                         {% endif %}
                     </tr>
@@ -77,22 +87,22 @@
                 </tbody>
             </table>
         {% else %}
-            <p>No hay pagos registrados actualmente.</p>
+            <p>{% trans "No hay pagos registrados actualmente." %}</p>
         {% endif %}
 
         <p class="center-btn">
-            <a href="{% url 'detalle_socio' socio_id %}#detalle-info" class="btn">Volver atrás</a>
+            <a href="{% url 'detalle_socio' socio_id %}#detalle-info" class="btn">{% trans "Volver atrás" %}</a>
         </p>
     </main>
 
     <!-- PIE -->
     <footer class="site-footer">
-        <p>&copy; 2025 Peña El Revoque. Todos los derechos reservados.</p>
-        <p>Síguenos en:
+        <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+        <p>{% trans "Síguenos en:" %}
             <a href="https://www.instagram.com/hervias_larioja" target="_blank">Instagram</a> |
             <a href="https://www.facebook.com/elrevoquehervias" target="_blank">Facebook</a>
         </p>
-        <p><a href="{% url 'contacto' %}">Contacta con nosotros aquí</a></p>
+        <p><a href="{% url 'contacto' %}">{% trans "Contacta con nosotros aquí" %}</a></p>
     </footer>
 
 </body>
