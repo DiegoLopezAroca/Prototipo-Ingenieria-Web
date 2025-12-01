@@ -1,0 +1,301 @@
+[
+  {
+    "model": "appProjectDjango.socio",
+    "pk": 1,
+    "fields": {
+      "nombre": "Alicia",
+      "apellido": "Gomez",
+      "segundo_apellido": "Ruiz",
+      "mayor13": true,
+      "fecha_nacimiento": "1986-11-15",
+      "tipo_socio": "socio",
+      "email": "ali@gmail.com",
+      "password": "pbkdf2_sha256$1000000$Abzx1om7OdHuKxpV6VPJKq$wNdE6H7L5eQnCv07rRls26DcjkmTU8rsLavGNJy3E18=",
+      "telefono": "666889964"
+    }
+  },
+  {
+    "model": "appProjectDjango.socio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Juan",
+      "apellido": "Gonzalez",
+      "segundo_apellido": "Rodriguez",
+      "mayor13": true,
+      "fecha_nacimiento": "1999-01-14",
+      "tipo_socio": "socio",
+      "email": "javitxu@gmail.com",
+      "password": "Javier123",
+      "telefono": "666547733"
+    }
+  },
+  {
+    "model": "appProjectDjango.socio",
+    "pk": 3,
+    "fields": {
+      "nombre": "Miren",
+      "apellido": "Lopez",
+      "segundo_apellido": "Bilbao",
+      "mayor13": false,
+      "fecha_nacimiento": "2009-08-20",
+      "tipo_socio": "menor",
+      "email": "miren@gmail.com",
+      "password": "Miren123",
+      "telefono": "672739403"
+    }
+  },
+  {
+    "model": "appProjectDjango.socio",
+    "pk": 4,
+    "fields": {
+      "nombre": "Olivia",
+      "apellido": "Hernandez",
+      "segundo_apellido": "Barrueta",
+      "mayor13": true,
+      "fecha_nacimiento": "1998-12-07",
+      "tipo_socio": "nuevo",
+      "email": "olivia@gmail.com",
+      "password": "Olivia123",
+      "telefono": "644456784"
+    }
+  },
+  {
+    "model": "appProjectDjango.socio",
+    "pk": 5,
+    "fields": {
+      "nombre": "a",
+      "apellido": "a",
+      "segundo_apellido": "a",
+      "mayor13": true,
+      "fecha_nacimiento": "2025-11-06",
+      "tipo_socio": "nuevo",
+      "email": "a@a.com",
+      "password": "a",
+      "telefono": "a"
+    }
+  },
+  {
+    "model": "appProjectDjango.eventos",
+    "pk": 1,
+    "fields": {
+      "nombre": "Hervías Rock XXXII Edición",
+      "fecha": "2026-08-22",
+      "descripcion": "Desde hace 31 años tenemos el honor de poder organizar y celebrar este festival de rock. El más longevo junto al conocido festival Actual. Por nuestro escenario han pasado grupos como Mago de Oz, Muchachito Bombo Infierno, Marea, Platero y tú, Reincidentes, Piperrak…\r\n\r\nDando la oportunidad de dar a conocer talentos emergentes riojanos como (Oslo Ovnies, Trago Largo, Los Zigalas…) y de compartir escenario con grandes grupos.\r\n\r\nLa organización y gestión del festival siempre es llevada a cabo por las cuadrillas del mismo pueblo sin ayudas externas. Dicha organización se traspasa de generación en generación y este año ha sido donde tanto la junta directiva como los nuevos integrantes han cambiado. Suponiendo así una nueva etapa de gente nueva con mucha motivación y ganas de hacer que tanto el pueblo como todo el mundo pueda disfrutar de este evento y Hervías.\r\n\r\nTodo empezó celebrándose en el pequeño local de la peña, hasta llegar al escenario del ayuntamiento y a partir del año pasado en una explanada con escenario.\r\n\r\nLos asistentes vienen desde todas las partes de España, principalmente comunidades colindantes a las nuestras y localidades riojanas.",
+      "lugar": "Hervías",
+      "imagen": "hervias.jpg"
+    }
+  },
+  {
+    "model": "appProjectDjango.eventos",
+    "pk": 2,
+    "fields": {
+      "nombre": "Fiestas de Barrio Cierzo",
+      "fecha": "2026-05-02",
+      "descripcion": "Desde el año pasado, el Barrio Cierzo, el más antiguo de Hervías, ha iniciado la celebración de sus propias fiestas con el objetivo de dinamizar la vida del barrio, atraer a vecinos y visitantes, y fomentar la participación ciudadana. Estas fiestas surgen como una iniciativa comunitaria para luchar contra la despoblación y revitalizar el entorno a través de actividades culturales y de ocio.\r\n\r\nEl programa incluye diversas actividades pensadas para todas las edades, con especial énfasis en la juventud, para reforzar su vínculo con el pueblo y sus tradiciones. Entre ellas se encuentran:\r\n\r\nAnimación cultural: Talleres y actividades intergeneracionales.\r\nArte urbano: Realización de murales comunitarios.\r\nGastronomía: Degustaciones populares con productos locales.\r\nConcierto: Actuación musical con grupos emergentes.\r\nEste año, además, tenemos el orgullo de contar con The Cierzers, una banda de rock formada por vecinos del pueblo que, con gran pasión y entrega, tocarán en las fiestas sin pedir ninguna compensación económica. Su participación no solo aporta música en vivo de calidad, sino que también refuerza el espíritu comunitario y la identidad del barrio.",
+      "lugar": "Hervías - Barrio Cierzo",
+      "imagen": "barriocierzo.jpg"
+    }
+  },
+  {
+    "model": "appProjectDjango.eventos",
+    "pk": 3,
+    "fields": {
+      "nombre": "Día de la Laguna",
+      "fecha": "2026-07-25",
+      "descripcion": "El Día de la Laguna es una jornada de convivencia en plena naturaleza, pensada para disfrutar del verano en familia y con cuadrillas. Reúne deporte, comida popular y actividades para todas las edades, con un ambiente cercano y participativo.\r\n\r\nPrograma:\r\n\r\n10:30 h – Quedada en la plaza de la iglesia para ir a la laguna en bici o andando.\r\n13:00 h – Preparación de mesas y sillas en el frontón.\r\n15:00 h – Paella popular en el frontón.\r\n19:30 h – Degustación de vinos por los calaos del pueblo.\r\n21:30 h – Karaoke en Cálao Luis y Jesús.\r\n00:00 h – Fiesta en el local de la Peña.\r\nTrae tu vaso, ganas de cantar y respeta el entorno de la laguna. Entre todas y todos hacemos posible esta fiesta.",
+      "lugar": "Laguna de Hervías",
+      "imagen": "laguna.png"
+    }
+  },
+  {
+    "model": "appProjectDjango.eventos",
+    "pk": 4,
+    "fields": {
+      "nombre": "Fiesta de la Primavera",
+      "fecha": "2026-03-21",
+      "descripcion": "Celebra con la Peña El Revoque la llegada de la primavera en Hervías: actividades para todas las edades, música en directo, degustaciones y mucho ambiente.\r\n\r\nPrograma:\r\n\r\n10:00 h Simulador de tiro a cargo de la Asociación de Cazadores El Bardal (sala común encima del casino).\r\n13:30 h Preparación de mesas para la comida.\r\n14:30 h Caparronada popular en la peña.\r\n16:00 h Bingo con premios.\r\n17:30 h Carpa de juegos de feria y juegos dirigidos. Sorteos en el frontón.\r\n19:30 h Degustación de cervezas en la peña.\r\n20:00 h Concierto de Los Zigalas en la peña.\r\n00:00 h Fiesta en la peña.\r\nSi podeis traed cubiertos, vasos, platos propios y ganas de pasarlo bien. Entre todas y todos hacemos posible esta fiesta.",
+      "lugar": "Hervías",
+      "imagen": "primavera.png"
+    }
+  },
+  {
+    "model": "appProjectDjango.eventos",
+    "pk": 5,
+    "fields": {
+      "nombre": "Romería a Valvanera",
+      "fecha": "2026-10-03",
+      "descripcion": "Acompaña a la Peña El Revoque en la tradicional romería al Monasterio de Valvanera. Un día de camino, amistad y celebración con paradas en Berceo y Tobía, y actos de bienvenida a la llegada.\r\n\r\nPrograma:\r\n\r\n7:00 h Salida de romeros a Valvanera.\r\n11:00 h Almuerzo en Berceo.\r\n13:30 h Llegada y comida en Tobía.\r\n15:15 h Salida de Tobía.\r\n17:00 h Salida de autobús de Hervías.\r\n19:00 h Llegada a Valvanera.\r\n19:30 h Misa de recepción a los romeros.\r\n20:15 h Salida de autobús de regreso a Hervías.\r\nConsulta precios y menús en nuestro instagram o facebook.",
+      "lugar": "Hervías - Virgen de Valvanera",
+      "imagen": "valvanera.jpg"
+    }
+  },
+  {
+    "model": "appProjectDjango.cuotas",
+    "pk": 1,
+    "fields": {
+      "tipo_socio": "Adultos",
+      "precio": "20.00",
+      "beneficios": "Degustaciones a 2€, cenas y comidas más baratas, sorteos y ser de la mejor peña."
+    }
+  },
+  {
+    "model": "appProjectDjango.cuotas",
+    "pk": 2,
+    "fields": {
+      "tipo_socio": "Niños",
+      "precio": "15.00",
+      "beneficios": "Degustaciones a 2€, cenas y comidas más baratas, sorteos y ser de la mejor peña."
+    }
+  },
+  {
+    "model": "appProjectDjango.cuotas",
+    "pk": 3,
+    "fields": {
+      "tipo_socio": "Socios nuevos",
+      "precio": "30.00",
+      "beneficios": "Blusa y pañuelo, degustaciones a 2€, cenas y comidas más baratas, sorteos y ser de la mejor peña."
+    }
+  },
+  {
+    "model": "appProjectDjango.pagos",
+    "pk": 1,
+    "fields": {
+      "socio": 1,
+      "cuota": 1,
+      "fecha_pago": "2025-11-04"
+    }
+  },
+  {
+    "model": "appProjectDjango.pagos",
+    "pk": 2,
+    "fields": {
+      "socio": 2,
+      "cuota": 1,
+      "fecha_pago": "2025-11-04"
+    }
+  },
+  {
+    "model": "appProjectDjango.pagos",
+    "pk": 3,
+    "fields": {
+      "socio": 3,
+      "cuota": 2,
+      "fecha_pago": "2025-11-04"
+    }
+  },
+  {
+    "model": "appProjectDjango.pagos",
+    "pk": 4,
+    "fields": {
+      "socio": 4,
+      "cuota": 3,
+      "fecha_pago": "2025-11-04"
+    }
+  },
+  {
+    "model": "appProjectDjango.pagos",
+    "pk": 5,
+    "fields": {
+      "socio": 5,
+      "cuota": 3,
+      "fecha_pago": "2025-11-12"
+    }
+  },
+  {
+    "model": "appProjectDjango.merchandising",
+    "pk": 1,
+    "fields": {
+      "nombre": "Camiseta Oficial",
+      "precio": "15.00",
+      "descripcion": "Camiseta negra con el logo de la Peña El Revoque.",
+      "imagen": "CamN_1.png",
+      "imagen2": "CamN_2.png"
+    }
+  },
+  {
+    "model": "appProjectDjango.merchandising",
+    "pk": 2,
+    "fields": {
+      "nombre": "Camiseta Oficial",
+      "precio": "15.00",
+      "descripcion": "Camiseta blanca con el logo de la Peña El Revoque.",
+      "imagen": "CamB_1.png",
+      "imagen2": "CamB_2.png"
+    }
+  },
+  {
+    "model": "appProjectDjango.merchandising",
+    "pk": 3,
+    "fields": {
+      "nombre": "Gorra Oficial",
+      "precio": "10.00",
+      "descripcion": "Gorra negra con el escudo de la Peña El Revoque.",
+      "imagen": "GoN_1.png",
+      "imagen2": "GoN_2.png"
+    }
+  },
+  {
+    "model": "appProjectDjango.contacto",
+    "pk": 1,
+    "fields": {
+      "socio": 4,
+      "email": "olivia@gmail.com",
+      "mensaje": "Hola, me gustaría tener una reunión con vosotros.",
+      "fecha_envio": "2025-11-05T12:47:47.852Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 1,
+    "fields": {
+      "socio": 1,
+      "evento": 1,
+      "fecha_registro": "2025-11-06T23:26:19.800Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 2,
+    "fields": {
+      "socio": 5,
+      "evento": 1,
+      "fecha_registro": "2025-11-06T23:26:36.732Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 3,
+    "fields": {
+      "socio": 5,
+      "evento": 2,
+      "fecha_registro": "2025-11-06T23:28:35.467Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 4,
+    "fields": {
+      "socio": 5,
+      "evento": 3,
+      "fecha_registro": "2025-11-24T12:20:33.997Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 5,
+    "fields": {
+      "socio": 4,
+      "evento": 1,
+      "fecha_registro": "2025-11-24T12:34:25.275Z"
+    }
+  },
+  {
+    "model": "appProjectDjango.asistenciaevento",
+    "pk": 6,
+    "fields": {
+      "socio": 3,
+      "evento": 1,
+      "fecha_registro": "2025-11-27T11:48:41.034Z"
+    }
+  }
+]

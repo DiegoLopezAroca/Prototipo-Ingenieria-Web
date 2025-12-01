@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django Migrate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/proj_iw/manage.py",
+            "args": [
+                "migrate",
+                "appProjectDjango",
+                "0002"
+            ],
+            "django": true
+        }
+    ]
+}
