@@ -48,13 +48,15 @@
         <p class="mensaje-error">{{ error }}</p>
       {% endif %}
 
-      <form id="contactoForm" method="POST">
+      <form id="contactoForm" method="POST" action="{% url 'contacto' %}">
         {% csrf_token %}
         <label for="email">{% trans "Correo electrónico" %}</label>
         <input type="email" id="email" name="email" placeholder="{% trans 'tu@email.com' %}" required>
         <p id="emailStatus" class="mensaje-validacion"></p>
 
         <textarea id="mensaje" name="mensaje" rows="8" placeholder="{% trans 'Escribe tu mensaje aquí...' %}" required disabled style="width:100%; resize:vertical;"></textarea>
+        <p id="contadorPalabras" class="mensaje-validacion" style="margin-top:0.5em;">0 / 150 palabras</p>
+        <p id="mensajeExito" style="color: green; font-weight: bold; display:none;"></p>
 
         <button type="submit" class="btn" disabled>{% trans "Enviar mensaje" %}</button>
       </form>
@@ -106,6 +108,69 @@
       boton.disabled = true;
     }
   });
+  // Contador de palabras para el textarea
+  const mensaje = document.getElementById("mensaje");
+  const contador = document.getElementById("contadorPalabras");
+  const MAX_PALABRAS = 150;
+
+  mensaje.addEventListener("input", function() {
+      let palabras = this.value.trim().split(/\s+/).filter(Boolean);
+      if (palabras.length > MAX_PALABRAS) {
+          palabras = palabras.slice(0, MAX_PALABRAS);
+          this.value = palabras.join(" ");
+      }
+      contador.textContent = `${palabras.length} / ${MAX_PALABRAS} palabras`;
+  });
+  document.getElementById("contactoForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Evita envío normal
+
+    const email = document.getElementById("email").value.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
+    const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+    const exitoDiv = document.getElementById("mensajeExito");
+
+    const response = await fetch("{% url 'contacto' %}", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": csrfToken,
+        "X-Requested-With": "XMLHttpRequest"
+        },
+        body: new URLSearchParams({
+            email: email,
+            mensaje: mensaje
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.status === "ok") {
+        exitoDiv.textContent = "¡Se ha enviado correctamente!";
+        exitoDiv.style.display = "block";
+
+        // Limpiar textarea
+        document.getElementById("mensaje").value = "";
+        contador.textContent = "0 / 150 palabras";
+
+        // Ocultarlo después de 3 segundos
+        setTimeout(() => {
+            exitoDiv.style.display = "none";
+        }, 3000);
+    }
+});
+mensaje.addEventListener("keydown", function(e) {
+    let palabrasActuales = this.value.trim().split(/\s+/).filter(Boolean);
+
+    if (palabrasActuales.length >= MAX_PALABRAS) {
+        // Permitir borrar y flechas
+        if (["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
+            return;
+        }
+        // Bloquear cualquier entrada adicional (incluye espacios)
+        e.preventDefault();
+    }
+});
+
   </script>
 
 </body>

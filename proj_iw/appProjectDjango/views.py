@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
 
 from .models import (
     Socio, Eventos, Cuotas, Merchandising, Pagos,
@@ -97,10 +98,27 @@ class RegistroView(CreateView):
 # -------------------------
 class ContactoView(View):
     def get(self, request):
+        email = request.GET.get('email')
+        if email:
+            # AJAX: validar si el email existe
+            existe = Socio.objects.filter(email=email).exists()
+            return JsonResponse({'existe': existe})
+        # GET normal: mostrar formulario
         form = ContactoForm()
         return render(request, "contacto.html", {"form": form})
 
     def post(self, request):
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            form = ContactoForm(request.POST)
+            if form.is_valid():
+                contacto = form.save(commit=False)
+                socio = Socio.objects.filter(email=form.cleaned_data['email']).first()
+                contacto.socio = socio
+                contacto.save()
+                return JsonResponse({"status": "ok"})
+            return JsonResponse({"status": "error"}, status=400)
+
+        # Envío normal (si alguien desactiva JS)
         form = ContactoForm(request.POST)
         if form.is_valid():
             contacto = form.save(commit=False)
@@ -109,9 +127,10 @@ class ContactoView(View):
             contacto.save()
             messages.success(request, "Mensaje enviado correctamente. ¡Gracias por contactar con nosotros!")
             return redirect("contacto")
+
         messages.error(request, "Por favor corrige los errores del formulario.")
         return render(request, "contacto.html", {"form": form})
-
+    
 # -------------------------
 # ASISTENCIA A EVENTOS
 # -------------------------
