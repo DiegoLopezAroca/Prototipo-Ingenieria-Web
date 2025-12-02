@@ -3,7 +3,7 @@ from .views import (
     IndexView, RegistroView, EventosListView, AsistenciaView, ListaAsistentesView,
     CuotasListView, PagosView, SociosListView, SocioDetailView, MerchandisingListView,
     ProductoDetailView, ContactoView, VerMensajesView, EditarSocioView, EditarAsistentesView,
-    EditarPagoView
+    EditarPagoView, AnadirCuotaView, AnadirMerchandisingView, AnadirEventoView
 )
 
 urlpatterns = [
@@ -24,5 +24,8 @@ urlpatterns = [
     path('socios/<int:socio_id>/editar/', EditarSocioView.as_view(), name='editar_socio'),
     path('eventos/<int:evento_id>/editar-asistentes/', EditarAsistentesView.as_view(), name='editar_asistentes'),
     path('pagos/<int:pago_id>/editar/', EditarPagoView.as_view(), name='editar_pago'),
+    path('cuotas/anadir/', AnadirCuotaView.as_view(), name='anadir_cuota'),
+    path('merchandising/anadir/', AnadirMerchandisingView.as_view(), name='anadir_merchandising'),
+    path('anadir-evento/', AnadirEventoView.as_view(), name='anadir_evento'),
 
 ]

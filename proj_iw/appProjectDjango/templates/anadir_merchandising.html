@@ -1,0 +1,79 @@
+{% load static i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/iconos/dios.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% trans "Añadir producto de merchandising – Peña El Revoque" %}</title>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="{% url 'index' %}">
+            <img src="{% static 'img/iconos/peña.jpg' %}" alt="{% trans "Logo de la Peña El Revoque" %}" class="brand-logo">
+            <span>{% trans "Peña El Revoque" %}</span>
+        </a>
+        <nav class="main-nav" aria-label="{% trans "Principal" %}">
+            <a href="{% url 'index' %}">{% trans "Inicio" %}</a>
+            <a href="{% url 'eventos' %}">{% trans "Eventos" %}</a>
+            <a href="{% url 'socios' %}">{% trans "Socios" %}</a>
+            <a href="{% url 'merchandising' %}">{% trans "Merchandising" %}</a>
+            <a href="{% url 'cuotas' %}">{% trans "Cuotas" %}</a>
+            <a href="{% url 'registros' %}">{% trans "Registro" %}</a>
+        </nav>
+        <div class="language-switcher">
+            <form action="{% url 'set_language' %}" method="post" style="display: flex; gap: 0.3rem;">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" name="language" value="es" class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">ES</button>
+                <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">EN</button>
+                <button type="submit" name="language" value="eu" class="{% if LANGUAGE_CODE == 'eu' %}active-lang{% endif %}">EU</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="formulario">
+        <h2>{% trans "Añadir producto de merchandising" %}</h2>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="nombre">{% trans "Nombre" %}:</label><br>
+                <input type="text" id="nombre" name="nombre" value="{{ form.nombre.value }}" required>
+            </p>
+            <p>
+                <label for="precio">{% trans "Precio (€)" %}:</label><br>
+                <input type="number" step="0.01" id="precio" name="precio" value="{{ form.precio.value }}" required>
+            </p>
+            <p>
+                <label for="descripcion">{% trans "Descripción" %}:</label><br>
+                <textarea id="descripcion" name="descripcion" rows="3" required>{{ form.descripcion.value }}</textarea>
+            </p>
+
+            <br>
+            <button type="submit" class="btn">{% trans "Añadir producto" %}</button>
+            <a href="{% url 'merchandising' %}" class="btn btn-cancelar">{% trans "Cancelar" %}</a>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>&copy; 2025 {% trans "Peña El Revoque. Todos los derechos reservados." %}</p>
+</footer>
+
+</body>
+</html>

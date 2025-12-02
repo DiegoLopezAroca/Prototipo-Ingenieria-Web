@@ -1,4 +1,5 @@
 {% load static i18n %}
+
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -62,6 +63,10 @@
                 {% endfor %}
             </div>
         </section>
+        {% if request.user|es_gestor %}
+            <a href="{% url 'anadir_merchandising' %}" class="btn btn-primario">{% trans "Añadir nuevo merchandising" %}</a>
+        {% endif %}
+
     </main>
 
     <!-- PIE -->

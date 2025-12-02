@@ -90,6 +90,14 @@
         </div>
       </section>
       {% endfor %}
+      {% if user|es_gestor %}
+        <p>
+            <a href="{% url 'anadir_evento' %}" class="btn btn-primario">
+                {% trans "Añadir nuevo evento" %}
+            </a>
+        </p>
+      {% endif %}
+
     </main>
 
     <!-- PIE -->

@@ -11,7 +11,8 @@ from django.http import JsonResponse
 from .models import (
     Socio, Eventos, Cuotas, Merchandising, Pagos,
     Contacto, AsistenciaEvento,
-    SocioForm, ContactoForm, AsistenciaEventoForm, SocioEditarForm
+    SocioForm, ContactoForm, AsistenciaEventoForm, 
+    SocioEditarForm, CuotaForm, MerchandisingForm, EventoForm
 )
 
 # -------------------------
@@ -35,7 +36,6 @@ class IndexView(View):
 # -------------------------
 # LISTADOS (con paginación y cache)
 # -------------------------
-@method_decorator(cache_page(60*10), name='dispatch')
 class EventosListView(ListView):
     model = Eventos
     template_name = 'eventos.html'
@@ -298,3 +298,59 @@ class EditarPagoView(UserPassesTestMixin, View):
         pago.save()
         messages.success(request, "Pago actualizado correctamente.")
         return redirect(f"{reverse('pagos')}?socio_id={pago.socio.id}")
+
+class AnadirCuotaView(UserPassesTestMixin, View):
+    def test_func(self):
+        # Solo gestores o superusuarios pueden acceder
+        return self.request.user.groups.filter(name="Gestor").exists() or self.request.user.is_superuser
+
+    def get(self, request):
+        form = CuotaForm()
+        return render(request, "anadir_cuota.html", {"form": form})
+
+    def post(self, request):
+        form = CuotaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Cuota añadida correctamente.")
+            return redirect("cuotas")  # Redirige a la lista de cuotas
+        return render(request, "anadir_cuota.html", {"form": form})
+
+class AnadirMerchandisingView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request):
+        form = MerchandisingForm()
+        return render(request, "anadir_merchandising.html", {"form": form})
+
+    def post(self, request):
+        form = MerchandisingForm(request.POST)
+        if form.is_valid():
+            merchandising = form.save(commit=False)
+            # Asignamos imágenes por defecto
+            merchandising.imagen = "no_pic.png"
+            merchandising.imagen2 = "no_pic.png"
+            merchandising.save()
+            messages.success(request, "Merchandising añadido correctamente.")  # <-- mensaje corregido
+            return redirect("merchandising")
+        return render(request, "anadir_merchandising.html", {"form": form})
+
+class AnadirEventoView(UserPassesTestMixin, View):
+    def test_func(self):
+        # Solo el gestor puede añadir eventos
+        return self.request.user.groups.filter(name="Gestor").exists()
+
+    def get(self, request):
+        form = EventoForm()
+        return render(request, "anadir_evento.html", {"form": form})
+
+    def post(self, request):
+        form = EventoForm(request.POST)
+        if form.is_valid():
+            evento = form.save(commit=False)
+            evento.imagen = "no_pic.png"  # asignamos imagen por defecto
+            evento.save()
+            messages.success(request, "Evento añadido correctamente.")
+            return redirect("eventos")
+        return render(request, "anadir_evento.html", {"form": form})

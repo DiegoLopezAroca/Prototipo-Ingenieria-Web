@@ -196,3 +196,49 @@ class AsistenciaEventoForm(forms.ModelForm):
         # guardamos el socio encontrado para usarlo en la vista
         self.cleaned_data['socio'] = socio
         return email
+
+class CuotaForm(forms.ModelForm):
+    class Meta:
+        model = Cuotas
+        fields = ['tipo_socio', 'precio', 'beneficios']
+        widgets = {
+            'beneficios': forms.Textarea(attrs={'rows': 3}),
+        }
+
+    def clean_precio(self):
+        precio = self.cleaned_data.get('precio')
+        if precio is None or precio <= 0:
+            raise forms.ValidationError("El precio debe ser un número positivo.")
+        return precio
+
+class MerchandisingForm(forms.ModelForm):
+    class Meta:
+        model = Merchandising
+        fields = ['nombre', 'precio', 'descripcion']
+        widgets = {
+            'descripcion': forms.Textarea(attrs={'rows': 3}),
+        }
+
+    def save(self, commit=True):
+        instancia = super().save(commit=False)
+        # asignar imagen por defecto
+        instancia.imagen = 'no_pic.png'
+        instancia.imagen2 = 'no_pic.png'
+        if commit:
+            instancia.save()
+        return instancia
+
+    def clean_precio(self):
+        precio = self.cleaned_data.get('precio')
+        if precio is None or precio <= 0:
+            raise forms.ValidationError("El precio debe ser un número positivo.")
+        return precio
+
+class EventoForm(forms.ModelForm):
+    class Meta:
+        model = Eventos
+        fields = ['nombre', 'fecha', 'descripcion', 'lugar']
+        widgets = {
+            'descripcion': forms.Textarea(attrs={'rows': 3}),
+            'fecha': forms.DateInput(attrs={'type': 'date'})
+        }

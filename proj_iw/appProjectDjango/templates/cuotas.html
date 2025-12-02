@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load permisos_extras %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -75,6 +76,9 @@
         </table>
         {% else %}
         <p>{% trans "No hay cuotas registradas actualmente." %}</p>
+        {% endif %}
+        {% if request.user|es_gestor %}
+            <a href="{% url 'anadir_cuota' %}" class="btn btn-primario">{% trans "Añadir nueva cuota" %}</a>
         {% endif %}
     </main>
 
