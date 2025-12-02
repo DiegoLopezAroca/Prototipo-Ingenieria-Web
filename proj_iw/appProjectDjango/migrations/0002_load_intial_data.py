@@ -26,12 +26,12 @@ def load_initial_data(apps, schema_editor):
             
         Model = model_map[model_key]
         fields = data["fields"]
-        # Add PK explicitly
+        # Añade el ID explícitamente
         fields["id"] = data["pk"]
         
         final_fields = {}
         for field_name, value in fields.items():
-            # Check if field is a ForeignKey and value is an integer (ID)
+            # Comprueba si el campo es una ForeignKey y el valor es un entero (ID)
             try:
                 field = Model._meta.get_field(field_name)
                 if field.many_to_one and isinstance(value, int):
@@ -39,7 +39,7 @@ def load_initial_data(apps, schema_editor):
                 else:
                     final_fields[field_name] = value
             except Exception:
-                # If field lookup fails, just pass as is
+                # Si la búsqueda del campo falla, simplemente pasa como está
                 final_fields[field_name] = value
                 
         Model.objects.create(**final_fields)

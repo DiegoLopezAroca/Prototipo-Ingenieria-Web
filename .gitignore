@@ -5,3 +5,34 @@ Netlify-URI.txt
 Prototipo-Ingenieria-Web/proj_iw/proj_iw/__pycache__/
 *.pyc
 *.sqlite3
+
+# Ignorar archivo de entorno
+.env
+
+# Django Environment Configuration
+.env
+
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+proj_iw/db.sqlite3

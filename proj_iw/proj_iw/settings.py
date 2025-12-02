@@ -4,11 +4,12 @@ Django settings for proj_iw project.
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-@fkt1o#+@l1ook^&l0=ze^u@46cy1!+nj=!*$%3yyv1$=dtd6p'
-DEBUG = True
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -52,10 +53,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proj_iw.wsgi.application'
 
+# Base de datos local
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# Base de datos mediante Clever Cloud
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int),
     }
 }
 
