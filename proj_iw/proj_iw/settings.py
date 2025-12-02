@@ -8,6 +8,19 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+### Pasos para generar clave secreta ###
+# Crear un archivo .env en la raíz del proyecto (donde está manage.py)
+# 1. Abrir terminal
+# 2. Ejecutar comandos:
+#    python
+#    from django.core.management.utils import get_random_secret_key
+#    print(get_random_secret_key())
+# 3. Copiar la clave generada y pegarla en el archivo .env
+#    SECRET_KEY= pegar aqui
+#    DEBUG=True
+
+# Asi de momento
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -62,6 +75,8 @@ WSGI_APPLICATION = 'proj_iw.wsgi.application'
 # }
 
 # Base de datos mediante Clever Cloud
+# De momento hacemos para local
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -70,6 +85,13 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', cast=int),
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
