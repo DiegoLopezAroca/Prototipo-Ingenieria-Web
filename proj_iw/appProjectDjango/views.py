@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from .models import (
     Socio, Eventos, Cuotas, Merchandising, Pagos,
     Contacto, AsistenciaEvento,
-    SocioForm, ContactoForm, AsistenciaEventoForm
+    SocioForm, ContactoForm, AsistenciaEventoForm, SocioEditarForm
 )
 
 # -------------------------
@@ -194,13 +194,20 @@ class PagosView(UserPassesTestMixin, ListView):
         return is_moderador_o_gestor(self.request.user)
 
     def get_queryset(self):
-        return Pagos.objects.select_related('socio', 'cuota').all().order_by('-fecha_pago')
+        socio_id = self.request.GET.get('socio_id')
+
+        qs = Pagos.objects.select_related('socio', 'cuota').order_by('-fecha_pago')
+
+        if socio_id:
+            return qs.filter(socio_id=socio_id)
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['socio_id'] = self.request.GET.get('socio_id')
         return context
-
+    
 # -------------------------
 # VER MENSAJES DE CONTACTO (ADMIN)
 # -------------------------
@@ -221,12 +228,12 @@ class EditarSocioView(UserPassesTestMixin, View):
 
     def get(self, request, socio_id):
         socio = get_object_or_404(Socio, id=socio_id)
-        form = SocioForm(instance=socio)
+        form = SocioEditarForm(instance=socio) 
         return render(request, "editar_socio.html", {"form": form, "socio": socio})
 
     def post(self, request, socio_id):
         socio = get_object_or_404(Socio, id=socio_id)
-        form = SocioForm(request.POST, instance=socio)
+        form = SocioEditarForm(request.POST, instance=socio) 
         if form.is_valid():
             form.save()
             messages.success(request, "Socio actualizado correctamente.")

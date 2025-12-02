@@ -142,6 +142,26 @@ class SocioForm(forms.ModelForm):
             cleaned_data['password'] = make_password(cleaned_data['password'])
         return cleaned_data
 
+class SocioEditarForm(forms.ModelForm):
+    class Meta:
+        model = Socio
+        fields = [
+            'nombre', 'apellido', 'segundo_apellido', 'mayor13',
+            'fecha_nacimiento', 'tipo_socio', 'email', 'telefono'
+        ]
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email or "@" not in email:
+            raise forms.ValidationError("Introduce un correo electrónico válido.")
+        return email
+
+    def clean_telefono(self):
+        telefono = self.cleaned_data.get('telefono')
+        if telefono and not telefono.isdigit():
+            raise forms.ValidationError("El teléfono solo puede contener números.")
+        return telefono
+
 
 class ContactoForm(forms.ModelForm):
     class Meta:
