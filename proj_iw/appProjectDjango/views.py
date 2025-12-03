@@ -332,7 +332,7 @@ class AnadirMerchandisingView(UserPassesTestMixin, View):
             merchandising.imagen = "no_pic.png"
             merchandising.imagen2 = "no_pic.png"
             merchandising.save()
-            messages.success(request, "Merchandising añadido correctamente.")  # <-- mensaje corregido
+            messages.success(request, "Merchandising añadido correctamente.")
             return redirect("merchandising")
         return render(request, "anadir_merchandising.html", {"form": form})
 
