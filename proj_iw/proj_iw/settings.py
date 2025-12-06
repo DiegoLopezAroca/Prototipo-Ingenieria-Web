@@ -5,6 +5,7 @@ Django settings for proj_iw project.
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from decouple import config
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -117,16 +118,18 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
-STATIC_URL = 'appProjectDjango/static/'
-STATICFILES_DIRS = [BASE_DIR / STATIC_URL]
+STATIC_URL = '/static/'
 
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Si tienes una carpeta static dentro de appProjectDjango:
+STATICFILES_DIRS = [
+    BASE_DIR / 'appProjectDjango' / 'static',
+]
 
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Carpeta donde collectstatic dejará todo (para Render)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise para servir estáticos en producción
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/admin/login/'
 
