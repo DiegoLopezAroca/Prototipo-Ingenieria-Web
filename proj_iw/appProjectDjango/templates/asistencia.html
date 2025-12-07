@@ -64,8 +64,10 @@
             <h2>{% trans "Apuntarme" %}</h2>
             <form method="post">
                 {% csrf_token %}
-                <label for="{{ form.email.id_for_label }}">{% trans "Email con el que te registraste" %}</label>
-                {{ form.email }}
+                <label for="{{ form.email.id_for_label }}">Email con el que te registraste</label>
+                {{ form.email }}<br>
+                <label for="{{ form.password.id_for_label }}">Contraseña</label><br>
+                {{ form.password }}
                 <button type="submit" class="btn">{% trans "Apuntarme al evento" %}</button>
             </form>
             <p style="margin-top:1rem;">

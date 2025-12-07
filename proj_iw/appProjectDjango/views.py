@@ -134,7 +134,7 @@ class ContactoView(View):
 # -------------------------
 # ASISTENCIA A EVENTOS
 # -------------------------
-class AsistenciaView(LoginRequiredMixin, View):
+class AsistenciaView(View):
     def get(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
         form = AsistenciaEventoForm()
@@ -157,7 +157,7 @@ class AsistenciaView(LoginRequiredMixin, View):
                 AsistenciaEvento.objects.create(evento=evento, socio=socio)
                 messages.success(request, "¡Apuntado correctamente!")
             return redirect("asistencia", evento_id=evento.id)
-        messages.error(request, "Por favor corrige los errores del formulario.")
+        messages.error(request, "La dirección de correo electrónico no es válida.")
         return render(request, "asistencia.html", {"evento": evento, "form": form})
 
 

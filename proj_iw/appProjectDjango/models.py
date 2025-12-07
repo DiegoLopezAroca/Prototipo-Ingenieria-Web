@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.hashers import make_password
 from django.core.validators import RegexValidator
+from django.contrib.auth.hashers import check_password
 
 # -------------------------
 # MODELOS
@@ -183,6 +184,7 @@ class ContactoForm(forms.ModelForm):
 
 class AsistenciaEventoForm(forms.ModelForm):
     email = forms.EmailField(label="Email con el que te registraste")
+    password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
 
     class Meta:
         model = AsistenciaEvento
@@ -196,6 +198,31 @@ class AsistenciaEventoForm(forms.ModelForm):
         # guardamos el socio encontrado para usarlo en la vista
         self.cleaned_data['socio'] = socio
         return email
+    
+    def clean(self):
+        cleaned = super().clean()
+        socio = cleaned.get('socio')
+        password = cleaned.get('password')
+
+        if socio and password:
+            guardada = socio.password or ""
+            ok = False
+
+            if guardada.startswith("pbkdf2_"):
+                # Caso: ya está hasheada
+                ok = check_password(password, guardada)
+            else:
+                # Caso antiguo: texto plano
+                if guardada == password:
+                    ok = True
+                    # Aprovechamos para actualizarla a hash
+                    socio.password = make_password(password)
+                    socio.save(update_fields=["password"])
+
+            if not ok:
+                self.add_error('password', "Contraseña incorrecta.")
+
+        return cleaned
 
 class CuotaForm(forms.ModelForm):
     class Meta:
