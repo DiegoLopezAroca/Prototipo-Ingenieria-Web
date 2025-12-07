@@ -37,3 +37,4 @@ staticfiles/
 .DS_Store
 Thumbs.db
 proj_iw/db.sqlite3
+*.sqlite3

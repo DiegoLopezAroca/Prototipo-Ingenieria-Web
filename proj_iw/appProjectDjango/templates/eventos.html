@@ -75,7 +75,7 @@
               {{ evento.descripcion|linebreaksbr }}
             </p>
             <p>
-              <b>{% trans "Fecha y lugar:" %}</b> {% blocktrans with lugar=evento.lugar fecha=evento.fecha %}En {{ lugar }} el día {{ fecha|date:"d/m/Y" }}.{% endblocktrans %}
+              <b>{% trans "Fecha y lugar:" %}</b> {% blocktrans with lugar=evento.lugar fecha=evento.fecha|date:"d/m/Y" %}En {{ lugar }} el día {{ fecha }}.{% endblocktrans %}
             </p>
             <p class="center-btn">
               <a href="{% url 'asistencia' evento.id %}" class="btn">{% trans "Registra tu asistencia aquí" %}</a>
