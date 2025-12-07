@@ -55,6 +55,25 @@ def create_initial_users(apps, schema_editor):
     except Group.DoesNotExist:
         pass
 
+    # Crear superusuario
+    super_user, created = User.objects.get_or_create(
+        username='admin',
+        defaults={
+            'password': make_password('admin'),
+            'is_staff': True,
+            'is_superuser': True,
+            'is_active': True,
+            'email': 'admin@example.com'
+        }
+    )
+    if not created:
+        super_user.password = make_password('admin')
+        super_user.is_staff = True
+        super_user.is_superuser = True
+        super_user.is_active = True
+        super_user.save()
+
+
 
 class Migration(migrations.Migration):
 
