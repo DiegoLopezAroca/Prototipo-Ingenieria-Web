@@ -89,11 +89,12 @@
                 </p>
 
                 <p id="tipo-socio-container" style="display:none;">
-                    <label for="tipo_socio">{% trans "Tipo de socio" %}:</label><br>
-                    <select id="tipo_socio" name="tipo_socio">
-                        <option value="">{% trans "-- Selecciona una opción --" %}</option>
-                        <option value="nuevo">{% trans "Nuevo" %}</option>
-                        <option value="socio">{% trans "Socio" %}</option>
+                    <label for="cuota">{% trans "Tipo de cuota" %}:</label><br>
+                    <select id="cuota" name="cuota">
+                        <option value="">{% trans "-- Selecciona una cuota --" %}</option>
+                        {% for c in cuotas %}
+                            <option value="{{ c.id }}">{{ c.tipo_socio }} - {{ c.precio }}€</option>
+                        {% endfor %}
                     </select>
                 </p>
             </fieldset>

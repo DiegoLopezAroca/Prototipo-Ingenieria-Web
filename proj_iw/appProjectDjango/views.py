@@ -93,6 +93,11 @@ class RegistroView(CreateView):
     template_name = 'registro.html'
     success_url = reverse_lazy('socios')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cuotas"] = Cuotas.objects.all()
+        return context
+
 # -------------------------
 # CONTACTO
 # -------------------------
