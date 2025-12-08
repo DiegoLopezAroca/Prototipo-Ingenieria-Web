@@ -8,18 +8,18 @@ from django.contrib.auth.hashers import check_password
 # MODELOS
 # -------------------------
 class Socio(models.Model):
-    TIPO_SOCIO_CHOICES = [
-        ('menor', 'Menor'),
-        ('socio', 'Socio'),
-        ('nuevo', 'Nuevo'),
-    ]
+    # TIPO_SOCIO_CHOICES = [
+    #     ('menor', 'Menor'),
+    #     ('socio', 'Socio'),
+    #     ('nuevo', 'Nuevo'),
+    # ]
 
     nombre = models.CharField(max_length=100, db_index=True)
     apellido = models.CharField(max_length=100, null=True, blank=True)
     segundo_apellido = models.CharField(max_length=100, blank=True, null=True)
     mayor13 = models.BooleanField(default=True)
     fecha_nacimiento = models.DateField(blank=True, null=True, db_index=True)
-    tipo_socio = models.CharField(max_length=20, choices=TIPO_SOCIO_CHOICES, default='nuevo')
+    tipo_socio = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(unique=True, db_index=True)
     password = models.CharField(max_length=128, null=True, blank=True)
     telefono = models.CharField(
@@ -121,7 +121,32 @@ class SocioForm(forms.ModelForm):
 
     class Meta:
         model = Socio
-        fields = [ 'nombre', 'apellido', 'segundo_apellido', 'mayor13', 'fecha_nacimiento', 'tipo_socio', 'email', 'password', 'telefono']
+        fields = [
+            'nombre', 'apellido', 'segundo_apellido',
+            'mayor13', 'fecha_nacimiento', 'tipo_socio',
+            'email', 'password', 'telefono'
+        ]
+        widgets = {
+            'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # BooleanField -> radios Sí/No
+        self.fields['mayor13'].widget = forms.RadioSelect(
+            choices=[
+                (True, 'Sí'),
+                (False, 'No'),
+            ]
+        )
+        cuotas = Cuotas.objects.all()
+        self.fields['tipo_socio'] = forms.ChoiceField(
+            choices=[("", "-- Selecciona una cuota --")] + [
+                (c.tipo_socio, f"{c.tipo_socio} - {c.precio}€") for c in cuotas
+            ],
+            required=False,
+            label="Tipo de cuota",
+        )
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

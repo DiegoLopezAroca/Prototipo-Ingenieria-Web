@@ -91,7 +91,7 @@ class RegistroView(CreateView):
     model = Socio
     form_class = SocioForm
     template_name = 'registro.html'
-    success_url = reverse_lazy('socios')
+    success_url = reverse_lazy('registros')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

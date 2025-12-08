@@ -62,7 +62,7 @@
             <tr>
                 <td>{{ socio.id }}</td>
                 <td>{{ socio.nombre }} {{ socio.apellido }}</td>
-                <td>{{ socio.get_tipo_socio_display }}</td>
+                <td>{{ socio.tipo_socio }}</td>
                 <td><a href="{% url 'detalle_socio' socio.id %}">{% trans "Ver detalle" %}</a></td>
             </tr>
             {% empty %}

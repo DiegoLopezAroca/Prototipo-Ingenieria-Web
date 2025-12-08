@@ -63,64 +63,56 @@
                 <legend>{% trans "Datos personales" %}</legend>
 
                 <p>
-                    <label for="nombre">{% trans "Nombre" %}:</label><br>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="{{ form.nombre.id_for_label }}">{% trans "Nombre" %}:</label><br>
+                    {{ form.nombre }}
                 </p>
 
                 <p>
-                    <label for="apellido">{% trans "Apellido" %}:</label><br>
-                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="{{ form.apellido.id_for_label }}">{% trans "Apellido" %}:</label><br>
+                    {{ form.apellido }}
                 </p>
 
                 <p>
-                    <label for="segundo_apellido">{% trans "Segundo apellido" %}:</label><br>
-                    <input type="text" id="segundo_apellido" name="segundo_apellido">
+                    <label for="{{ form.segundo_apellido.id_for_label }}">{% trans "Segundo apellido" %}:</label><br>
+                    {{ form.segundo_apellido }}
                 </p>
 
                 <p>
                     {% trans "¿Mayor de 13 años?" %}<br>
-                    <label><input type="radio" name="mayor13" value="True" required onclick="mostrarTipoSocio(true)"> {% trans "Sí" %}</label>
-                    <label><input type="radio" name="mayor13" value="False" required onclick="mostrarTipoSocio(false)"> {% trans "No" %}</label>
+                    {{ form.mayor13 }}
                 </p>
 
                 <p>
-                    <label for="fecha_nacimiento">{% trans "Fecha de nacimiento" %}:</label><br>
-                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                    <label for="{{ form.fecha_nacimiento.id_for_label }}">{% trans "Fecha de nacimiento" %}:</label><br>
+                    {{ form.fecha_nacimiento }}
                 </p>
 
-                <p id="tipo-socio-container" style="display:none;">
-                    <label for="cuota">{% trans "Tipo de cuota" %}:</label><br>
-                    <select id="tipo_socio" name="tipo_socio">
-                        <option value="">{% trans "-- Selecciona una cuota --" %}</option>
-                        {% for c in cuotas %}
-                            <option value="{{ c.tipo_socio }}">{{ c.tipo_socio }} - {{ c.precio }}€</option>
-                        {% endfor %}
-                    </select>
+                <p id="tipo-socio-container">
+                    <label for="{{ form.tipo_socio.id_for_label }}">{% trans "Tipo de cuota" %}:</label><br>
+                    {{ form.tipo_socio }}
                 </p>
             </fieldset>
-
-            <br>
 
             <fieldset>
                 <legend>{% trans "Información de cuenta" %}</legend>
+
                 <p>
-                    <label for="email">{% trans "Email" %}:</label><br>
-                    <input type="email" id="email" name="email" required>
+                    <label for="{{ form.email.id_for_label }}">{% trans "Email" %}:</label><br>
+                    {{ form.email }}
                 </p>
                 <p>
-                    <label for="password">{% trans "Contraseña" %}:</label><br>
-                    <input type="password" id="password" name="password" required>
+                    <label for="{{ form.password.id_for_label }}">{% trans "Contraseña" %}:</label><br>
+                    {{ form.password }}
                 </p>
                 <p>
-                    <label for="password_confirm">{% trans "Confirmar Contraseña" %}:</label><br>
-                    <input type="password" id="password_confirm" name="password_confirm" required>
+                    <label for="{{ form.password_confirm.id_for_label }}">{% trans "Confirmar Contraseña" %}:</label><br>
+                    {{ form.password_confirm }}
                 </p>
                 <p>
-                    <label for="telefono">{% trans "Teléfono" %}:</label><br>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <label for="{{ form.telefono.id_for_label }}">{% trans "Teléfono" %}:</label><br>
+                    {{ form.telefono }}
                 </p>
             </fieldset>
-
             <br>
             <input type="submit" value="{% trans 'Registrarse' %}" class="btn">
         </form>
