@@ -61,7 +61,6 @@
                         <th>{% trans "Socio" %}</th>
                         <th>{% trans "Tipo de Socio" %}</th>
                         <th>{% trans "Cuota (€)" %}</th>
-                        <th>{% trans "Tipo de Cuota" %}</th>
                         <th>{% trans "Fecha de Pago" %}</th>
                         {% if user|es_gestor %}
                         <th>{% trans "Acciones" %}</th>
@@ -73,9 +72,8 @@
                     <tr>
                         <td>{{ pago.id }}</td>
                         <td>{{ pago.socio.nombre }} {{ pago.socio.apellido }}</td>
-                        <td>{{ pago.socio.get_tipo_socio_display }}</td>
+                        <td>{{ pago.socio.tipo_socio }}</td>
                         <td>{{ pago.cuota.precio }}</td>
-                        <td>{{ pago.cuota.tipo_socio }}</td>
                         <td>{{ pago.fecha_pago }}</td>
                         {% if user|es_gestor %}
                         <td>
