@@ -97,6 +97,14 @@ class RegistroView(CreateView):
         context = super().get_context_data(**kwargs)
         context["cuotas"] = Cuotas.objects.all()
         return context
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Registro completado correctamente.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "No se pudo completar el registro. Revisa los campos.")
+        return super().form_invalid(form)
 
 # -------------------------
 # CONTACTO
