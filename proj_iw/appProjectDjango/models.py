@@ -224,6 +224,22 @@ class AsistenciaEventoForm(forms.ModelForm):
 
         return cleaned
 
+class AsistenciaEventoAdminForm(forms.ModelForm):
+    email = forms.EmailField(label="Email del socio")
+
+    class Meta:
+        model = AsistenciaEvento
+        fields = []  # no pedimos socio directamente
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        socio = Socio.objects.filter(email=email).first()
+        if not socio:
+            raise forms.ValidationError("No se encontró ningún socio con ese email.")
+        self.cleaned_data['socio'] = socio
+        return email
+
+
 class CuotaForm(forms.ModelForm):
     class Meta:
         model = Cuotas
