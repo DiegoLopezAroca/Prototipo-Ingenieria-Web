@@ -12,7 +12,8 @@ from .models import (
     Socio, Eventos, Cuotas, Merchandising, Pagos,
     Contacto, AsistenciaEvento,
     SocioForm, ContactoForm, AsistenciaEventoForm, 
-    SocioEditarForm, CuotaForm, MerchandisingForm, EventoForm
+    SocioEditarForm, CuotaForm, MerchandisingForm, EventoForm,
+    AsistenciaEventoAdminForm
 )
 
 # -------------------------
@@ -261,7 +262,7 @@ class EditarAsistentesView(UserPassesTestMixin, View):
     def get(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
         asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio")
-        form = AsistenciaEventoForm()  # Form para agregar un nuevo asistente
+        form = AsistenciaEventoAdminForm()
         return render(request, "editar_asistentes.html", {
             "evento": evento,
             "asistentes": asistentes,
@@ -270,24 +271,16 @@ class EditarAsistentesView(UserPassesTestMixin, View):
 
     def post(self, request, evento_id):
         evento = get_object_or_404(Eventos, id=evento_id)
-        form = AsistenciaEventoForm(request.POST)
-
+        form = AsistenciaEventoAdminForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']  # obtener email del formulario
-            try:
-                socio = Socio.objects.get(email=email)
-                # Evitar duplicados
-                if not AsistenciaEvento.objects.filter(evento=evento, socio=socio).exists():
-                    AsistenciaEvento.objects.create(evento=evento, socio=socio)
-                    messages.success(request, "Asistente añadido correctamente.")
-                else:
-                    messages.info(request, "¡Este socio ya está inscrito en el evento!")
-            except Socio.DoesNotExist:
-                messages.error(request, "No existe ningún socio con ese email.")
-
+            socio = form.cleaned_data['socio']
+            if not AsistenciaEvento.objects.filter(evento=evento, socio=socio).exists():
+                AsistenciaEvento.objects.create(evento=evento, socio=socio)
+                messages.success(request, "Asistente añadido correctamente.")
+            else:
+                messages.info(request, "¡Este socio ya está inscrito en el evento!")
             return redirect("editar_asistentes", evento_id=evento.id)
-
-        # Si hay errores en el form
+        
         asistentes = AsistenciaEvento.objects.filter(evento=evento).select_related("socio")
         messages.error(request, "Corrige los errores del formulario.")
         return render(request, "editar_asistentes.html", {
@@ -295,7 +288,6 @@ class EditarAsistentesView(UserPassesTestMixin, View):
             "asistentes": asistentes,
             "form": form
         })
-
 
 class EditarPagoView(UserPassesTestMixin, View):
     def test_func(self):
