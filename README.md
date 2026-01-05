@@ -1,6 +1,6 @@
-# Membership Management System
+# Asociación Cultural Peña el Revoque
 
-A comprehensive Django-based web application for managing memberships, events, payments, and merchandising for associations and clubs.
+A comprehensive Django-based web application for managing memberships, events, payments, and merchandising for "Asociación Cultural Peña el Revoque".
 
 ## Overview
 
@@ -146,7 +146,7 @@ This project is a full-featured membership management system built with Django t
     
     Open your browser and navigate to: `http://localhost:8000`
 
-## 🔧 Configuration
+## Configuration
 
 ### Database Configuration
 
