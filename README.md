@@ -76,7 +76,7 @@ This project is a full-featured membership management system built with Django t
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/DiegoLopezAroca/Prototipo-Ingenieria-Web.git
+   git clone <repository-url>
    cd Prototipo-Ingenieria-Web
    ```
 
@@ -163,7 +163,7 @@ DB_PORT=3306
 
 ### User Roles
 
-The system supports three access levels:
+The system supports four access levels:
 1. **Superuser**: Full administrative access
 2. **Moderator**: Can manage members, events, and content
 3. **Manager (Gestor)**: Can manage members, events, and content
