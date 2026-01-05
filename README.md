@@ -4,7 +4,7 @@ A comprehensive Django-based web application for managing memberships, events, p
 
 ## Overview
 
-This project is a full-featured membership management system built with Django that enables organizations to:
+This project is a full-featured membership management system built with Django that enables our organization to:
 - Manage member registrations and profiles
 - Organize and track event attendance
 - Handle membership fees and payments
