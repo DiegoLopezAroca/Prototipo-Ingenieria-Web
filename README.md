@@ -2,7 +2,7 @@
 
 A comprehensive Django-based web application for managing memberships, events, payments, and merchandising for associations and clubs.
 
-## 📋 Overview
+## Overview
 
 This project is a full-featured membership management system built with Django that enables organizations to:
 - Manage member registrations and profiles
@@ -12,7 +12,7 @@ This project is a full-featured membership management system built with Django t
 - Process contact inquiries
 - Control access with role-based permissions (Moderator/Manager)
 
-## ✨ Features
+## Features
 
 ### Member Management
 - **Member Registration**: Complete registration system with secure password hashing
@@ -47,7 +47,7 @@ This project is a full-featured membership management system built with Django t
 - **Secure Authentication**: Password hashing with PBKDF2
 - **Protected Views**: Restricted areas for administrators only
 
-## 🚀 Technology Stack
+## Technology Stack
 
 - **Backend Framework**: Django 5.2.7
 - **Database**: SQLite (development) / MySQL (production-ready)
@@ -65,7 +65,7 @@ This project is a full-featured membership management system built with Django t
 - `python-decouple==3.8` - Configuration management
 - `whitenoise==6.11.0` - Static file serving
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -169,7 +169,7 @@ The system supports three access levels:
 3. **Manager (Gestor)**: Can manage members, events, and content
 4. **Regular Members**: Limited access to public features
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Prototipo-Ingenieria-Web/
@@ -195,7 +195,7 @@ Prototipo-Ingenieria-Web/
 └── README.md                     # This file
 ```
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Main Models
 
@@ -217,7 +217,7 @@ Prototipo-Ingenieria-Web/
 - Membership Tier → Payments
 - Member → Contact Messages
 
-## 🎯 Usage
+## Usage
 
 ### For Members
 
@@ -248,7 +248,7 @@ Prototipo-Ingenieria-Web/
 - `/pagos/` - Payment management (restricted)
 - `/admin/` - Django admin panel
 
-## 🚀 Deployment
+## Deployment
 
 ### Using the Build Script
 
@@ -276,14 +276,14 @@ This script will:
 - [ ] Configure static file storage (WhiteNoise is included)
 - [ ] Set up backup strategy for database
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 ```bash
 python manage.py test
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -301,27 +301,23 @@ Contributions are welcome! Please follow these steps:
 - Write tests for new features
 - Update documentation as needed
 
-## 📝 License
+## License
 
 This project is part of a Web Engineering course prototype. Please consult with the repository owner regarding usage and distribution rights.
 
-## 👥 Authors
-
-- Diego López Aroca - [GitHub Profile](https://github.com/DiegoLopezAroca)
-
-## 🐛 Known Issues
+## Known Issues
 
 - Legacy plain-text passwords are automatically converted to hashed passwords on first login
 - Image uploads are stored as filenames (requires additional storage configuration)
 
-## 📧 Support
+## Support
 
 For questions or issues, please:
 1. Check existing GitHub Issues
 2. Open a new issue with detailed description
 3. Use the contact form in the application
 
-## 🔄 Version History
+## Version History
 
 - **v1.0** (Current) - Initial release with core membership management features
 
